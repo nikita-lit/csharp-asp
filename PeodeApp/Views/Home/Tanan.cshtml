@@ -9,9 +9,25 @@
 <hr />
 <div class="row">
     <p>Sinu vastus on edukalt salvestatud</p>
-    <p>Ootame/ei oota sind üritusel</p>
-</div>
 
+    @if(Model.OnKutse)
+    {
+        <p class="text-success">
+            <strong>Rõõm kuulda! Ootame sind üritusele @ViewBag.PyhaNimi!</strong>
+        </p>
+    }
+    else
+    {
+        <p class="text-danger">
+            <strong>Kahju, et ei saa tulla üritusele @ViewBag.PyhaNimi!</strong>
+        </p>
+    }
+
+    <div class="image-container">
+        <img src="~/images/@ViewBag.Pilt" style="display: flex; width: 200px" />
+    </div>
+</div>
+<br />
 <div>
     <a asp-action="Index">Tagasi avelehele</a>
 </div>
