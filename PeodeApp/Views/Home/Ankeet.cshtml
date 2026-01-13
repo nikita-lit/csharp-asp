@@ -1,0 +1,62 @@
+﻿@model PeodeApp.Models.Kylaline
+
+@{
+    ViewData["Title"] = "Ankeet";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Ankeet">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Nimi" class="control-label">Sinu nimi:</label>
+                <input asp-for="Nimi" class="form-control" />
+                <span asp-validation-for="Nimi" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">E-post:</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            @* form-check *@
+            <div class="form-group">
+                <label asp-for="OnKutse" class="control-label">Kas osaled?</label>
+                <select class="form-select" asp-for="OnKutse" asp-items="@(new SelectList(new List<SelectListItem>() {
+                    new SelectListItem { Text = "Jah, tulen koos kutsutud inimesega", Value = "true"},
+                    new SelectListItem { Text = "Ei, kahjuks ei saa osaleda", Value = "false"},
+                }, "Value", "Text"))">
+                    <option value="">Vali...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PyhaID" class="control-label">Vali üritus:</label>
+                <select class="form-select" asp-for="OnKutse" asp-items="@((SelectList)ViewBag.Pyhad)">
+                    <option value="">Vali...</option>
+                </select>
+
+                <span asp-validation-for="PyhaID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Saada vastus" class="btn btn-primary" />
+                <input type="reset" value="Tühista" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Tagasi</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
