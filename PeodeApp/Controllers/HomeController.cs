@@ -76,7 +76,7 @@ namespace PeodeApp.Controllers
         private void SaadaEmail(Kylaline kylaline, string pilt, string pyha)
         {
             string failiTee = Path.Combine(
-                Directory.GetCurrentDirectory(), // For ASP.NET Core, adjust path
+                Directory.GetCurrentDirectory(),
                 "wwwroot",
                 "images",
                 pilt

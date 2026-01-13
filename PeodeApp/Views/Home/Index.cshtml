@@ -5,7 +5,14 @@
 <div class="text-center">
     <h1 class="display-4">Tere tulemast!</h1>
 
-    <div>
-        <a class="btn btn-primary btn-md" asp-area="" asp-controller="Home" asp-action="Ankeet">Vastan küsimustele</a>
+    <div class="row" style="margin: 0 35% 0 35%; gap: 20px">
+        <div class="row">
+            <p class="lead">Uuri meie pakkumised:</p>
+            <a class="btn btn-primary btn-md" asp-area="" asp-controller="Pyhad" asp-action="Index">Meie pühad</a>
+        </div>
+        <div class="row">
+            <p class="lead">Tee oma valik:</p>
+            <a class="btn btn-primary btn-md" asp-area="" asp-controller="Home" asp-action="Ankeet">Vastan küsimustele</a>
+        </div>
     </div>
 </div>
