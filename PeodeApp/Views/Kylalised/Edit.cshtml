@@ -19,22 +19,31 @@
                 <span asp-validation-for="Nimi" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
+                <label asp-for="Email" class="control-label">E-post</label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="OnKutse" /> @Html.DisplayNameFor(model => model.OnKutse)
-                </label>
-            </div>
             <div class="form-group">
-                <label asp-for="PyhaID" class="control-label"></label>
-                <input asp-for="PyhaID" class="form-control" />
+                <label asp-for="OnKutse" class="control-label">Kas osaled?</label>
+                <select class="form-select" asp-for="OnKutse" asp-items="@(new SelectList(new List<SelectListItem>() {
+                        new SelectListItem { Text = "Jah, tulen koos kutsutud inimesega", Value = "true"},
+                        new SelectListItem { Text = "Ei, kahjuks ei saa osaleda", Value = "false"},
+                    }, "Value", "Text"))">
+                    <option value="">Vali...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PyhaID" class="control-label">Vali üritus:</label>
+                <select class="form-select" asp-for="PyhaID" asp-items="@((SelectList)ViewBag.Pyhad)">
+                    <option value="">Vali...</option>
+                </select>
+
                 <span asp-validation-for="PyhaID" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Salvesta" class="btn btn-primary" />
             </div>
         </form>
     </div>

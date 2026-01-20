@@ -24,7 +24,6 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
-            @* form-check *@
             <div class="form-group">
                 <label asp-for="OnKutse" class="control-label">Kas osaled?</label>
                 <select class="form-select" asp-for="OnKutse" asp-items="@(new SelectList(new List<SelectListItem>() {

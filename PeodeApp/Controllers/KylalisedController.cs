@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PeodeApp.Data;
 using PeodeApp.Models;
@@ -20,7 +21,7 @@ namespace PeodeApp.Controllers
         public async Task<IActionResult> Index(List<Kylaline>? kylalised = null)
         {
             if (kylalised == null)
-                return View(await _context.Kylalined.ToListAsync());
+                return View(await _context.Kylalined.Include(k => k.Pyha).ToListAsync());
             else
                 return View(kylalised);
         }
@@ -34,6 +35,7 @@ namespace PeodeApp.Controllers
             }
 
             var kylaline = await _context.Kylalined
+                .Include(k => k.Pyha)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (kylaline == null)
             {
@@ -46,6 +48,7 @@ namespace PeodeApp.Controllers
         // GET: Kylalised/Create
         public IActionResult Create()
         {
+            ViewBag.Pyhad = new SelectList(_context.Pyhad, "ID", "Nimi");
             return View();
         }
 
@@ -62,6 +65,7 @@ namespace PeodeApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Pyhad = new SelectList(_context.Pyhad, "ID", "Nimi", kylaline.PyhaID);
             return View(kylaline);
         }
 
@@ -73,11 +77,14 @@ namespace PeodeApp.Controllers
                 return NotFound();
             }
 
-            var kylaline = await _context.Kylalined.FindAsync(id);
+            var kylaline = await _context.Kylalined
+                .Include(k => k.Pyha)
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (kylaline == null)
             {
                 return NotFound();
             }
+            ViewBag.Pyhad = new SelectList(_context.Pyhad, "ID", "Nimi", kylaline.PyhaID);
             return View(kylaline);
         }
 
@@ -113,6 +120,7 @@ namespace PeodeApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Pyhad = new SelectList(_context.Pyhad, "ID", "Nimi", kylaline.PyhaID);
             return View(kylaline);
         }
 
@@ -125,6 +133,7 @@ namespace PeodeApp.Controllers
             }
 
             var kylaline = await _context.Kylalined
+                .Include(k => k.Pyha)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (kylaline == null)
             {
@@ -156,14 +165,20 @@ namespace PeodeApp.Controllers
 
         public async Task<IActionResult> Tulevad()
         {
-            var tulevad = _context.Kylalined.Where(x => x.OnKutse == true).ToList();
+            var tulevad = await _context.Kylalined
+                .Include(k => k.Pyha)
+                .Where(x => x.OnKutse == true)
+                .ToListAsync();
             ViewBag.Filter = "Tulevad külalised";
             return View("Index", tulevad);
         }
 
         public async Task<IActionResult> MitteTulevad()
         {
-            var tulevad = _context.Kylalined.Where(x => x.OnKutse == false).ToList();
+            var tulevad = await _context.Kylalined
+                .Include(k => k.Pyha)
+                .Where(x => x.OnKutse == false)
+                .ToListAsync();
             ViewBag.Filter = "Mitte tulevad külalised";
             return View("Index", tulevad);
         }

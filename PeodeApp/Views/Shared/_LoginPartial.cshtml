@@ -2,14 +2,14 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<ul class="navbar-nav">
+<ul class="navbar-nav mx-auto">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a class="nav-link text-dark text-center" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Tere, @User.Identity?.Name!</a>
+    <li class="nav-item text-center">
+        <a class="nav-link text-dark" style="height: 100%; display: flex; justify-content: center; align-items: center" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Tere, @User.Identity?.Name!</a>
     </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+    <li class="nav-item text-center">
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button type="submit" class="nav-link btn btn-link text-dark">Logi välja</button>
         </form>
     </li>

@@ -1,22 +1,21 @@
 ﻿@page
 @model RegisterConfirmationModel
 @{
-    ViewData["Title"] = "Registreerimise kinnitus";
+    ViewData["Title"] = "Täname registreerimise eest";
 }
 
 <h1>@ViewData["Title"]</h1>
 @{
-    if (@Model.DisplayConfirmAccountLink)
+    if (Model.DisplayConfirmAccountLink)
     {
 <p>
-    Sellel rakendusel ei ole hetkel registreeritud tõelist e-posti saatjat; vaadake dokumentatsiooni, kuidas seadistada e-posti saatjat: <a href="https://aka.ms/aspaccountconf">dokumendid</a>.
-    Tavaliselt saadetakse see e-kiri: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Klõpsake siia, et kinnitada oma konto</a>
+    Palun kinnitage oma konto, klõpsates järgmisel lingil: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Kinnita konto</a>
 </p>
     }
     else
     {
 <p>
-        Palun kontrollige oma e-posti, et kinnitada oma konto.
+        Palun kontrollige oma e-posti ja kinnitage oma konto.
 </p>
     }
 }
