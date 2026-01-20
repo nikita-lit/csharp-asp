@@ -54,7 +54,7 @@ namespace PeodeApp.Areas.Identity.Pages.Account
             [BindProperty]
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Recovery Code")]
+            [Display(Name = "Taastamiskood")]
             public string RecoveryCode { get; set; }
         }
 
@@ -104,7 +104,7 @@ namespace PeodeApp.Areas.Identity.Pages.Account
             else
             {
                 _logger.LogWarning("Invalid recovery code entered for user with ID '{UserId}' ", user.Id);
-                ModelState.AddModelError(string.Empty, "Invalid recovery code entered.");
+                ModelState.AddModelError(string.Empty, "Sisestatud taastamiskood on vigane.");
                 return Page();
             }
         }

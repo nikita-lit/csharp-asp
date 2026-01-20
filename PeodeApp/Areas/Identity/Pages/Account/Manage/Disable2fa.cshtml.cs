@@ -62,7 +62,7 @@ namespace PeodeApp.Areas.Identity.Pages.Account.Manage
             }
 
             _logger.LogInformation("User with ID '{UserId}' has disabled 2fa.", _userManager.GetUserId(User));
-            StatusMessage = "2fa has been disabled. You can reenable 2fa when you setup an authenticator app";
+            StatusMessage = "2FA on keelatud. Saate 2FA uuesti lubada pärast autentimisrakenduse seadistamist.";
             return RedirectToPage("./TwoFactorAuthentication");
         }
     }

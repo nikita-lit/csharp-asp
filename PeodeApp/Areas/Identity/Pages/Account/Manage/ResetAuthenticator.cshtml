@@ -1,24 +1,25 @@
 ﻿@page
 @model ResetAuthenticatorModel
 @{
-    ViewData["Title"] = "Reset authenticator key";
+    ViewData["Title"] = "Lähtesta autentimisvõti";
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
 
 <partial name="_StatusMessage" for="StatusMessage" />
 <h3>@ViewData["Title"]</h3>
 <div class="alert alert-warning" role="alert">
-    <p>
+</p>
+        <p>
         <span class="glyphicon glyphicon-warning-sign"></span>
-        <strong>If you reset your authenticator key your authenticator app will not work until you reconfigure it.</strong>
+        <strong>Kui lähtestate oma autentimisvõtme, ei tööta teie autentimisrakendus enne, kui konfigurite selle uuesti.</strong>
     </p>
     <p>
-        This process disables 2FA until you verify your authenticator app.
-        If you do not complete your authenticator app configuration you may lose access to your account.
+        See protsess keelab 2FA kuni olete oma autentimisrakenduse kinnitanud.
+        Kui te ei lõpeta autentimisrakenduse seadistamist, võite kaotada juurdepääsu oma kontole.
     </p>
 </div>
 <div>
     <form id="reset-authenticator-form" method="post">
-        <button id="reset-authenticator-button" class="btn btn-danger" type="submit">Reset authenticator key</button>
+        <button id="reset-authenticator-button" class="btn btn-danger" type="submit">Lähtesta autentimisvõti</button>
     </form>
 </div>

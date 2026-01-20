@@ -125,14 +125,14 @@ namespace PeodeApp.Areas.Identity.Pages.Account.Manage
                     protocol: Request.Scheme);
                 await _emailSender.SendEmailAsync(
                     Input.NewEmail,
-                    "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    "Kinnita oma e-posti aadress",
+                    $"Palun kinnitage oma konto, klõpsates <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>siin</a>.");
 
-                StatusMessage = "Confirmation link to change email sent. Please check your email.";
+                StatusMessage = "Kinnituslink e-posti muutmiseks saadetud. Palun kontrollige oma e-posti.";
                 return RedirectToPage();
             }
 
-            StatusMessage = "Your email is unchanged.";
+            StatusMessage = "Teie e-post ei muutunud.";
             return RedirectToPage();
         }
 
@@ -161,10 +161,10 @@ namespace PeodeApp.Areas.Identity.Pages.Account.Manage
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                "Kinnita oma e-posti aadress",
+                $"Palun kinnitage oma konto, klõpsates <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>siin</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "Kinnituse e-kiri saadetud. Palun kontrollige oma e-posti.";
             return RedirectToPage();
         }
     }

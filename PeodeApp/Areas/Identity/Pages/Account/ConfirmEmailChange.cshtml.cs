@@ -48,7 +48,7 @@ namespace PeodeApp.Areas.Identity.Pages.Account
             var result = await _userManager.ChangeEmailAsync(user, email, code);
             if (!result.Succeeded)
             {
-                StatusMessage = "Error changing email.";
+                StatusMessage = "Viga e-posti muutmisel.";
                 return Page();
             }
 
@@ -57,12 +57,12 @@ namespace PeodeApp.Areas.Identity.Pages.Account
             var setUserNameResult = await _userManager.SetUserNameAsync(user, email);
             if (!setUserNameResult.Succeeded)
             {
-                StatusMessage = "Error changing user name.";
+                StatusMessage = "Viga kasutajanime muutmisel.";
                 return Page();
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Thank you for confirming your email change.";
+            StatusMessage = "Täname, et kinnitasite oma e-posti aadressi muutmise.";
             return Page();
         }
     }
