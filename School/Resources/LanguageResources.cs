@@ -1,6 +1,6 @@
 ﻿namespace School
 {
-    public class SharedResources
+    public class LanguageResources
     {
     }
 }

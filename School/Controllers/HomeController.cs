@@ -8,13 +8,6 @@ namespace School.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IStringLocalizer<SharedResources> _localizer;
-
-        public HomeController(IStringLocalizer<SharedResources> localizer)
-        {
-            _localizer = localizer;
-        }
-
         public IActionResult Index()
         {
             return View();

@@ -1,0 +1,63 @@
+﻿@model School.Models.Teacher
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Teacher</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">@Localizer["name"]</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Qualification" class="control-label">@Localizer["qual"]</label>
+                <input asp-for="Qualification" class="form-control" />
+                <span asp-validation-for="Qualification" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FotoPath" class="control-label">@Localizer["photo"]</label>
+                <input asp-for="FotoPath" class="form-control" />
+                <span asp-validation-for="FotoPath" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IdentityUserID" class="control-label">
+                    @Localizer["user"]
+                </label>
+
+                <select asp-for="IdentityUserID"
+                        class="form-control"
+                        asp-items="ViewBag.IdentityUserID">
+                    <option value="">-- @Localizer["select_user"] --</option>
+                </select>
+
+                <span asp-validation-for="IdentityUserID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@Localizer["back_to_list"]</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

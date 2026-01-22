@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace School.Models
 {
@@ -6,12 +7,14 @@ namespace School.Models
     {
         public int ID { get; set; }
 
-        public string Staatus { get; set; }
+        public string Staatus { get; set; } = null!;
 
+        [Required]
         public int TrainingID { get; set; }
-        public virtual Training Training { get; set; }
+        public virtual Training Training { get; set; } = null!;
 
-        public string StudentUserID { get; set; }
-        public virtual IdentityUser StudentUser { get; set; }
+        [Required]
+        public string StudentUserID { get; set; } = null!;
+        public virtual IdentityUser StudentUser { get; set; } = null!;
     }
 }

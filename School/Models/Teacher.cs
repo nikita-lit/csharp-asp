@@ -8,13 +8,14 @@ namespace School.Models
         public int ID { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         public string? Qualification { get; set; }
 
         public string? FotoPath { get; set; }
 
-        public string IdentityUserID { get; set; }
-        public virtual IdentityUser IdentityUser { get; set; }
+        [Required]
+        public string IdentityUserID { get; set; } = null!;
+        public virtual IdentityUser? IdentityUser { get; set; }
     }
 }

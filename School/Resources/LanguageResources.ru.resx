@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,22 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="back_to_list" xml:space="preserve">
+    <value>Back to the list</value>
+  </data>
   <data name="homepage" xml:space="preserve">
-    <value>Avaleht</value>
+    <value>Главная страница</value>
   </data>
   <data name="language" xml:space="preserve">
-    <value>Keel</value>
+    <value>Язык</value>
   </data>
   <data name="login" xml:space="preserve">
-    <value>Logi sisse</value>
+    <value>Вход</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="photo" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="qual" xml:space="preserve">
+    <value>Qualification</value>
   </data>
   <data name="register" xml:space="preserve">
-    <value>Registreeru</value>
+    <value>Регистрация</value>
   </data>
   <data name="school_name" xml:space="preserve">
-    <value>Keeltekool</value>
+    <value>Языковая школа</value>
+  </data>
+  <data name="select_user" xml:space="preserve">
+    <value>Select user</value>
+  </data>
+  <data name="user" xml:space="preserve">
+    <value>User</value>
   </data>
   <data name="welcome" xml:space="preserve">
-    <value>Tere tulemast</value>
+    <value>Добро пожаловать</value>
   </data>
 </root>

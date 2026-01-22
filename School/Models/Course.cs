@@ -7,10 +7,10 @@ namespace School.Models
         public int ID { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         [Required]
-        public string Level { get; set; }
+        public string Level { get; set; } = null!;
 
         public string? Description { get; set; }
     }

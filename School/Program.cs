@@ -9,7 +9,7 @@ namespace School
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var app = BuildApp(args);
 
@@ -55,6 +55,12 @@ namespace School
             app.MapRazorPages()
                .WithStaticAssets();
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                await CreateRoles(services);
+            }
+
             app.Run();
         }
 
@@ -69,6 +75,7 @@ namespace School
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddLocalization();
@@ -78,6 +85,21 @@ namespace School
                 .AddDataAnnotationsLocalization();
 
             return builder.Build();
+        }
+
+        private static async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+            string[] roleNames = { "Admin", "Opetaja", "Opilane" };
+
+            foreach (var roleName in roleNames)
+            {
+                var roleExist = await roleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
+                    await roleManager.CreateAsync(new IdentityRole { Name = roleName });
+            }
         }
     }
 }

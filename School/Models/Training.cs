@@ -7,7 +7,7 @@ namespace School.Models
         public int ID { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         public float Price { get; set; }
 
