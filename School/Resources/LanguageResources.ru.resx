@@ -147,6 +147,9 @@
   <data name="select_user" xml:space="preserve">
     <value>Select user</value>
   </data>
+  <data name="teachers" xml:space="preserve">
+    <value>Учителя</value>
+  </data>
   <data name="user" xml:space="preserve">
     <value>User</value>
   </data>

@@ -1,12 +1,11 @@
-﻿@{
-    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
-    {
-        Layout = parentLayout.ToString();
-    }
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+@{
+    if (SignInManager.IsSignedIn(User))
+        Layout = "_UserLayout";
     else
-    {
         Layout = "/Areas/Identity/Pages/_Layout.cshtml";
-    }
 }
 
 <h1>Manage your account</h1>
