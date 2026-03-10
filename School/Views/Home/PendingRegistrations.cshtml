@@ -1,0 +1,48 @@
+@model IEnumerable<School.Models.Registration>
+
+@{
+    ViewData["Title"] = Localizer["pending_registrations"];
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-4">@Localizer["pending_registrations"]</h1>
+    <p class="lead">@Localizer["pending_registrations_help"]</p>
+</div>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">@TempData["Message"]</div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Localizer["student"]</th>
+            <th>@Localizer["training"]</th>
+            <th>@Localizer["course"]</th>
+            <th>@Localizer["actions"]</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var r in Model)
+    {
+        <tr>
+            <td>@r.StudentUser.UserName</td>
+            <td>@r.Training?.Name</td>
+            <td>@r.Training?.Course?.Name</td>
+            <td>
+                <form asp-action="ApproveRegistration" method="post" class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@r.ID" />
+                    <button class="btn btn-sm btn-success">@Localizer["approve"]</button>
+                </form>
+                <form asp-action="RejectRegistration" method="post" class="d-inline ms-2">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@r.ID" />
+                    <button class="btn btn-sm btn-danger">@Localizer["reject"]</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

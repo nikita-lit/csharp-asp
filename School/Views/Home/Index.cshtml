@@ -1,7 +1,98 @@
-﻿@{
-    ViewData["Title"] = @Localizer["homepage"];
+@model School.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = Localizer["homepage_guest"];
 }
 
-<div class="text-center">
-    <h1 class="display-4">@Localizer["welcome"]</h1>
+<div class="text-center mb-4">
+    <h1 class="display-4">@Localizer["welcome_guest"]</h1>
+    <p class="lead">@Localizer["available_courses"]</p>
+</div>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@Localizer[TempData["Message"].ToString()]</div>
+}
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    @if (Model?.Courses != null && Model.Courses.Any())
+    {
+        foreach (var c in Model.Courses)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@c.Name</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@c.Level</h6>
+                        @if (!string.IsNullOrEmpty(c.Description))
+                        {
+                            <p class="card-text">@c.Description</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-12">
+            <p>@Localizer["no_courses"]</p>
+        </div>
+    }
+</div>
+
+<hr class="my-4" />
+
+<h3 class="mb-3">@Localizer["current_trainings"]</h3>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    @if (Model?.CurrentTrainings != null && Model.CurrentTrainings.Any())
+    {
+        foreach (var t in Model.CurrentTrainings)
+        {
+            var regCount = 0; 
+            if (Model.RegistrationCounts != null && Model.RegistrationCounts.ContainsKey(t.ID)) 
+            { 
+                regCount = Model.RegistrationCounts[t.ID];  
+            }
+
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@t.Name</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@Localizer["course"]: @(t.Course?.Name ?? "-")</h6>
+                        <p class="card-text">@Localizer["teacher"]: @(t.Teacher?.Name ?? "-")</p>
+                        <p class="card-text small">@t.AlgusKuupaev.ToString("d") — @t.LoppKuupaev.ToString("d")</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small class="text-muted">@t.Price.ToString("C")</small>
+                        @if (regCount >= t.MaxOsalejaid)
+                        {
+                            <span class="text-danger fw-bold">@Localizer["full_group"]</span>
+                        }
+                        else
+                        {
+                            if (User?.Identity?.IsAuthenticated == true)
+                            {
+                                <form asp-action="Register" asp-controller="Home" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="trainingId" value="@t.ID" />
+                                    <button type="submit" class="btn btn-sm btn-primary">@Localizer["register"]</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <a href="/Identity/Account/Login" class="btn btn-sm btn-primary">@Localizer["login_to_register"]</a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-12">
+            <p>@Localizer["no_current_trainings"]</p>
+        </div>
+    }
 </div>

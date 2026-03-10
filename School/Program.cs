@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using School.Data;
 using System.Globalization;
 
@@ -15,14 +16,18 @@ namespace School
 
             var supportedCultures = new[]
             {
-                new CultureInfo("en"),
-                new CultureInfo("ru"),
-                new CultureInfo("et")
+                new CultureInfo("en-GB"),
+                new CultureInfo("ru-RU"),
+                new CultureInfo("et-EE")
             };
+
+            // only euro
+            foreach (var culture in supportedCultures)
+                culture.NumberFormat.CurrencySymbol = "€";
 
             var localizationOptions = new RequestLocalizationOptions
             {
-                DefaultRequestCulture = new RequestCulture("et"),
+                DefaultRequestCulture = new RequestCulture("et-EE"),
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             };
@@ -74,9 +79,20 @@ namespace School
                 options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+            {
+                options.Password.RequiredLength = 4;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredUniqueChars = 0;
+                options.SignIn.RequireConfirmedAccount = false;
+                options.SignIn.RequireConfirmedPhoneNumber = false;
+                options.SignIn.RequireConfirmedEmail = false;
+            })
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddLocalization();
 
@@ -92,13 +108,30 @@ namespace School
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-            string[] roleNames = { "Admin", "Opetaja", "Opilane" };
+            string[] roleNames = { "Admin", "Teacher", "Student" };
 
             foreach (var roleName in roleNames)
             {
                 var roleExist = await roleManager.RoleExistsAsync(roleName);
                 if (!roleExist)
                     await roleManager.CreateAsync(new IdentityRole { Name = roleName });
+            }
+
+            var adminEmail = "admin@school.com";
+            var adminUser = await userManager.FindByEmailAsync(adminEmail);
+
+            if (adminUser == null)
+            {
+                var admin = new IdentityUser
+                {
+                    UserName = adminEmail,
+                    Email = adminEmail,
+                    EmailConfirmed = true
+                };
+
+                var result = await userManager.CreateAsync(admin, "1234");
+                if (result.Succeeded)
+                    await userManager.AddToRoleAsync(admin, "Admin");
             }
         }
     }

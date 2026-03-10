@@ -1,13 +1,20 @@
 ﻿@model IEnumerable<School.Models.Teacher>
 
 @{
-    ViewData["Title"] = "Teachers";
+    ViewData["Title"] = Localizer["teachers"];
 }
 
 <h1>@ViewData["Title"]</h1>
 
+@{
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">@Localizer[TempData["SuccessMessage"].ToString()]</div>
+    }
+}
+
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">@Localizer["create_new"]</a>
 </p>
 <table class="table">
     <thead>

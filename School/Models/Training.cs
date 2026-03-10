@@ -19,7 +19,9 @@ namespace School.Models
         public int MaxOsalejaid { get; set; }
 
         public int CourseID { get; set; }
+        public virtual Course? Course { get; set; }
 
         public int TeacherID { get; set; }
+        public virtual Teacher? Teacher { get; set; }
     }
 }

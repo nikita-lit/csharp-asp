@@ -156,4 +156,76 @@
   <data name="welcome" xml:space="preserve">
     <value>Tere tulemast</value>
   </data>
+  <data name="homepage_guest" xml:space="preserve">
+    <value>Avaleht</value>
+  </data>
+  <data name="welcome_guest" xml:space="preserve">
+    <value>Tere tulemast</value>
+  </data>
+  <data name="available_courses" xml:space="preserve">
+    <value>Saadaval kursused ja käimasolevad koolitused</value>
+  </data>
+  <data name="courses" xml:space="preserve">
+    <value>Kursused</value>
+  </data>
+  <data name="current_trainings" xml:space="preserve">
+    <value>Käimasolevad koolitused</value>
+  </data>
+  <data name="course" xml:space="preserve">
+    <value>Kursus</value>
+  </data>
+  <data name="teacher" xml:space="preserve">
+    <value>Õpetaja</value>
+  </data>
+  <data name="no_courses" xml:space="preserve">
+    <value>Kursusi pole</value>
+  </data>
+  <data name="no_current_trainings" xml:space="preserve">
+    <value>Käimasolevaid koolitusi pole</value>
+  </data>
+  <data name="full_group" xml:space="preserve">
+    <value>Rühm on täis</value>
+  </data>
+  <data name="login_to_register" xml:space="preserve">
+    <value>Logi sisse, et registreeruda</value>
+  </data>
+  <data name="request_sent" xml:space="preserve">
+    <value>Teie päring on saadetud ja selle kinnitab õpetaja.</value>
+  </data>
+  <data name="training_not_found" xml:space="preserve">
+    <value>Koolitust ei leitud</value>
+  </data>
+  <data name="already_requested" xml:space="preserve">
+    <value>Te olete selle koolituse jaoks juba esitanud taotluse</value>
+  </data>
+  <data name="pending_registrations" xml:space="preserve">
+    <value>Ootel registreerimised</value>
+  </data>
+  <data name="pending_registrations_help" xml:space="preserve">
+    <value>Kinnitage või keeldude ootel registreerimisavaldustest.</value>
+  </data>
+  <data name="approve" xml:space="preserve">
+    <value>Kinnita</value>
+  </data>
+  <data name="reject" xml:space="preserve">
+    <value>Keeldu</value>
+  </data>
+  <data name="approve_success" xml:space="preserve">
+    <value>Registreerimine kinnitatud</value>
+  </data>
+  <data name="reject_success" xml:space="preserve">
+    <value>Registreerimine tagasi lükatud</value>
+  </data>
+  <data name="cannot_approve_full" xml:space="preserve">
+    <value>Ei saa kinnitada — grupp on täis</value>
+  </data>
+  <data name="student" xml:space="preserve">
+    <value>Õpilane</value>
+  </data>
+  <data name="training" xml:space="preserve">
+    <value>Koolitus</value>
+  </data>
+  <data name="actions" xml:space="preserve">
+    <value>Tegevused</value>
+  </data>
 </root>

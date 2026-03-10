@@ -156,4 +156,76 @@
   <data name="welcome" xml:space="preserve">
     <value>Welcome</value>
   </data>
+  <data name="homepage_guest" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="welcome_guest" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="available_courses" xml:space="preserve">
+    <value>Available courses and current trainings</value>
+  </data>
+  <data name="courses" xml:space="preserve">
+    <value>Courses</value>
+  </data>
+  <data name="current_trainings" xml:space="preserve">
+    <value>Current trainings</value>
+  </data>
+  <data name="course" xml:space="preserve">
+    <value>Course</value>
+  </data>
+  <data name="teacher" xml:space="preserve">
+    <value>Teacher</value>
+  </data>
+  <data name="no_courses" xml:space="preserve">
+    <value>No courses available</value>
+  </data>
+  <data name="no_current_trainings" xml:space="preserve">
+    <value>No current trainings</value>
+  </data>
+  <data name="full_group" xml:space="preserve">
+    <value>GROUP FULL</value>
+  </data>
+  <data name="login_to_register" xml:space="preserve">
+    <value>Login to register</value>
+  </data>
+  <data name="request_sent" xml:space="preserve">
+    <value>Your request was sent and will be confirmed by the teacher.</value>
+  </data>
+  <data name="training_not_found" xml:space="preserve">
+    <value>Training not found</value>
+  </data>
+  <data name="already_requested" xml:space="preserve">
+    <value>You already requested this training</value>
+  </data>
+  <data name="pending_registrations" xml:space="preserve">
+    <value>Pending registrations</value>
+  </data>
+  <data name="pending_registrations_help" xml:space="preserve">
+    <value>Approve or reject pending registration requests.</value>
+  </data>
+  <data name="approve" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="reject" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="approve_success" xml:space="preserve">
+    <value>Registration approved</value>
+  </data>
+  <data name="reject_success" xml:space="preserve">
+    <value>Registration rejected</value>
+  </data>
+  <data name="cannot_approve_full" xml:space="preserve">
+    <value>Cannot approve — group is full</value>
+  </data>
+  <data name="student" xml:space="preserve">
+    <value>Student</value>
+  </data>
+  <data name="training" xml:space="preserve">
+    <value>Training</value>
+  </data>
+  <data name="actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
 </root>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<School.Models.Training>
+
+@{
+    ViewData["Title"] = Localizer["trainings"];
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@{
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">@Localizer[TempData["SuccessMessage"].ToString()]</div>
+    }
+}
+
+<p>
+    <a asp-action="Create">@Localizer["create_new"]</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Localizer["name"]</th>
+            <th>@Localizer["price"]</th>
+            <th>@Localizer["start_date"]</th>
+            <th>@Localizer["end_date"]</th>
+            <th>@Localizer["max_participants"]</th>
+            <th>@Localizer["course"]</th>
+            <th>@Localizer["teacher"]</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@item.AlgusKuupaev.ToString("d")</td>
+                <td>@item.LoppKuupaev.ToString("d")</td>
+                <td>@Html.DisplayFor(modelItem => item.MaxOsalejaid)</td>
+                <td>@Html.DisplayFor(modelItem => item.Course.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Teacher.Name)</td>
+            </tr>
+        }
+    </tbody>
+</table>

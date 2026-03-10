@@ -156,4 +156,76 @@
   <data name="welcome" xml:space="preserve">
     <value>Добро пожаловать</value>
   </data>
+  <data name="homepage_guest" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="welcome_guest" xml:space="preserve">
+    <value>Добро пожаловать</value>
+  </data>
+  <data name="available_courses" xml:space="preserve">
+    <value>Доступные курсы и текущие тренинги</value>
+  </data>
+  <data name="courses" xml:space="preserve">
+    <value>Курсы</value>
+  </data>
+  <data name="current_trainings" xml:space="preserve">
+    <value>Текущие тренинги</value>
+  </data>
+  <data name="course" xml:space="preserve">
+    <value>Курс</value>
+  </data>
+  <data name="teacher" xml:space="preserve">
+    <value>Преподаватель</value>
+  </data>
+  <data name="no_courses" xml:space="preserve">
+    <value>Курсы отсутствуют</value>
+  </data>
+  <data name="no_current_trainings" xml:space="preserve">
+    <value>Текущих тренингов нет</value>
+  </data>
+  <data name="full_group" xml:space="preserve">
+    <value>ГРУППА ПОЛНА</value>
+  </data>
+  <data name="login_to_register" xml:space="preserve">
+    <value>Войдите для регистрации</value>
+  </data>
+  <data name="request_sent" xml:space="preserve">
+    <value>Запрос отправлен. Его подтвердит преподаватель.</value>
+  </data>
+  <data name="training_not_found" xml:space="preserve">
+    <value>Тренинг не найден</value>
+  </data>
+  <data name="already_requested" xml:space="preserve">
+    <value>Вы уже отправляли заявку на этот тренинг</value>
+  </data>
+  <data name="pending_registrations" xml:space="preserve">
+    <value>Ожидающие регистрации</value>
+  </data>
+  <data name="pending_registrations_help" xml:space="preserve">
+    <value>Подтвердите или отклоните входящие заявки на регистрацию.</value>
+  </data>
+  <data name="approve" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="reject" xml:space="preserve">
+    <value>Отклонить</value>
+  </data>
+  <data name="approve_success" xml:space="preserve">
+    <value>Заявка подтверждена</value>
+  </data>
+  <data name="reject_success" xml:space="preserve">
+    <value>Заявка отклонена</value>
+  </data>
+  <data name="cannot_approve_full" xml:space="preserve">
+    <value>Невозможно подтвердить — группа полна</value>
+  </data>
+  <data name="student" xml:space="preserve">
+    <value>Студент</value>
+  </data>
+  <data name="training" xml:space="preserve">
+    <value>Тренинг</value>
+  </data>
+  <data name="actions" xml:space="preserve">
+    <value>Действия</value>
+  </data>
 </root>
