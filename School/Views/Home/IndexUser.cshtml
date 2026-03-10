@@ -63,11 +63,11 @@
                             }
                             else
                             {
-                                    <form asp-action="Register" asp-controller="Home" method="post">
-                                        @Html.AntiForgeryToken()
-                                        <input type="hidden" name="trainingId" value="@t.ID" />
-                                        <button type="submit" class="btn btn-sm btn-primary mt-2">@Localizer["register"]</button>
-                                    </form>
+                                <form asp-action="Register" asp-controller="Home" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="trainingId" value="@t.ID" />
+                                    <button type="submit" class="btn btn-sm btn-primary mt-2">@Localizer["register"]</button>
+                                </form>
                             }
                         </div>
                     </li>

@@ -97,6 +97,34 @@ namespace School.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> MyCourses()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+                return Challenge();
+
+            var regs = await _context.Registrations
+                .Where(r => r.StudentUserID == userId)
+                .Include(r => r.Training).ThenInclude(t => t.Course)
+                .Include(r => r.Training).ThenInclude(t => t.Teacher)
+                .ToListAsync();
+
+            return View(regs);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Users()
+        {
+            var users = await _context.Users
+                .OrderBy(u => u.UserName)
+                .ToListAsync();
+
+            return View(users);
+        }
+
+        [HttpGet]
         public IActionResult SetLanguage(string culture, string? returnUrl)
         {
             if (string.IsNullOrEmpty(culture))

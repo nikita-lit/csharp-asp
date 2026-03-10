@@ -1,0 +1,30 @@
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+
+@{
+    ViewData["Title"] = Localizer["users"];
+}
+
+<div class="mb-4">
+    <h1 class="h3">@ViewData["Title"]</h1>
+    <p class="text-muted">@Localizer["list_of_users"]</p>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Localizer["name"]</th>
+            <th>@Localizer["email"]</th>
+            <th>ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.UserName</td>
+                <td>@u.Email</td>
+                <td class="text-muted small">@u.Id</td>
+            </tr>
+        }
+    </tbody>
+</table>

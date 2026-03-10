@@ -33,6 +33,10 @@
                     <li class="nav-item px-4">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["homepage"]</a>
                     </li>
+                    <li class="nav-item px-4">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MyCourses">@Localizer["my_courses"]</a>
+                    </li>
+
                     @if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
                     {
                         <li class="nav-item px-4">
@@ -40,6 +44,9 @@
                         </li>
                     }
                     <hr />
+                    <li class="nav-item px-4">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Users">@Localizer["users"]</a>
+                    </li>
                     <li class="nav-item px-4">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Teachers" asp-action="Index">@Localizer["teachers"]</a>
                     </li>

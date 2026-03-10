@@ -1,0 +1,37 @@
+@model IEnumerable<School.Models.Registration>
+
+@{
+    ViewData["Title"] = Localizer["my_courses"];
+}
+
+<div class="mb-4">
+    <h1 class="h3">@Localizer["my_courses"]</h1>
+    <p class="text-muted">@Localizer["my_courses_help"]</p>
+</div>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">@Localizer["no_my_courses"]</div>
+}
+else
+{
+    <ul class="list-group">
+        @foreach (var r in Model)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div>
+                    <div><strong>@(r.Training?.Name)</strong></div>
+                    <div class="small text-muted">@Localizer["course"]: @(r.Training?.Course?.Name)</div>
+                    <div class="small text-muted">@Localizer["teacher"]: @(r.Training?.Teacher?.Name)</div>
+                    <div class="small">@((r.Training != null) ? r.Training.AlgusKuupaev.ToString("d") + " — " + r.Training.LoppKuupaev.ToString("d") : "")</div>
+                </div>
+                <div class="text-end">
+                    <div class="small text-muted">@((r.Training != null) ? r.Training.Price.ToString("C") : "")</div>
+                    <div class="mt-2">
+                        <span class="badge bg-secondary">@r.Staatus</span>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+}
