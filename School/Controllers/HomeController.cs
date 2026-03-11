@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using School.Data;
 using School.Models;
@@ -9,60 +10,55 @@ using System.Security.Claims;
 
 namespace School.Controllers
 {
-    public partial class HomeController : Controller
+    public partial class HomeController(ApplicationDbContext context) : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context = context;
 
-        public HomeController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            if (User?.Identity?.IsAuthenticated == true)
-                return RedirectToAction("IndexUser");
-
-            var courses = await _context.Courses.ToListAsync();
-
-            var now = DateTime.Now;
-            var currentTrainings = await _context.Trainings
-                .Include(t => t.Course)
-                .Include(t => t.Teacher)
-                .Where(t => t.StartDate <= now && t.EndDate >= now)
-                .ToListAsync();
-            
-            var trainingIds = currentTrainings.Select(t => t.Id).ToList();
-            var regCounts = await _context.Registrations
-                .Where(r => trainingIds.Contains(r.TrainingId) && r.Status == "Approved")
-                .GroupBy(r => r.TrainingId)
-                .Select(g => new { TrainingId = g.Key, Count = g.Count() })
-                .ToDictionaryAsync(x => x.TrainingId, x => x.Count);
-
-            var model = new HomeViewModel
-            {
-                Courses = courses,
-                CurrentTrainings = currentTrainings,
-                RegistrationCounts = regCounts
-            };
-
-            return View("Index", model);
+            var model = await GetHomeViewModel();
+            return View(model);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> IndexUser()
+        public async Task<IActionResult> Courses()
         {
             var courses = await _context.Courses.ToListAsync();
+            return View(courses);
+        }
 
+        public async Task<IActionResult> Trainings()
+        {
+            var trainings = await _context.Trainings.ToListAsync();
+            return View(trainings);
+        }
+
+        public async Task<IActionResult> About()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Contact()
+        {
+            return View();
+        }
+
+        public async Task<HomeViewModel> GetHomeViewModel()
+        {
             var now = DateTime.Now;
-            var currentTrainings = await _context.Trainings
+
+            var coursesTask = _context.Courses.ToListAsync();
+            var currentTrainingsTask = _context.Trainings
                 .Include(t => t.Course)
                 .Include(t => t.Teacher)
-                .Where(t => t.StartDate <= now && t.EndDate >= now)
+                .Where(t => t.EndDate >= DateTime.Now)
                 .ToListAsync();
+
+            // wait for both to finish
+            await Task.WhenAll(coursesTask, currentTrainingsTask);
             
+            var courses = await coursesTask;
+            var currentTrainings = await currentTrainingsTask;
+
             var trainingIds = currentTrainings.Select(t => t.CourseId).ToList();
             var regCounts = await _context.Registrations
                 .Where(r => trainingIds.Contains(r.TrainingId) && r.Status == "Approved")
@@ -77,55 +73,10 @@ namespace School.Controllers
                 RegistrationCounts = regCounts
             };
 
-            return View("IndexUser", model);
+            return model;
         }
 
-        public async Task<IActionResult> Courses()
-        {
-            var courses = await _context.Courses.ToListAsync();
-            return View(courses);
-        }
-
-        public async Task<IActionResult> About()
-        {
-            return View();
-        }
-
-        public async Task<IActionResult> Contact()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        [Authorize]
-        public async Task<IActionResult> MyCourses()
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrEmpty(userId))
-                return Challenge();
-
-            var regs = await _context.Registrations
-                .Where(r => r.StudentUserId == userId)
-                .Include(r => r.Training).ThenInclude(t => t.Course)
-                .Include(r => r.Training).ThenInclude(t => t.Teacher)
-                .ToListAsync();
-
-            return View(regs);
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Users()
-        {
-            var users = await _context.Users
-                .OrderBy(u => u.UserName)
-                .ToListAsync();
-
-            return View(users);
-        }
-
-        [HttpGet]
-        public IActionResult SetLanguage(string culture, string? returnUrl)
+        public async Task<IActionResult> SetLanguage(string culture, string? returnUrl)
         {
             if (string.IsNullOrEmpty(culture))
                 return LocalRedirect(returnUrl ?? Url.Action("Index", "Home")!);

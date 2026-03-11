@@ -16,6 +16,7 @@
         <tr>
             <th>@Localizer["student"]</th>
             <th>@Localizer["training"]</th>
+            <th>@Localizer["teacher"]</th>
             <th>@Localizer["course"]</th>
             <th>@Localizer["actions"]</th>
         </tr>
@@ -26,6 +27,7 @@
         <tr>
             <td>@r.StudentUser.UserName</td>
             <td>@r.Training?.Name</td>
+            <td>@r.Training?.Teacher?.Name</td>
             <td>@r.Training?.Course?.Name</td>
             <td>
                 <form asp-action="ApproveRegistration" method="post" class="d-inline">

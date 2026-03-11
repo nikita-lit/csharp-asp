@@ -33,29 +33,39 @@
                     <li class="nav-item px-4">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["homepage"]</a>
                     </li>
-                    <li class="nav-item px-4">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MyCourses">@Localizer["my_courses"]</a>
-                    </li>
+                    @if (User.IsInRole("Student"))
+                    {
+                        <li class="nav-item px-4">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="StudentCourses">@Localizer["my_courses"]</a>
+                        </li>
+                    }
 
                     @if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
                     {
                         <li class="nav-item px-4">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="PendingRegistrations">@Localizer["pending_registrations"]</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="PendingRegistrations">@Localizer["pending_registrations"]</a>
+                        </li>
+                        <li class="nav-item px-4">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="TeacherCourses">@Localizer["my_courses"]</a>
                         </li>
                     }
-                    <hr />
-                    <li class="nav-item px-4">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Users">@Localizer["users"]</a>
-                    </li>
-                    <li class="nav-item px-4">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Teachers" asp-action="Index">@Localizer["teachers"]</a>
-                    </li>
-                    <li class="nav-item px-4">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="Index">@Localizer["courses"]</a>
-                    </li>
-                    <li class="nav-item px-4">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Trainings" asp-action="Index">@Localizer["trainings"]</a>
-                    </li>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <hr />
+                        <li class="nav-item px-4">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Users">@Localizer["users"]</a>
+                        </li>
+                        <li class="nav-item px-4">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Teachers">@Localizer["teachers"]</a>
+                        </li>
+                        <li class="nav-item px-4">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Courses">@Localizer["courses"]</a>
+                        </li>
+                        <li class="nav-item px-4">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Trainings">@Localizer["trainings"]</a>
+                        </li>
+                    }
                 </ul>
            </nav>
         </header>

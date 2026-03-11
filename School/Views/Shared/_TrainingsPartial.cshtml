@@ -17,11 +17,12 @@
                     <div class="card-body">
                         <h5 class="card-title">@t.Name</h5>
                         <h6 class="card-subtitle mb-2 text-muted">@Localizer["course"]: @(t.Course?.Name ?? "-")</h6>
-                        <p class="card-text">@Localizer["teacher"]: @(t.Teacher?.Name ?? "-")</p>
-                        <p class="card-text small">@t.StartDate.ToString("d") — @t.EndDate.ToString("d")</p>
+                        <h6 class="card-subtitle mb-2 text-muted">@Localizer["teacher"]: @(t.Teacher?.Name ?? "-")</h6>
+                        <p class="card-text">@Localizer["price"]: @t.Price.ToString("C")</p>
+
+                        <p class="card-text small">@t.StartDate.ToString("d") - @t.EndDate.ToString("d")</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
-                        <small class="text-muted">@t.Price.ToString("C")</small>
                         @if (regCount >= t.MaxParticipants)
                         {
                             <span class="text-danger fw-bold">@Localizer["full_group"]</span>

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace School.Models
 {
     public class HomeViewModel

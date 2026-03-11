@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" method="post">
+        <form asp-controller="Dashboard" asp-action="CreateCourse" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
@@ -39,7 +39,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">@Localizer["back_to_list"]</a>
+    <a asp-controller="Dashboard" asp-action="Courses">@Localizer["back_to_list"]</a>
 </div>
 
 @section Scripts {

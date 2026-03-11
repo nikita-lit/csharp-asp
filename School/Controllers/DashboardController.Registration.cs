@@ -1,19 +1,15 @@
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using School.Data;
-using School.Models;
-using System.Diagnostics;
 using System.Security.Claims;
+using School.Models;
 
 namespace School.Controllers
 {
-    public partial class HomeController : Controller
+    public partial class DashboardController : Controller
     {
         [HttpPost]
-        [Authorize]
-        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Student")]
         public async Task<IActionResult> Register(int trainingId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -23,16 +19,14 @@ namespace School.Controllers
             var training = await _context.Trainings.FindAsync(trainingId);
             if (training == null)
             {
-                TempData["StatusMessage"] = "training_not_found";
-                TempData["StatusType"] = "danger";
+                SetStatusMessage("training_not_found", "danger");
                 return RedirectToAction("Index");
             }
 
             var already = await _context.Registrations.AnyAsync(r => r.TrainingId == trainingId && r.StudentUserId == userId);
             if (already)
             {
-                TempData["StatusMessage"] = "already_requested";
-                TempData["StatusType"] = "danger";
+                SetStatusMessage("already_requested", "danger");
                 return RedirectToAction("Index");
             }
 
@@ -45,72 +39,93 @@ namespace School.Controllers
 
             _context.Registrations.Add(reg);
             await _context.SaveChangesAsync();
+            SetStatusMessage("request_sent", "success");
 
-            TempData["StatusMessage"] = "request_sent";
-            TempData["StatusType"] = "success";
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
         [Authorize(Roles = "Teacher,Admin")]
         public async Task<IActionResult> PendingRegistrations()
         {
-            var pending = await _context.Registrations
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (User.IsInRole("Admin"))
+            {
+                var pendingAll = await _context.Registrations
+                    .Where(r => r.Status == "Pending")
+                    .Include(r => r.StudentUser)
+                    .Include(r => r.Training).ThenInclude(t => t.Course)
+                    .Include(r => r.Training).ThenInclude(t => t.Teacher)
+                    .ToListAsync();
+
+                return View(pendingAll);
+            }
+
+            // For teachers: only registrations for trainings taught by this teacher
+            var pendingForTeacher = await _context.Registrations
                 .Where(r => r.Status == "Pending")
                 .Include(r => r.StudentUser)
                 .Include(r => r.Training).ThenInclude(t => t.Course)
                 .Include(r => r.Training).ThenInclude(t => t.Teacher)
+                .Where(r => r.Training != null && r.Training.Teacher != null && r.Training.Teacher.IdentityUserId == userId)
                 .ToListAsync();
 
-            return View(pending);
+            return View(pendingForTeacher);
         }
 
         [HttpPost]
         [Authorize(Roles = "Teacher,Admin")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ApproveRegistration(int id)
         {
-            var reg = await _context.Registrations.Include(r => r.Training).FirstOrDefaultAsync(r => r.Id == id);
+            var reg = await _context.Registrations
+                .Include(r => r.Training).ThenInclude(t => t.Teacher)
+                .FirstOrDefaultAsync(r => r.Id == id);
+                
             if (reg == null)
             {
-                TempData["StatusMessage"] = "training_not_found";
-                TempData["StatusType"] = "danger";
+                SetStatusMessage("training_not_found", "danger");
                 return RedirectToAction("PendingRegistrations");
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!User.IsInRole("Admin"))
+            {
+                // Teachers may only approve registrations for their own trainings
+                if (reg.Training == null || reg.Training.Teacher == null || reg.Training.Teacher.IdentityUserId != userId)
+                {
+                    SetStatusMessage("not_allowed", "danger");
+                    return RedirectToAction("PendingRegistrations");
+                }
             }
 
             var approvedCount = await _context.Registrations.CountAsync(r => r.TrainingId == reg.TrainingId && r.Status == "Approved");
             if (approvedCount >= reg.Training.MaxParticipants)
             {
-                TempData["StatusMessage"] = "cannot_approve_full";
-                TempData["StatusType"] = "danger";
+                SetStatusMessage("cannot_approve_full", "danger");
                 return RedirectToAction("PendingRegistrations");
             }
 
             reg.Status = "Approved";
             await _context.SaveChangesAsync();
-            TempData["StatusMessage"] = "approve_success";
-            TempData["StatusType"] = "success";
+            SetStatusMessage("approve_success", "success");
 
             return RedirectToAction("PendingRegistrations");
         }
 
         [HttpPost]
         [Authorize(Roles = "Teacher,Admin")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> RejectRegistration(int id)
         {
             var reg = await _context.Registrations.FindAsync(id);
             if (reg == null)
             {
-                TempData["StatusMessage"] = "training_not_found";
-                TempData["StatusType"] = "danger";
+                SetStatusMessage("training_not_found", "danger");
                 return RedirectToAction("PendingRegistrations");
             }
 
             reg.Status = "Rejected";
             await _context.SaveChangesAsync();
-            TempData["StatusMessage"] = "reject_success";
-            TempData["StatusType"] = "success";
+            SetStatusMessage("reject_success", "success");
 
             return RedirectToAction("PendingRegistrations");
         }

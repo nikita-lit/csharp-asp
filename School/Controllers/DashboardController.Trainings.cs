@@ -1,51 +1,46 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using School.Data;
 using School.Models;
 
 namespace School.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class TrainingsController(ApplicationDbContext context) : Controller
+    public partial class DashboardController : Controller
     {
-        private readonly ApplicationDbContext _context = context;
-
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Trainings()
         {
             var trainings = await _context.Trainings
                 .Include(t => t.Course)
                 .Include(t => t.Teacher)
                 .ToListAsync();
                 
-            return View(trainings);
+            return View("Trainings/Index", trainings);
         }
 
-        public IActionResult Create()
+        public IActionResult CreateTraining()
         {
             ViewData["CourseList"] = new SelectList(_context.Courses.OrderBy(c => c.Name), "Id", "Name");
             ViewData["TeacherList"] = new SelectList(_context.Teachers.OrderBy(t => t.Name), "Id", "Name");
-            return View();
+            return View("Trainings/Create");
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Training training)
+        public async Task<IActionResult> CreateTraining(Training training)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(training);
                 await _context.SaveChangesAsync();
-                TempData["StatusMessage"] = "record_done";
-                TempData["StatusType"] = "success";
-                return RedirectToAction(nameof(Index));
+                SetStatusMessage("record_done", "success");
+
+                return RedirectToAction(nameof(Trainings));
             }
 
             ViewData["CourseList"] = new SelectList(_context.Courses.OrderBy(c => c.Name), "Id", "Name", training.CourseId);
             ViewData["TeacherList"] = new SelectList(_context.Teachers.OrderBy(t => t.Name), "Id", "Name", training.TeacherId);
-            return View(training);
+            SetStatusMessage("invalid_data", "danger");
+
+            return View("Trainings/Create", training);
         }
     }
 }

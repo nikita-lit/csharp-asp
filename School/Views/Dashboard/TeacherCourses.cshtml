@@ -1,0 +1,59 @@
+@model School.Models.TeacherCoursesViewModel
+
+@{
+    ViewData["Title"] = Localizer["teacher_courses"];
+}
+
+@if (User.IsInRole("Admin"))
+{
+    <form method="get" asp-action="TeacherCourses" class="form-inline mb-3">
+        <label class="mr-2">@Localizer["select_teacher"]</label>
+        <select name="id" asp-items="ViewBag.TeacherList" class="form-control"></select>
+        <button type="submit" class="btn btn-primary ml-2">@Localizer["submit"]</button>
+    </form>
+}
+
+@if (Model != null)
+{
+    <h1 class="h3">@ViewData["Title"]: @Model.Teacher?.Name</h1>
+
+    @if (!Model.Trainings.Any())
+    {
+        <p>@Localizer["no_courses"]</p>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            @foreach (var t in Model.Trainings)
+            {
+                Model.TrainingStudents.TryGetValue(t.Id, out var students);
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">@t.Name</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">@Localizer["course"]: @(t.Course?.Name ?? "-")</h6>
+                            <p class="card-text small">@t.StartDate.ToString("d") - @t.EndDate.ToString("d")</p>
+
+                            <p class="card-text mb-1"><strong>@Localizer["students"]:</strong></p>
+                            @if (students != null && students.Any())
+                            {
+                                <ul class="list-unstyled mb-0">
+                                @foreach (var s in students)
+                                {
+                                    <li>@s.UserName</li>
+                                }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p class="text-muted small mb-0">@Localizer["no_students_in_course"]</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}
+
