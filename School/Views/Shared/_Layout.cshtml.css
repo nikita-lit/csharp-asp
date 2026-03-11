@@ -34,6 +34,19 @@ a {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
+/* Make footer stick to the bottom when page content is short */
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+body > .container {
+  flex: 1 0 auto;
+}
+
 button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
@@ -43,4 +56,5 @@ button.accept-policy {
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
+  margin-top: auto;
 }

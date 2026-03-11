@@ -20,14 +20,14 @@ namespace School.Controllers
             if (training == null)
             {
                 SetStatusMessage("training_not_found", "danger");
-                return RedirectToAction("Index");
+                return RedirectToAction("Trainings", "Home");
             }
 
             var already = await _context.Registrations.AnyAsync(r => r.TrainingId == trainingId && r.StudentUserId == userId);
             if (already)
             {
                 SetStatusMessage("already_requested", "danger");
-                return RedirectToAction("Index");
+                return RedirectToAction("Trainings", "Home");
             }
 
             var reg = new Registration
@@ -41,7 +41,7 @@ namespace School.Controllers
             await _context.SaveChangesAsync();
             SetStatusMessage("request_sent", "success");
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Trainings", "Home");
         }
 
         [Authorize(Roles = "Teacher,Admin")]
@@ -126,6 +126,37 @@ namespace School.Controllers
             reg.Status = "Rejected";
             await _context.SaveChangesAsync();
             SetStatusMessage("reject_success", "success");
+
+            return RedirectToAction("PendingRegistrations");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Teacher,Admin")]
+        public async Task<IActionResult> DeleteRegistration(int id)
+        {
+            var reg = await _context.Registrations
+                .Include(r => r.Training).ThenInclude(t => t.Teacher)
+                .FirstOrDefaultAsync(r => r.Id == id);
+
+            if (reg == null)
+            {
+                SetStatusMessage("training_not_found", "danger");
+                return RedirectToAction("PendingRegistrations");
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!User.IsInRole("Admin"))
+            {
+                if (reg.Training == null || reg.Training.Teacher == null || reg.Training.Teacher.IdentityUserId != userId)
+                {
+                    SetStatusMessage("not_allowed", "danger");
+                    return RedirectToAction("PendingRegistrations");
+                }
+            }
+
+            _context.Registrations.Remove(reg);
+            await _context.SaveChangesAsync();
+            SetStatusMessage("delete_success", "success");
 
             return RedirectToAction("PendingRegistrations");
         }

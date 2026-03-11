@@ -201,6 +201,120 @@
   <data name="pending_registrations" xml:space="preserve">
     <value>Ожидающие регистрации</value>
   </data>
+    <data name="login_local_account" xml:space="preserve">
+      <value>Используйте локальную учётную запись, чтобы войти.</value>
+    </data>
+    <data name="password" xml:space="preserve">
+      <value>Пароль</value>
+    </data>
+    <data name="remember_me" xml:space="preserve">
+      <value>Запомнить меня</value>
+    </data>
+    <data name="forgot_password" xml:space="preserve">
+      <value>Забыли пароль?</value>
+    </data>
+    <data name="register_as_new_user" xml:space="preserve">
+      <value>Зарегистрироваться как новый пользователь</value>
+    </data>
+      <data name="register_create_new_account" xml:space="preserve">
+        <value>Создать новую учётную запись.</value>
+      </data>
+      <data name="confirm_password" xml:space="preserve">
+        <value>Подтвердите пароль</value>
+      </data>
+      <data name="profile" xml:space="preserve">
+        <value>Профиль</value>
+      </data>
+      <data name="please_choose_your_username" xml:space="preserve">
+        <value>Выберите имя пользователя.</value>
+      </data>
+      <data name="please_enter_your_phone_number" xml:space="preserve">
+        <value>Пожалуйста, введите ваш номер телефона.</value>
+      </data>
+      <data name="change_password" xml:space="preserve">
+        <value>Изменить пароль</value>
+      </data>
+      <data name="please_enter_old_password" xml:space="preserve">
+        <value>Пожалуйста, введите старый пароль.</value>
+      </data>
+      <data name="please_enter_new_password" xml:space="preserve">
+        <value>Пожалуйста, введите новый пароль.</value>
+      </data>
+      <data name="please_confirm_new_password" xml:space="preserve">
+        <value>Пожалуйста, подтвердите новый пароль.</value>
+      </data>
+      <data name="update_password" xml:space="preserve">
+        <value>Обновить пароль</value>
+      </data>
+      <data name="delete_personal_data" xml:space="preserve">
+        <value>Удалить персональные данные</value>
+      </data>
+      <data name="delete_personal_data_warning" xml:space="preserve">
+        <value>Удаление этих данных приведёт к безвозвратному удалению вашей учётной записи.</value>
+      </data>
+      <data name="please_enter_your_password" xml:space="preserve">
+        <value>Пожалуйста, введите пароль.</value>
+      </data>
+      <data name="delete_data_and_close_account" xml:space="preserve">
+        <value>Удалить данные и закрыть мою учётную запись</value>
+      </data>
+      <data name="download_your_data" xml:space="preserve">
+        <value>Скачать ваши данные</value>
+      </data>
+      <data name="download" xml:space="preserve">
+        <value>Скачать</value>
+      </data>
+      <data name="personal_data" xml:space="preserve">
+        <value>Персональные данные</value>
+      </data>
+      <data name="personal_data_description" xml:space="preserve">
+        <value>Ваша учётная запись содержит персональные данные, которые вы нам предоставили. На этой странице вы можете скачать или удалить эти данные.</value>
+      </data>
+      <data name="set_password" xml:space="preserve">
+        <value>Установить пароль</value>
+      </data>
+      <data name="set_your_password" xml:space="preserve">
+        <value>Установите пароль</value>
+      </data>
+      <data name="set_password_button" xml:space="preserve">
+        <value>Установить пароль</value>
+      </data>
+      <data name="no_local_account_info" xml:space="preserve">
+        <value>У вас нет локального логина/пароля. Добавьте локальную учётную запись, чтобы входить без внешнего провайдера.</value>
+      </data>
+      <data name="manage_email" xml:space="preserve">
+        <value>Управление электронной почтой</value>
+      </data>
+      <data name="please_enter_your_email" xml:space="preserve">
+        <value>Пожалуйста, введите ваш email.</value>
+      </data>
+      <data name="send_verification_email" xml:space="preserve">
+        <value>Отправить письмо для подтверждения</value>
+      </data>
+      <data name="please_enter_new_email" xml:space="preserve">
+        <value>Пожалуйста, введите новый email.</value>
+      </data>
+      <data name="change_email" xml:space="preserve">
+        <value>Изменить email</value>
+      </data>
+      <data name="manage_external_logins" xml:space="preserve">
+        <value>Управление внешними способами входа</value>
+      </data>
+      <data name="registered_logins" xml:space="preserve">
+        <value>Зарегистрированные способы входа</value>
+      </data>
+      <data name="remove" xml:space="preserve">
+        <value>Удалить</value>
+      </data>
+      <data name="remove_login_title" xml:space="preserve">
+        <value>Удалить вход через {0} из вашей учётной записи</value>
+      </data>
+      <data name="add_another_service_to_log_in" xml:space="preserve">
+        <value>Добавить другой сервис для входа.</value>
+      </data>
+      <data name="log_in_using_your_account" xml:space="preserve">
+        <value>Войти с помощью аккаунта {0}</value>
+      </data>
   <data name="pending_registrations_help" xml:space="preserve">
     <value>Подтвердите или отклоните входящие заявки на регистрацию.</value>
   </data>
@@ -215,6 +329,9 @@
   </data>
   <data name="reject_success" xml:space="preserve">
     <value>Заявка отклонена</value>
+  </data>
+  <data name="delete_success" xml:space="preserve">
+    <value>Заявка удалена</value>
   </data>
   <data name="cannot_approve_full" xml:space="preserve">
     <value>Невозможно подтвердить - группа полна</value>
@@ -507,5 +624,11 @@
   </data>
   <data name="logout" xml:space="preserve">
     <value>Выйти</value>
+  </data>
+  <data name="no_teachers" xml:space="preserve">
+    <value>Нет учителей</value>
+  </data>
+  <data name="no_image" xml:space="preserve">
+    <value>Нет изображения</value>
   </data>
 </root>

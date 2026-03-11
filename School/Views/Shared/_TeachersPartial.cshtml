@@ -1,0 +1,38 @@
+@model IEnumerable<School.Models.Teacher>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @if (Model != null && Model.Any())
+    {
+        foreach (var teacher in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    @if (!string.IsNullOrEmpty(teacher.FotoPath))
+                    {
+                        <img src="@Url.Content(teacher.FotoPath)" class="card-img-top" alt="@teacher.Name" style="object-fit:cover; height:200px;" />
+                    }
+                    else
+                    {
+                        <div class="bg-light d-flex align-items-center justify-content-center" style="height:200px;">
+                            <span class="text-muted">@Localizer?["no_image"]</span>
+                        </div>
+                    }
+
+                    <div class="card-body">
+                        <h5 class="card-title">@teacher.Name</h5>
+                        @if (!string.IsNullOrEmpty(teacher.Qualification))
+                        {
+                            <p class="card-text small text-muted">@teacher.Qualification</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-12">
+            <p>@Localizer?["no_teachers"]</p>
+        </div>
+    }
+</div>

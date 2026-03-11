@@ -216,6 +216,9 @@
   <data name="reject_success" xml:space="preserve">
     <value>Registration rejected</value>
   </data>
+  <data name="delete_success" xml:space="preserve">
+    <value>Registration deleted</value>
+  </data>
   <data name="cannot_approve_full" xml:space="preserve">
     <value>Cannot approve - group is full</value>
   </data>
@@ -507,5 +510,125 @@
   </data>
   <data name="logout" xml:space="preserve">
     <value>Logout</value>
+  </data>
+  <data name="login_local_account" xml:space="preserve">
+    <value>Use a local account to log in.</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="remember_me" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="forgot_password" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
+  <data name="register_as_new_user" xml:space="preserve">
+    <value>Register as a new user</value>
+  </data>
+  <data name="register_create_new_account" xml:space="preserve">
+    <value>Create a new account.</value>
+  </data>
+  <data name="confirm_password" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="please_choose_your_username" xml:space="preserve">
+    <value>Please choose your username.</value>
+  </data>
+  <data name="please_enter_your_phone_number" xml:space="preserve">
+    <value>Please enter your phone number.</value>
+  </data>
+  <data name="change_password" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="please_enter_old_password" xml:space="preserve">
+    <value>Please enter your old password.</value>
+  </data>
+  <data name="please_enter_new_password" xml:space="preserve">
+    <value>Please enter your new password.</value>
+  </data>
+  <data name="please_confirm_new_password" xml:space="preserve">
+    <value>Please confirm your new password.</value>
+  </data>
+  <data name="update_password" xml:space="preserve">
+    <value>Update password</value>
+  </data>
+  <data name="delete_personal_data" xml:space="preserve">
+    <value>Delete personal data</value>
+  </data>
+  <data name="delete_personal_data_warning" xml:space="preserve">
+    <value>Deleting this data will permanently remove your account, and this cannot be recovered.</value>
+  </data>
+  <data name="please_enter_your_password" xml:space="preserve">
+    <value>Please enter your password.</value>
+  </data>
+  <data name="delete_data_and_close_account" xml:space="preserve">
+    <value>Delete data and close my account</value>
+  </data>
+  <data name="download_your_data" xml:space="preserve">
+    <value>Download your data</value>
+  </data>
+  <data name="download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="personal_data" xml:space="preserve">
+    <value>Personal Data</value>
+  </data>
+  <data name="personal_data_description" xml:space="preserve">
+    <value>Your account contains personal data that you have given us. This page allows you to download or delete that data.</value>
+  </data>
+  <data name="set_password" xml:space="preserve">
+    <value>Set password</value>
+  </data>
+  <data name="set_your_password" xml:space="preserve">
+    <value>Set your password</value>
+  </data>
+  <data name="set_password_button" xml:space="preserve">
+    <value>Set password</value>
+  </data>
+  <data name="no_local_account_info" xml:space="preserve">
+    <value>You do not have a local username/password for this site. Add a local account so you can log in without an external login.</value>
+  </data>
+  <data name="manage_email" xml:space="preserve">
+    <value>Manage Email</value>
+  </data>
+  <data name="please_enter_your_email" xml:space="preserve">
+    <value>Please enter your email.</value>
+  </data>
+  <data name="send_verification_email" xml:space="preserve">
+    <value>Send verification email</value>
+  </data>
+  <data name="please_enter_new_email" xml:space="preserve">
+    <value>Please enter new email.</value>
+  </data>
+  <data name="change_email" xml:space="preserve">
+    <value>Change email</value>
+  </data>
+  <data name="manage_external_logins" xml:space="preserve">
+    <value>Manage your external logins</value>
+  </data>
+  <data name="registered_logins" xml:space="preserve">
+    <value>Registered Logins</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="remove_login_title" xml:space="preserve">
+    <value>Remove this {0} login from your account</value>
+  </data>
+  <data name="add_another_service_to_log_in" xml:space="preserve">
+    <value>Add another service to log in.</value>
+  </data>
+  <data name="log_in_using_your_account" xml:space="preserve">
+    <value>Log in using your {0} account</value>
+  </data>
+  <data name="no_teachers" xml:space="preserve">
+    <value>No teachers</value>
+  </data>
+  <data name="no_image" xml:space="preserve">
+    <value>No image</value>
   </data>
 </root>

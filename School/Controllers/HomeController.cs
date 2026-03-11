@@ -32,6 +32,12 @@ namespace School.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> Teachers()
+        {
+            var teachers = await _context.Teachers.ToListAsync();
+            return View(teachers);
+        }
+
         public async Task<IActionResult> About()
         {
             return View();

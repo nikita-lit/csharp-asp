@@ -33,7 +33,7 @@
                             }
                             else if (User?.Identity?.IsAuthenticated == true)
                             {
-                                <form asp-action="Register" asp-controller="Home" method="post" class="d-inline">
+                                <form asp-action="Register" asp-controller="Dashboard" method="post" class="d-inline">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="trainingId" value="@t.Id" />
                                     <button type="submit" class="btn btn-sm btn-primary">@Localizer["register"]</button>

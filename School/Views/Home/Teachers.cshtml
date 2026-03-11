@@ -1,0 +1,11 @@
+@model IEnumerable<School.Models.Teacher>
+
+@{
+    ViewData["Title"] = Localizer["teachers"];
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<partial name="_TeachersPartial" />

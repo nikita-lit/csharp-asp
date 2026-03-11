@@ -198,6 +198,120 @@
   <data name="already_requested" xml:space="preserve">
     <value>Te olete selle koolituse jaoks juba esitanud taotluse</value>
   </data>
+    <data name="login_local_account" xml:space="preserve">
+      <value>Kasutage sisselogimiseks kohalikku kontot.</value>
+    </data>
+    <data name="password" xml:space="preserve">
+      <value>Parool</value>
+    </data>
+    <data name="remember_me" xml:space="preserve">
+      <value>Jäta mind meelde</value>
+    </data>
+    <data name="forgot_password" xml:space="preserve">
+      <value>Unustasid parooli?</value>
+    </data>
+    <data name="register_as_new_user" xml:space="preserve">
+      <value>Registreeru uue kasutajana</value>
+    </data>
+    <data name="register_create_new_account" xml:space="preserve">
+      <value>Loo uus konto.</value>
+    </data>
+    <data name="confirm_password" xml:space="preserve">
+      <value>Kinnita parool</value>
+    </data>
+    <data name="profile" xml:space="preserve">
+      <value>Profiil</value>
+    </data>
+    <data name="please_choose_your_username" xml:space="preserve">
+      <value>Palun valige kasutajanimi.</value>
+    </data>
+    <data name="please_enter_your_phone_number" xml:space="preserve">
+      <value>Palun sisestage oma telefoninumber.</value>
+    </data>
+    <data name="change_password" xml:space="preserve">
+      <value>Muuda parooli</value>
+    </data>
+    <data name="please_enter_old_password" xml:space="preserve">
+      <value>Palun sisestage oma vana parool.</value>
+    </data>
+    <data name="please_enter_new_password" xml:space="preserve">
+      <value>Palun sisestage uus parool.</value>
+    </data>
+    <data name="please_confirm_new_password" xml:space="preserve">
+      <value>Palun kinnitage uus parool.</value>
+    </data>
+    <data name="update_password" xml:space="preserve">
+      <value>Uuenda parool</value>
+    </data>
+    <data name="delete_personal_data" xml:space="preserve">
+      <value>Kustuta isikuandmed</value>
+    </data>
+    <data name="delete_personal_data_warning" xml:space="preserve">
+      <value>Isikuandmete kustutamine eemaldab teie konto jäädavalt.</value>
+    </data>
+    <data name="please_enter_your_password" xml:space="preserve">
+      <value>Palun sisestage oma parool.</value>
+    </data>
+    <data name="delete_data_and_close_account" xml:space="preserve">
+      <value>Kustuta andmed ja sulge minu konto</value>
+    </data>
+    <data name="download_your_data" xml:space="preserve">
+      <value>Laadi alla oma andmed</value>
+    </data>
+    <data name="download" xml:space="preserve">
+      <value>Laadi alla</value>
+    </data>
+    <data name="personal_data" xml:space="preserve">
+      <value>Isikuandmed</value>
+    </data>
+    <data name="personal_data_description" xml:space="preserve">
+      <value>Teie konto sisaldab isikuandmeid, mida olete meile andnud. Sellelt lehelt saate need alla laadida või kustutada.</value>
+    </data>
+    <data name="set_password" xml:space="preserve">
+      <value>Määra parool</value>
+    </data>
+    <data name="set_your_password" xml:space="preserve">
+      <value>Määra oma parool</value>
+    </data>
+    <data name="set_password_button" xml:space="preserve">
+      <value>Määra parool</value>
+    </data>
+    <data name="no_local_account_info" xml:space="preserve">
+      <value>Teil pole kohalikku kasutajanime/parooli. Lisage kohalik konto, et siseneda ilma välist teenust kasutamata.</value>
+    </data>
+    <data name="manage_email" xml:space="preserve">
+      <value>Haldaja e-post</value>
+    </data>
+    <data name="please_enter_your_email" xml:space="preserve">
+      <value>Palun sisestage oma e-post.</value>
+    </data>
+    <data name="send_verification_email" xml:space="preserve">
+      <value>Saada kinnituskiri</value>
+    </data>
+    <data name="please_enter_new_email" xml:space="preserve">
+      <value>Palun sisestage uus e-post.</value>
+    </data>
+    <data name="change_email" xml:space="preserve">
+      <value>Muuda e-posti</value>
+    </data>
+    <data name="manage_external_logins" xml:space="preserve">
+      <value>Haldage väliseid sisselogimisi</value>
+    </data>
+    <data name="registered_logins" xml:space="preserve">
+      <value>Registreeritud sisselogimised</value>
+    </data>
+    <data name="remove" xml:space="preserve">
+      <value>Eemalda</value>
+    </data>
+    <data name="remove_login_title" xml:space="preserve">
+      <value>Eemalda see {0} sisselogimine teie kontolt</value>
+    </data>
+    <data name="add_another_service_to_log_in" xml:space="preserve">
+      <value>Lisa teine teenus sisselogimiseks.</value>
+    </data>
+    <data name="log_in_using_your_account" xml:space="preserve">
+      <value>Logi sisse oma {0} kontoga</value>
+    </data>
   <data name="pending_registrations" xml:space="preserve">
     <value>Ootel registreerimised</value>
   </data>
@@ -215,6 +329,9 @@
   </data>
   <data name="reject_success" xml:space="preserve">
     <value>Registreerimine tagasi lükatud</value>
+  </data>
+  <data name="delete_success" xml:space="preserve">
+    <value>Registreerimine kustutatud</value>
   </data>
   <data name="cannot_approve_full" xml:space="preserve">
     <value>Ei saa kinnitada - grupp on täis</value>
@@ -437,5 +554,11 @@
   </data>
   <data name="logout" xml:space="preserve">
     <value>Logi välja</value>
+  </data>
+  <data name="no_teachers" xml:space="preserve">
+    <value>Pole õpetajad</value>
+  </data>
+  <data name="no_image" xml:space="preserve">
+    <value>Pole pilti</value>
   </data>
 </root>
