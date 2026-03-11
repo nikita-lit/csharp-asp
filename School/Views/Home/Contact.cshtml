@@ -2,6 +2,15 @@
     ViewData["Title"] = Localizer["contact"];
 }
 
-<div class="text-center mb-4">
-    <h1 class="display-4">@ViewData["Title"]</h1>
+<div class="container py-4">
+    <h1 class="display-4 text-center mb-4">@ViewData["Title"]</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="h3 mb-3">@Localizer["contacts_title"]</h2>
+            <p><strong>@Localizer["address_label"]:</strong> @Localizer["example_address"]</p>
+            <p><strong>@Localizer["phone_label"]:</strong> +372 1234 1234</p>
+            <p><strong>@Localizer["email_label"]:</strong> info@school.com</p>
+        </div>
+    </div>
 </div>

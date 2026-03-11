@@ -228,4 +228,172 @@
   <data name="actions" xml:space="preserve">
     <value>Tegevused</value>
   </data>
+    <data name="Course" xml:space="preserve">
+      <value>Kursus</value>
+    </data>
+    <data name="about" xml:space="preserve">
+      <value>Meist</value>
+    </data>
+    <data name="about_intro" xml:space="preserve">
+      <value>Meie keeltekool aitab erinevaid inimesi — õpilastest kuni äriprofessionaalideni — kasutada keelt enesekindlalt igapäevaelus ja töös.</value>
+    </data>
+    <data name="add" xml:space="preserve">
+      <value>Lisa</value>
+    </data>
+    <data name="address_label" xml:space="preserve">
+      <value>Aadress</value>
+    </data>
+    <data name="btn_courses" xml:space="preserve">
+      <value>Kursused</value>
+    </data>
+    <data name="btn_sign_up" xml:space="preserve">
+      <value>Registreeru</value>
+    </data>
+    <data name="contact" xml:space="preserve">
+      <value>Kontakt</value>
+    </data>
+    <data name="contact_us_btn" xml:space="preserve">
+      <value>Võta meiega ühendust</value>
+    </data>
+    <data name="contacts_title" xml:space="preserve">
+      <value>Kontaktid</value>
+    </data>
+    <data name="courses_lead" xml:space="preserve">
+      <value>Lühikirjeldused populaarsetest programmidest ja tüüpilistest tasemetest.</value>
+    </data>
+    <data name="create" xml:space="preserve">
+      <value>Loo</value>
+    </data>
+    <data name="create_new" xml:space="preserve">
+      <value>Loo uus</value>
+    </data>
+    <data name="dashboard" xml:space="preserve">
+      <value>Töölaud</value>
+    </data>
+    <data name="description" xml:space="preserve">
+      <value>Kirjeldus</value>
+    </data>
+    <data name="email" xml:space="preserve">
+      <value>E-post</value>
+    </data>
+    <data name="email_label" xml:space="preserve">
+      <value>E-post</value>
+    </data>
+    <data name="end_date" xml:space="preserve">
+      <value>Lõppkuupäev</value>
+    </data>
+    <data name="example_address" xml:space="preserve">
+      <value>Näidis aadress: Näide 10, Tallinn</value>
+    </data>
+    <data name="feature_groups_text" xml:space="preserve">
+      <value>Rühmad kuni 8 inimest — maksimaalne praktika ja õpetaja tähelepanu.</value>
+    </data>
+    <data name="feature_groups_title" xml:space="preserve">
+      <value>Väikesed rühmad</value>
+    </data>
+    <data name="feature_schedule_text" xml:space="preserve">
+      <value>Hommiku-, päeva- ja õhtutunnid ning ka veebikursused.</value>
+    </data>
+    <data name="feature_schedule_title" xml:space="preserve">
+      <value>Paindlik ajakava</value>
+    </data>
+    <data name="feature_teachers_text" xml:space="preserve">
+      <value>Emakeelena kõnelejad ja sertifitseeritud õpetajad praktilise lähenemisega.</value>
+    </data>
+    <data name="feature_teachers_title" xml:space="preserve">
+      <value>Kogenud õpetajad</value>
+    </data>
+    <data name="hero_lead" xml:space="preserve">
+      <value>Intensiivsed ja paindlikud programmid kõikidele tasemetele — algajatest kuni professionaalideni.</value>
+    </data>
+    <data name="hero_title" xml:space="preserve">
+      <value>Avage keelte maailm meie kooliga</value>
+    </data>
+    <data name="learn_more_btn" xml:space="preserve">
+      <value>Lisateave</value>
+    </data>
+    <data name="level" xml:space="preserve">
+      <value>Tase</value>
+    </data>
+    <data name="list_of_users" xml:space="preserve">
+      <value>Kasutajate nimekiri</value>
+    </data>
+    <data name="max_participants" xml:space="preserve">
+      <value>Maksimaalne osalejate arv</value>
+    </data>
+    <data name="methodology_text" xml:space="preserve">
+      <value>Kommunikatiivne lähenemine, emakeelsete kõnede kuulamine ja regulaarne rääkimispraktika väikestes rühmades.</value>
+    </data>
+    <data name="methodology_title" xml:space="preserve">
+      <value>Metoodika</value>
+    </data>
+    <data name="mission_text" xml:space="preserve">
+      <value>Pakkuda praktilisi suhtlemisoskusi, mida saab kohe rakendada — tööl, reisides ja õpingutes.</value>
+    </data>
+    <data name="mission_title" xml:space="preserve">
+      <value>Meie missioon</value>
+    </data>
+    <data name="my_account" xml:space="preserve">
+      <value>Minu konto</value>
+    </data>
+    <data name="my_courses" xml:space="preserve">
+      <value>Minu kursused</value>
+    </data>
+    <data name="my_courses_help" xml:space="preserve">
+      <value>Vaadake ja haldage oma kursusi</value>
+    </data>
+    <data name="no_my_courses" xml:space="preserve">
+      <value>Teil pole kursuseid</value>
+    </data>
+    <data name="no_students_in_course" xml:space="preserve">
+      <value>Kursusel pole ühtegi õpilast</value>
+    </data>
+    <data name="phone_label" xml:space="preserve">
+      <value>Telefon</value>
+    </data>
+    <data name="popular_courses" xml:space="preserve">
+      <value>Populaarsed kursused</value>
+    </data>
+    <data name="price" xml:space="preserve">
+      <value>Hind</value>
+    </data>
+    <data name="questions_help" xml:space="preserve">
+      <value>On küsimusi? Aitame valida programmi.</value>
+    </data>
+    <data name="select" xml:space="preserve">
+      <value>Vali</value>
+    </data>
+    <data name="select_teacher" xml:space="preserve">
+      <value>Vali õpetaja</value>
+    </data>
+    <data name="start_date" xml:space="preserve">
+      <value>Alguskuupäev</value>
+    </data>
+    <data name="students" xml:space="preserve">
+      <value>Õpilased</value>
+    </data>
+    <data name="submit" xml:space="preserve">
+      <value>Saada</value>
+    </data>
+    <data name="teacher_courses" xml:space="preserve">
+      <value>Õpetaja kursused</value>
+    </data>
+    <data name="team_text" xml:space="preserve">
+      <value>Meie õpetajad on sertifitseeritud spetsialistid rahvusvahelise kogemuse ja õpetamise kirglikkusega.</value>
+    </data>
+    <data name="team_title" xml:space="preserve">
+      <value>Meeskond</value>
+    </data>
+    <data name="trainings" xml:space="preserve">
+      <value>Koolitused</value>
+    </data>
+    <data name="trainings_lead" xml:space="preserve">
+      <value>Lühikesed intensiivid ja spetsialiseeritud koolitused kiireks arenguks.</value>
+    </data>
+    <data name="users" xml:space="preserve">
+      <value>Kasutajad</value>
+    </data>
+    <data name="admin" xml:space="preserve">
+      <value>Administraator</value>
+    </data>
 </root>

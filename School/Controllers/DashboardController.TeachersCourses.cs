@@ -17,9 +17,12 @@ namespace School.Controllers
                 return Challenge();
 
             Teacher? teacher;
-            if (User.IsInRole("Admin") && id.HasValue)
+            if (User.IsInRole("Admin"))
             {
-                teacher = await _context.Teachers.FindAsync(id.Value);
+                if (id.HasValue)
+                    teacher = await _context.Teachers.FindAsync(id.Value);
+                else
+                    teacher = await _context.Teachers.FirstOrDefaultAsync();
             }
             else
             {

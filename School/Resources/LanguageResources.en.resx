@@ -217,7 +217,7 @@
     <value>Registration rejected</value>
   </data>
   <data name="cannot_approve_full" xml:space="preserve">
-    <value>Cannot approve — group is full</value>
+    <value>Cannot approve - group is full</value>
   </data>
   <data name="student" xml:space="preserve">
     <value>Student</value>
@@ -227,5 +227,243 @@
   </data>
   <data name="actions" xml:space="preserve">
     <value>Actions</value>
+  </data>
+  <data name="hero_title" xml:space="preserve">
+    <value>Open the world of languages with our school</value>
+  </data>
+  <data name="hero_lead" xml:space="preserve">
+    <value>Intensive and flexible programs for all levels - from beginners to professionals.</value>
+  </data>
+  <data name="btn_courses" xml:space="preserve">
+    <value>Courses</value>
+  </data>
+  <data name="btn_sign_up" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="feature_teachers_title" xml:space="preserve">
+    <value>Experienced teachers</value>
+  </data>
+  <data name="feature_teachers_text" xml:space="preserve">
+    <value>Native speakers and certified teachers with a practical approach.</value>
+  </data>
+  <data name="feature_groups_title" xml:space="preserve">
+    <value>Small groups</value>
+  </data>
+  <data name="feature_groups_text" xml:space="preserve">
+    <value>Groups up to 8 people - maximum practice and teacher attention.</value>
+  </data>
+  <data name="feature_schedule_title" xml:space="preserve">
+    <value>Flexible schedule</value>
+  </data>
+  <data name="feature_schedule_text" xml:space="preserve">
+    <value>Morning, day and evening classes, plus online options.</value>
+  </data>
+  <data name="popular_courses" xml:space="preserve">
+    <value>Popular courses</value>
+  </data>
+  <data name="questions_help" xml:space="preserve">
+    <value>Have questions? We'll help you choose a program.</value>
+  </data>
+  <data name="contact_us_btn" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+
+  <data name="courses_lead" xml:space="preserve">
+    <value>Short descriptions of popular programs and typical levels.</value>
+  </data>
+  <data name="english_general_title" xml:space="preserve">
+    <value>English - General</value>
+  </data>
+  <data name="english_general_text" xml:space="preserve">
+    <value>Course for levels A1–B2. Development of all skills: speaking, listening, grammar.</value>
+  </data>
+  <data name="duration_label" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="duration_3months" xml:space="preserve">
+    <value>3 months</value>
+  </data>
+  <data name="business_english_title" xml:space="preserve">
+    <value>Business English</value>
+  </data>
+  <data name="business_english_text" xml:space="preserve">
+    <value>Practice business correspondence, presentations and negotiations. Levels B1–C1.</value>
+  </data>
+  <data name="duration_10weeks" xml:space="preserve">
+    <value>10 weeks</value>
+  </data>
+  <data name="conversation_club_title" xml:space="preserve">
+    <value>Conversation Club</value>
+  </data>
+  <data name="conversation_club_text" xml:space="preserve">
+    <value>Intensive speaking practice with native speakers in small groups.</value>
+  </data>
+  <data name="format_label" xml:space="preserve">
+    <value>Format</value>
+  </data>
+  <data name="format_weekly_90" xml:space="preserve">
+    <value>Once a week, 90 minutes</value>
+  </data>
+  <data name="learn_more_btn" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+
+  <data name="trainings_lead" xml:space="preserve">
+    <value>Short intensives and specialized trainings for fast progress.</value>
+  </data>
+  <data name="training_name" xml:space="preserve">
+    <value>Training</value>
+  </data>
+  <data name="start_date" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="pronunciation_intensive" xml:space="preserve">
+    <value>Pronunciation Intensive</value>
+  </data>
+  <data name="interview_prep" xml:space="preserve">
+    <value>Interview Preparation</value>
+  </data>
+  <data name="business_writing" xml:space="preserve">
+    <value>Business Writing</value>
+  </data>
+  <data name="weeks_short" xml:space="preserve">
+    <value>weeks</value>
+  </data>
+  <data name="sessions_short" xml:space="preserve">
+    <value>sessions</value>
+  </data>
+  <data name="signup_for_training_btn" xml:space="preserve">
+    <value>Sign up for training</value>
+  </data>
+
+  <data name="about_intro" xml:space="preserve">
+    <value>Our language school helps a wide range of people - from students to business professionals - confidently use language in life and work.</value>
+  </data>
+  <data name="mission_title" xml:space="preserve">
+    <value>Our mission</value>
+  </data>
+  <data name="mission_text" xml:space="preserve">
+    <value>Provide practical communication skills that can be applied immediately - at work, while traveling, and in education.</value>
+  </data>
+  <data name="methodology_title" xml:space="preserve">
+    <value>Methodology</value>
+  </data>
+  <data name="methodology_text" xml:space="preserve">
+    <value>A combination of the communicative approach, listening to native speakers, and regular speaking practice in small groups.</value>
+  </data>
+  <data name="team_title" xml:space="preserve">
+    <value>Team</value>
+  </data>
+  <data name="team_text" xml:space="preserve">
+    <value>Our teachers are certified professionals with international experience and a passion for teaching.</value>
+  </data>
+
+  <data name="contacts_title" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="address_label" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="example_address" xml:space="preserve">
+    <value>10 Street St., Tallinn</value>
+  </data>
+  <data name="phone_label" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="email_label" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="signup_title" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="signup_text" xml:space="preserve">
+    <value>Leave a request and we will select a suitable program and schedule.</value>
+  </data>
+  <data name="leave_request_btn" xml:space="preserve">
+    <value>Leave a request</value>
+  </data>
+  <data name="Course" xml:space="preserve">
+    <value>Course</value>
+  </data>
+  <data name="about" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="create_new" xml:space="preserve">
+    <value>Create new</value>
+  </data>
+  <data name="dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="end_date" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="list_of_users" xml:space="preserve">
+    <value>List of users</value>
+  </data>
+  <data name="max_participants" xml:space="preserve">
+    <value>Max participants</value>
+  </data>
+  <data name="my_account" xml:space="preserve">
+    <value>My account</value>
+  </data>
+  <data name="my_courses" xml:space="preserve">
+    <value>My courses</value>
+  </data>
+  <data name="my_courses_help" xml:space="preserve">
+    <value>View and manage your courses</value>
+  </data>
+  <data name="no_my_courses" xml:space="preserve">
+    <value>You have no courses</value>
+  </data>
+  <data name="no_students_in_course" xml:space="preserve">
+    <value>No students in the course</value>
+  </data>
+  <data name="price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="select_teacher" xml:space="preserve">
+    <value>Select teacher</value>
+  </data>
+  <data name="students" xml:space="preserve">
+    <value>Students</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="teacher_courses" xml:space="preserve">
+    <value>Teacher's courses</value>
+  </data>
+  <data name="trainings" xml:space="preserve">
+    <value>Trainings</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="admin" xml:space="preserve">
+    <value>Administrator</value>
   </data>
 </root>

@@ -1,12 +1,53 @@
 @model School.Models.HomeViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
 
 @{
     ViewData["Title"] = Localizer["homepage_guest"];
 }
 
-<div class="text-center mb-4">
-    <h1 class="display-4">@Localizer["welcome_guest"]</h1>
-    <p class="lead">@Localizer["available_courses"]</p>
-</div>
+<section class="hero text-center py-5">
+    <div class="container">
+        <h1 class="display-4">@Localizer["hero_title"]</h1>
+        <p class="lead">@Localizer["hero_lead"]</p>
+        <p class="mt-3">
+            <a asp-controller="Home" asp-action="Courses" class="btn btn-primary btn-lg me-2">@Localizer["btn_courses"]</a>
+            @if (!SignInManager.IsSignedIn(User))
+            {
+                <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-outline-secondary btn-lg">@Localizer["btn_sign_up"]</a>
+            }
+        </p>
+    </div>
+</section>
 
-<partial name="_CoursesPartial" />
+<section class="features container py-4">
+    <div class="row text-center">
+        <div class="col-md-4">
+            <h4>@Localizer["feature_teachers_title"]</h4>
+            <p>@Localizer["feature_teachers_text"]</p>
+        </div>
+        <div class="col-md-4">
+            <h4>@Localizer["feature_groups_title"]</h4>
+            <p>@Localizer["feature_groups_text"]</p>
+        </div>
+        <div class="col-md-4">
+            <h4>@Localizer["feature_schedule_title"]</h4>
+            <p>@Localizer["feature_schedule_text"]</p>
+        </div>
+    </div>
+</section>
+
+<section class="container py-4">
+    <h2 class="h3 mb-3">@Localizer["popular_courses"]</h2>
+    <partial name="_CoursesPartial" />
+</section>
+
+<section class="container py-4">
+    <h2 class="h3 mb-3">@Localizer["current_trainings"]</h2>
+    <partial name="_TrainingsPartial" />
+</section>
+
+<section class="container py-5 text-center">
+    <p class="mb-0">@Localizer["questions_help"]</p>
+    <a asp-controller="Home" asp-action="Contact" class="btn btn-success mt-3">@Localizer["contact_us_btn"]</a>
+</section>

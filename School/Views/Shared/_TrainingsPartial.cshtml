@@ -1,6 +1,5 @@
 @model School.Models.HomeViewModel
 
-<h3 class="mb-3">@Localizer["current_trainings"]</h3>
 <div class="row row-cols-1 row-cols-md-2 g-4">
     @if (Model?.CurrentTrainings != null && Model.CurrentTrainings.Any())
     {
@@ -42,7 +41,7 @@
                             }
                             else
                             {
-                                <a href="/Identity/Account/Login" class="btn btn-sm btn-primary">@Localizer["login_to_register"]</a>
+                                <a href="/Identity/Account/Login" class="btn btn-sm btn-primary">@Localizer["register"]</a>
                             }
                         }
                     </div>

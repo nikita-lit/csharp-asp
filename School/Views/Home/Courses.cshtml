@@ -6,6 +6,13 @@
 
 <div class="text-center mb-4">
     <h1 class="display-4">@ViewData["Title"]</h1>
+    <p class="lead">@Localizer["courses_lead"]</p>
 </div>
 
-<partial name="_CoursesPartial" />
+<section class="container">
+    <partial name="_CoursesPartial" />
+
+    <div class="text-center mt-4">
+        <a asp-controller="Home" asp-action="Contact" class="btn btn-primary">@Localizer["learn_more_btn"]</a>
+    </div>
+</section>

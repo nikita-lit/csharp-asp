@@ -2,6 +2,19 @@
     ViewData["Title"] = Localizer["about"];
 }
 
-<div class="text-center mb-4">
-    <h1 class="display-4">@ViewData["Title"]</h1>
+<div class="container py-4">
+    <h1 class="display-4 text-center mb-4">@ViewData["Title"]</h1>
+
+    <h2 class="h3 mb-3">@Localizer["about"]</h2>
+
+    <p>@Localizer["about_intro"]</p>
+
+    <h3 class="mt-4">@Localizer["mission_title"]</h3>
+    <p>@Localizer["mission_text"]</p>
+
+    <h3 class="mt-4">@Localizer["methodology_title"]</h3>
+    <p>@Localizer["methodology_text"]</p>
+
+    <h3 class="mt-4">@Localizer["team_title"]</h3>
+    <p>@Localizer["team_text"]</p>
 </div>

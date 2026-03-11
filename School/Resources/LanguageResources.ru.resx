@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="back_to_list" xml:space="preserve">
-    <value>Back to the list</value>
+    <value>Назад к списку</value>
   </data>
   <data name="homepage" xml:space="preserve">
     <value>Главная страница</value>
@@ -130,13 +130,13 @@
     <value>Вход</value>
   </data>
   <data name="name" xml:space="preserve">
-    <value>Name</value>
+    <value>Имя</value>
   </data>
   <data name="photo" xml:space="preserve">
-    <value>Photo</value>
+    <value>Фото</value>
   </data>
   <data name="qual" xml:space="preserve">
-    <value>Qualification</value>
+    <value>Квалификация</value>
   </data>
   <data name="register" xml:space="preserve">
     <value>Регистрация</value>
@@ -145,13 +145,13 @@
     <value>Языковая школа</value>
   </data>
   <data name="select_user" xml:space="preserve">
-    <value>Select user</value>
+    <value>Выбрать пользователя</value>
   </data>
   <data name="teachers" xml:space="preserve">
     <value>Учителя</value>
   </data>
   <data name="user" xml:space="preserve">
-    <value>User</value>
+    <value>Пользователь</value>
   </data>
   <data name="welcome" xml:space="preserve">
     <value>Добро пожаловать</value>
@@ -227,5 +227,243 @@
   </data>
   <data name="actions" xml:space="preserve">
     <value>Действия</value>
+  </data>
+  <data name="hero_title" xml:space="preserve">
+    <value>Откройте мир языков с нашей школой</value>
+  </data>
+  <data name="hero_lead" xml:space="preserve">
+    <value>Интенсивные и гибкие программы для всех уровней — от начинающих до профессионалов.</value>
+  </data>
+  <data name="btn_courses" xml:space="preserve">
+    <value>Курсы</value>
+  </data>
+  <data name="btn_sign_up" xml:space="preserve">
+    <value>Записаться</value>
+  </data>
+  <data name="feature_teachers_title" xml:space="preserve">
+    <value>Опытные преподаватели</value>
+  </data>
+  <data name="feature_teachers_text" xml:space="preserve">
+    <value>Носители и сертифицированные преподаватели с практическим подходом.</value>
+  </data>
+  <data name="feature_groups_title" xml:space="preserve">
+    <value>Малые группы</value>
+  </data>
+  <data name="feature_groups_text" xml:space="preserve">
+    <value>Группы до 8 человек — максимум живой практики и внимания к студенту.</value>
+  </data>
+  <data name="feature_schedule_title" xml:space="preserve">
+    <value>Гибкий график</value>
+  </data>
+  <data name="feature_schedule_text" xml:space="preserve">
+    <value>Утренние, дневные и вечерние занятия, а также онлайн-варианты.</value>
+  </data>
+  <data name="popular_courses" xml:space="preserve">
+    <value>Популярные курсы</value>
+  </data>
+  <data name="questions_help" xml:space="preserve">
+    <value>Есть вопросы? Мы поможем выбрать программу.</value>
+  </data>
+  <data name="contact_us_btn" xml:space="preserve">
+    <value>Связаться с нами</value>
+  </data>
+
+  <data name="courses_lead" xml:space="preserve">
+    <value>Краткие описания популярных программ и примерные уровни.</value>
+  </data>
+  <data name="english_general_title" xml:space="preserve">
+    <value>Английский — общий</value>
+  </data>
+  <data name="english_general_text" xml:space="preserve">
+    <value>Курс для уровней A1–B2. Развитие всех навыков: говорение, аудирование, грамматика.</value>
+  </data>
+  <data name="duration_label" xml:space="preserve">
+    <value>Длительность</value>
+  </data>
+  <data name="duration_3months" xml:space="preserve">
+    <value>3 месяца</value>
+  </data>
+  <data name="business_english_title" xml:space="preserve">
+    <value>Бизнес-английский</value>
+  </data>
+  <data name="business_english_text" xml:space="preserve">
+    <value>Практика деловой переписки, презентаций и переговоров. Уровни B1–C1.</value>
+  </data>
+  <data name="duration_10weeks" xml:space="preserve">
+    <value>10 недель</value>
+  </data>
+  <data name="conversation_club_title" xml:space="preserve">
+    <value>Разговорный клуб</value>
+  </data>
+  <data name="conversation_club_text" xml:space="preserve">
+    <value>Интенсивная разговорная практика с носителями языка в малых группах.</value>
+  </data>
+  <data name="format_label" xml:space="preserve">
+    <value>Формат</value>
+  </data>
+  <data name="format_weekly_90" xml:space="preserve">
+    <value>1 раз в неделю, 90 минут</value>
+  </data>
+  <data name="learn_more_btn" xml:space="preserve">
+    <value>Узнать подробности</value>
+  </data>
+
+  <data name="trainings_lead" xml:space="preserve">
+    <value>Короткие интенсивы и специализированные тренинги для быстрого прогресса.</value>
+  </data>
+  <data name="training_name" xml:space="preserve">
+    <value>Тренинг</value>
+  </data>
+  <data name="start_date" xml:space="preserve">
+    <value>Дата старта</value>
+  </data>
+  <data name="duration" xml:space="preserve">
+    <value>Длительность</value>
+  </data>
+  <data name="level" xml:space="preserve">
+    <value>Уровень</value>
+  </data>
+  <data name="pronunciation_intensive" xml:space="preserve">
+    <value>Интенсивное произношение</value>
+  </data>
+  <data name="interview_prep" xml:space="preserve">
+    <value>Подготовка к собеседованию</value>
+  </data>
+  <data name="business_writing" xml:space="preserve">
+    <value>Деловая переписка</value>
+  </data>
+  <data name="weeks_short" xml:space="preserve">
+    <value>нед.</value>
+  </data>
+  <data name="sessions_short" xml:space="preserve">
+    <value>занятия</value>
+  </data>
+  <data name="signup_for_training_btn" xml:space="preserve">
+    <value>Записаться на тренинг</value>
+  </data>
+
+  <data name="about_intro" xml:space="preserve">
+    <value>Наша языковая школа помогает людям всего спектра — от школьников до бизнес-профессионалов — уверенно использовать язык в жизни и работе.</value>
+  </data>
+  <data name="mission_title" xml:space="preserve">
+    <value>Наша миссия</value>
+  </data>
+  <data name="mission_text" xml:space="preserve">
+    <value>Давать практические навыки общения, которые можно применять сразу — на работе, в путешествиях и образовании.</value>
+  </data>
+  <data name="methodology_title" xml:space="preserve">
+    <value>Методика</value>
+  </data>
+  <data name="methodology_text" xml:space="preserve">
+    <value>Комбинация коммуникативного подхода, аудирования с носителями и регулярной разговорной практики в малых группах.</value>
+  </data>
+  <data name="team_title" xml:space="preserve">
+    <value>Команда</value>
+  </data>
+  <data name="team_text" xml:space="preserve">
+    <value>Наши преподаватели — сертифицированные специалисты с международным опытом и любовью к обучению.</value>
+  </data>
+
+  <data name="contacts_title" xml:space="preserve">
+    <value>Контакты</value>
+  </data>
+  <data name="address_label" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="example_address" xml:space="preserve">
+    <value>ул. Примерная, 10, г. Вашгород</value>
+  </data>
+  <data name="phone_label" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="email_label" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="signup_title" xml:space="preserve">
+    <value>Записаться</value>
+  </data>
+  <data name="signup_text" xml:space="preserve">
+    <value>Оставьте заявку, и мы подберём подходящую программу и время занятий.</value>
+  </data>
+  <data name="leave_request_btn" xml:space="preserve">
+    <value>Оставить заявку</value>
+  </data>
+  <data name="Course" xml:space="preserve">
+    <value>Курс</value>
+  </data>
+  <data name="about" xml:space="preserve">
+    <value>О нас</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Контакт</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="create_new" xml:space="preserve">
+    <value>Создать новый</value>
+  </data>
+  <data name="dashboard" xml:space="preserve">
+    <value>Панель</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="end_date" xml:space="preserve">
+    <value>Дата окончания</value>
+  </data>
+  <data name="list_of_users" xml:space="preserve">
+    <value>Список пользователей</value>
+  </data>
+  <data name="max_participants" xml:space="preserve">
+    <value>Максимум участников</value>
+  </data>
+  <data name="my_account" xml:space="preserve">
+    <value>Мой аккаунт</value>
+  </data>
+  <data name="my_courses" xml:space="preserve">
+    <value>Мои курсы</value>
+  </data>
+  <data name="my_courses_help" xml:space="preserve">
+    <value>Просмотр и управление вашими курсами</value>
+  </data>
+  <data name="no_my_courses" xml:space="preserve">
+    <value>У вас нет курсов</value>
+  </data>
+  <data name="no_students_in_course" xml:space="preserve">
+    <value>Нет студентов в курсе</value>
+  </data>
+  <data name="price" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="select_teacher" xml:space="preserve">
+    <value>Выберите преподавателя</value>
+  </data>
+  <data name="students" xml:space="preserve">
+    <value>Студенты</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="teacher_courses" xml:space="preserve">
+    <value>Курсы преподавателя</value>
+  </data>
+  <data name="trainings" xml:space="preserve">
+    <value>Тренинги</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  <data name="admin" xml:space="preserve">
+    <value>Администратор</value>
   </data>
 </root>
