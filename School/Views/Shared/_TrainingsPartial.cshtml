@@ -22,27 +22,37 @@
                         <p class="card-text small">@t.StartDate.ToString("d") - @t.EndDate.ToString("d")</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
+                        <div class="small text-muted me-2">@regCount/@t.MaxParticipants</div>
                         @if (regCount >= t.MaxParticipants)
                         {
                             <span class="text-danger fw-bold">@Localizer["full_group"]</span>
                         }
-                        else
+
+                        @if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
                         {
-                            if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
-                            {
-                            }
-                            else if (User?.Identity?.IsAuthenticated == true)
-                            {
-                                <form asp-action="Register" asp-controller="Dashboard" method="post" class="d-inline">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="trainingId" value="@t.Id" />
-                                    <button type="submit" class="btn btn-sm btn-primary">@Localizer["register"]</button>
-                                </form>
-                            }
-                            else
-                            {
-                                <a href="/Identity/Account/Login" class="btn btn-sm btn-primary">@Localizer["register"]</a>
-                            }
+                            // no action for teachers/admins
+                        }
+                        else if (Model?.RegistrationStatuses != null && Model.RegistrationStatuses.ContainsKey(t.Id))
+                        {
+                            var status = (Model.RegistrationStatuses[t.Id] ?? "").ToLower();
+                            var cls = status == "approved" ? "badge bg-success text-white" 
+                                        : status == "pending" ? "badge bg-warning text-dark" 
+                                        : status == "rejected" ? "badge bg-danger text-white" 
+                                        : "badge bg-secondary text-white";
+                            
+                            <span class="@cls">@Localizer[status]</span>
+                        }
+                        else if (User?.Identity?.IsAuthenticated == true && regCount < t.MaxParticipants)
+                        {
+                            <form asp-action="Register" asp-controller="Dashboard" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="trainingId" value="@t.Id" />
+                                <button type="submit" class="btn btn-sm btn-primary">@Localizer["register"]</button>
+                            </form>
+                        }
+                        else if (regCount < t.MaxParticipants)
+                        {
+                            <a href="/Identity/Account/Login" class="btn btn-sm btn-primary">@Localizer["register"]</a>
                         }
                     </div>
                 </div>

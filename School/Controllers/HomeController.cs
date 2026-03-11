@@ -65,18 +65,31 @@ namespace School.Controllers
             var courses = await coursesTask;
             var currentTrainings = await currentTrainingsTask;
 
-            var trainingIds = currentTrainings.Select(t => t.CourseId).ToList();
+            var trainingIds = currentTrainings.Select(t => t.Id).ToList();
             var regCounts = await _context.Registrations
                 .Where(r => trainingIds.Contains(r.TrainingId) && r.Status == "Approved")
                 .GroupBy(r => r.TrainingId)
                 .Select(g => new { TrainingId = g.Key, Count = g.Count() })
                 .ToDictionaryAsync(x => x.TrainingId, x => x.Count);
 
+            // If the user is authenticated, load their registration status per training
+            IDictionary<int, string> regStatuses = new Dictionary<int, string>();
+            var userId = User?.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!string.IsNullOrEmpty(userId))
+            {
+                var userRegs = await _context.Registrations
+                    .Where(r => trainingIds.Contains(r.TrainingId) && r.StudentUserId == userId)
+                    .ToListAsync();
+
+                regStatuses = userRegs.ToDictionary(r => r.TrainingId, r => r.Status ?? "");
+            }
+
             var model = new HomeViewModel
             {
                 Courses = courses,
                 CurrentTrainings = currentTrainings,
-                RegistrationCounts = regCounts
+                RegistrationCounts = regCounts,
+                RegistrationStatuses = regStatuses
             };
 
             return model;

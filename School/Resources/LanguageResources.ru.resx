@@ -631,4 +631,13 @@
   <data name="no_image" xml:space="preserve">
     <value>Нет изображения</value>
   </data>
+  <data name="approved" xml:space="preserve">
+    <value>Одобрено</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>Отклонено</value>
+  </data>
+  <data name="pending" xml:space="preserve">
+    <value>В ожидании</value>
+  </data>
 </root>

@@ -561,4 +561,13 @@
   <data name="no_image" xml:space="preserve">
     <value>Pole pilti</value>
   </data>
+  <data name="approved" xml:space="preserve">
+    <value>Kinnitatud</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>Tagasi lükatud</value>
+  </data>
+  <data name="pending" xml:space="preserve">
+    <value>Ootel</value>
+  </data>
 </root>

@@ -23,6 +23,14 @@ namespace School.Controllers
                 return RedirectToAction("Trainings", "Home");
             }
 
+            // Prevent registration when training is already full
+            var approvedCount = await _context.Registrations.CountAsync(r => r.TrainingId == trainingId && r.Status == "Approved");
+            if (approvedCount >= training.MaxParticipants)
+            {
+                SetStatusMessage("full_group", "danger");
+                return RedirectToAction("Trainings", "Home");
+            }
+
             var already = await _context.Registrations.AnyAsync(r => r.TrainingId == trainingId && r.StudentUserId == userId);
             if (already)
             {

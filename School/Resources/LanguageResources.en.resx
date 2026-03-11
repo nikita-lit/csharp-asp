@@ -631,4 +631,13 @@
   <data name="no_image" xml:space="preserve">
     <value>No image</value>
   </data>
+  <data name="approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
 </root>

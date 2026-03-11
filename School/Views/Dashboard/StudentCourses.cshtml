@@ -28,7 +28,14 @@ else
                 <div class="text-end">
                     <div class="small text-muted">@((r.Training != null) ? r.Training.Price.ToString("C") : "")</div>
                     <div class="mt-2">
-                        <span class="badge bg-secondary">@r.Status</span>
+                        @{ 
+                            var status = (r.Status ?? "").ToLower();
+                            var cls = status == "approved" ? "badge bg-success text-white" 
+                                      : status == "pending" ? "badge bg-warning text-dark" 
+                                      : status == "rejected" ? "badge bg-danger text-white" 
+                                      : "badge bg-secondary text-white";
+                        }
+                        <span class="@cls">@Localizer[status]</span>
                     </div>
                 </div>
             </li>
