@@ -16,14 +16,15 @@ namespace School.Controllers
             if (string.IsNullOrEmpty(userId))
                 return Challenge();
 
-            Teacher? teacher = null;
+            Teacher? teacher;
             if (User.IsInRole("Admin") && id.HasValue)
             {
                 teacher = await _context.Teachers.FindAsync(id.Value);
             }
-
-            if (teacher == null)
+            else
+            {
                 teacher = await _context.Teachers.FirstOrDefaultAsync(t => t.IdentityUserId == userId);
+            }
 
             if (User.IsInRole("Admin"))
             {
@@ -33,33 +34,36 @@ namespace School.Controllers
 
             if (teacher == null)
             {
-                TempData["StatusMessage"] = "teacher_profile_not_found";
-                TempData["StatusType"] = "danger";
+                if (!User.IsInRole("Admin"))
+                    SetStatusMessage("teacher_profile_not_found", "danger");
+
                 return View();
             }
 
-            var trainings = new List<Training>();
-            if (teacher != null)
-            {
-                trainings = await _context.Trainings
-                    .Where(t => t.TeacherId == teacher.Id)
-                    .Include(t => t.Course)
-                    .ToListAsync();
-            }
-
-            var trainingIds = trainings.Select(t => t.Id).ToList();
-            var regs = await _context.Registrations
-                .Where(r => trainingIds.Contains(r.TrainingId))
-                .Include(r => r.StudentUser)
+            var trainings = await _context.Trainings
+                .Where(t => t.TeacherId == teacher.Id)
+                .Include(t => t.Course)
                 .ToListAsync();
 
+            List<Registration> regs;
+            if (trainings.Count > 0)
+            {
+                var trainingIds = trainings.Select(t => t.Id).ToList();
+                regs = await _context.Registrations
+                    .Where(r => trainingIds.Contains(r.TrainingId))
+                    .Include(r => r.StudentUser)
+                    .ToListAsync();
+            }
+            else
+                regs = [];
+                
             var studentsByTraining = regs
                 .GroupBy(r => r.TrainingId)
-                .ToDictionary(g => g.Key, g => g.Select(r => r.StudentUser).ToList());
+                .ToDictionary(g => g.Key, g => g.Select(r => r.StudentUser).Where(s => s != null).ToList());
 
             var model = new TeacherCoursesViewModel
             {
-                Teacher = teacher!,
+                Teacher = teacher,
                 Trainings = trainings,
                 TrainingStudents = studentsByTraining
             };

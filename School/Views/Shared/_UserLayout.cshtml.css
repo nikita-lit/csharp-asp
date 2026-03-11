@@ -6,6 +6,7 @@ for details on configuring this project to bundle and minify static web assets. 
     min-width: 15vw;
     height: 100vh;
     justify-content: flex-start;
+    flex-direction: column;
 }
 
 .navbar-horizontal {

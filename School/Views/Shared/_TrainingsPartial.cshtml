@@ -29,7 +29,10 @@
                         }
                         else
                         {
-                            if (User?.Identity?.IsAuthenticated == true)
+                            if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
+                            {
+                            }
+                            else if (User?.Identity?.IsAuthenticated == true)
                             {
                                 <form asp-action="Register" asp-controller="Home" method="post" class="d-inline">
                                     @Html.AntiForgeryToken()

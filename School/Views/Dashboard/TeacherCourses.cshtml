@@ -15,7 +15,7 @@
 
 @if (Model != null)
 {
-    <h1 class="h3">@ViewData["Title"]: @Model.Teacher?.Name</h1>
+    <h3 class="mb-3">@ViewData["Title"]: @Model.Teacher?.Name</h3>
 
     @if (!Model.Trainings.Any())
     {

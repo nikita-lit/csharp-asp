@@ -22,14 +22,14 @@ namespace School.Controllers
 
         public async Task<IActionResult> Courses()
         {
-            var courses = await _context.Courses.ToListAsync();
-            return View(courses);
+            var model = await GetHomeViewModel();
+            return View(model);
         }
 
         public async Task<IActionResult> Trainings()
         {
-            var trainings = await _context.Trainings.ToListAsync();
-            return View(trainings);
+            var model = await GetHomeViewModel();
+            return View(model);
         }
 
         public async Task<IActionResult> About()
