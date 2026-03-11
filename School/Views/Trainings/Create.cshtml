@@ -6,7 +6,7 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<h4>@Localizer["Training"]</h4>
+<h4>@Localizer["training"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-6">
@@ -26,37 +26,37 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="AlgusKuupaev" class="control-label">@Localizer["start_date"]</label>
-                <input asp-for="AlgusKuupaev" class="form-control" type="date" />
-                <span asp-validation-for="AlgusKuupaev" class="text-danger"></span>
+                <label asp-for="StartDate" class="control-label">@Localizer["start_date"]</label>
+                <input asp-for="StartDate" class="form-control" type="date" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="LoppKuupaev" class="control-label">@Localizer["end_date"]</label>
-                <input asp-for="LoppKuupaev" class="form-control" type="date" />
-                <span asp-validation-for="LoppKuupaev" class="text-danger"></span>
+                <label asp-for="EndDate" class="control-label">@Localizer["end_date"]</label>
+                <input asp-for="EndDate" class="form-control" type="date" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="MaxOsalejaid" class="control-label">@Localizer["max_participants"]</label>
-                <input asp-for="MaxOsalejaid" class="form-control" type="number" />
-                <span asp-validation-for="MaxOsalejaid" class="text-danger"></span>
+                <label asp-for="MaxParticipants" class="control-label">@Localizer["max_participants"]</label>
+                <input asp-for="MaxParticipants" class="form-control" type="number" />
+                <span asp-validation-for="MaxParticipants" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="CourseID" class="control-label">@Localizer["course"]</label>
-                <select asp-for="CourseID" asp-items="ViewBag.CourseList" class="form-control">
+                <label asp-for="CourseId" class="control-label">@Localizer["course"]</label>
+                <select asp-for="CourseId" asp-items="ViewBag.CourseList" class="form-control">
                     <option value="">@Localizer["select"]</option>
                 </select>
-                <span asp-validation-for="CourseID" class="text-danger"></span>
+                <span asp-validation-for="CourseId" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="TeacherID" class="control-label">@Localizer["teacher"]</label>
-                <select asp-for="TeacherID" asp-items="ViewBag.TeacherList" class="form-control">
+                <label asp-for="TeacherId" class="control-label">@Localizer["teacher"]</label>
+                <select asp-for="TeacherId" asp-items="ViewBag.TeacherList" class="form-control">
                     <option value="">@Localizer["select"]</option>
                 </select>
-                <span asp-validation-for="TeacherID" class="text-danger"></span>
+                <span asp-validation-for="TeacherId" class="text-danger"></span>
             </div>
 
             <div class="form-group">

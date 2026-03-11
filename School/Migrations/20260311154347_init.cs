@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace School.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -54,7 +54,7 @@ namespace School.Migrations
                 name: "Courses",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Level = table.Column<string>(type: "TEXT", nullable: false),
@@ -62,26 +62,7 @@ namespace School.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Courses", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Trainings",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Price = table.Column<float>(type: "REAL", nullable: false),
-                    AlgusKuupaev = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    LoppKuupaev = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    MaxOsalejaid = table.Column<int>(type: "INTEGER", nullable: false),
-                    CourseID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TeacherID = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Trainings", x => x.ID);
+                    table.PrimaryKey("PK_Courses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -194,20 +175,51 @@ namespace School.Migrations
                 name: "Teachers",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Qualification = table.Column<string>(type: "TEXT", nullable: true),
                     FotoPath = table.Column<string>(type: "TEXT", nullable: true),
-                    IdentityUserID = table.Column<string>(type: "TEXT", nullable: false)
+                    IdentityUserId = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Teachers", x => x.ID);
+                    table.PrimaryKey("PK_Teachers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Teachers_AspNetUsers_IdentityUserID",
-                        column: x => x.IdentityUserID,
+                        name: "FK_Teachers_AspNetUsers_IdentityUserId",
+                        column: x => x.IdentityUserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trainings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Price = table.Column<float>(type: "REAL", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    MaxParticipants = table.Column<int>(type: "INTEGER", nullable: false),
+                    CourseId = table.Column<int>(type: "INTEGER", nullable: false),
+                    TeacherId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trainings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Trainings_Courses_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Trainings_Teachers_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "Teachers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -216,26 +228,26 @@ namespace School.Migrations
                 name: "Registrations",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Staatus = table.Column<string>(type: "TEXT", nullable: false),
-                    TrainingID = table.Column<int>(type: "INTEGER", nullable: false),
-                    StudentUserID = table.Column<string>(type: "TEXT", nullable: false)
+                    Status = table.Column<string>(type: "TEXT", nullable: false),
+                    TrainingId = table.Column<int>(type: "INTEGER", nullable: false),
+                    StudentUserId = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Registrations", x => x.ID);
+                    table.PrimaryKey("PK_Registrations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Registrations_AspNetUsers_StudentUserID",
-                        column: x => x.StudentUserID,
+                        name: "FK_Registrations_AspNetUsers_StudentUserId",
+                        column: x => x.StudentUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Registrations_Trainings_TrainingID",
-                        column: x => x.TrainingID,
+                        name: "FK_Registrations_Trainings_TrainingId",
+                        column: x => x.TrainingId,
                         principalTable: "Trainings",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -277,19 +289,29 @@ namespace School.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Registrations_StudentUserID",
+                name: "IX_Registrations_StudentUserId",
                 table: "Registrations",
-                column: "StudentUserID");
+                column: "StudentUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Registrations_TrainingID",
+                name: "IX_Registrations_TrainingId",
                 table: "Registrations",
-                column: "TrainingID");
+                column: "TrainingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teachers_IdentityUserID",
+                name: "IX_Teachers_IdentityUserId",
                 table: "Teachers",
-                column: "IdentityUserID");
+                column: "IdentityUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trainings_CourseId",
+                table: "Trainings",
+                column: "CourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trainings_TeacherId",
+                table: "Trainings",
+                column: "TeacherId");
         }
 
         /// <inheritdoc />
@@ -311,19 +333,19 @@ namespace School.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Courses");
-
-            migrationBuilder.DropTable(
                 name: "Registrations");
-
-            migrationBuilder.DropTable(
-                name: "Teachers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Trainings");
+
+            migrationBuilder.DropTable(
+                name: "Courses");
+
+            migrationBuilder.DropTable(
+                name: "Teachers");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

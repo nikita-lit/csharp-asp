@@ -9,10 +9,7 @@
     <p class="lead">@Localizer["pending_registrations_help"]</p>
 </div>
 
-@if (TempData["Message"] != null)
-{
-    <div class="alert alert-info">@TempData["Message"]</div>
-}
+<partial name="_StatusMessage" />
 
 <table class="table table-striped">
     <thead>
@@ -33,12 +30,12 @@
             <td>
                 <form asp-action="ApproveRegistration" method="post" class="d-inline">
                     @Html.AntiForgeryToken()
-                    <input type="hidden" name="id" value="@r.ID" />
+                    <input type="hidden" name="id" value="@r.Id" />
                     <button class="btn btn-sm btn-success">@Localizer["approve"]</button>
                 </form>
                 <form asp-action="RejectRegistration" method="post" class="d-inline ms-2">
                     @Html.AntiForgeryToken()
-                    <input type="hidden" name="id" value="@r.ID" />
+                    <input type="hidden" name="id" value="@r.Id" />
                     <button class="btn btn-sm btn-danger">@Localizer["reject"]</button>
                 </form>
             </td>

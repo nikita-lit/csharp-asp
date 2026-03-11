@@ -5,16 +5,15 @@ namespace School.Models
 {
     public class Registration
     {
-        public int ID { get; set; }
-
-        public string Staatus { get; set; } = null!;
+        public int Id { get; set; }
+        public string Status { get; set; } = null!;
 
         [Required]
-        public int TrainingID { get; set; }
+        public int TrainingId { get; set; }
         public virtual Training Training { get; set; } = null!;
 
         [Required]
-        public string StudentUserID { get; set; } = null!;
+        public string StudentUserId { get; set; } = null!;
         public virtual IdentityUser StudentUser { get; set; } = null!;
     }
 }

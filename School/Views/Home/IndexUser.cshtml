@@ -8,75 +8,9 @@
     <h1 class="display-4">@Localizer["welcome"]</h1>
     <p class="lead">@Localizer["available_courses"]</p>
 </div>
-    @if (TempData["Message"] != null)
-    {
-        <div class="alert alert-success">@TempData["Message"]</div>
-    }
 
-<div class="d-flex flex-column gap-4">
-    <section>
-        <h3>@Localizer["courses"]</h3>
-        @if (Model?.Courses != null && Model.Courses.Any())
-        {
-            <ul class="list-group">
-                @foreach (var c in Model.Courses)
-                {
-                    <li class="list-group-item">
-                        <strong>@c.Name</strong> — @c.Level
-                        @if (!string.IsNullOrEmpty(c.Description))
-                        {
-                            <div class="text-muted">@c.Description</div>
-                        }
-                    </li>
-                }
-            </ul>
-        }
-        else
-        {
-            <p>@Localizer["no_courses"]</p>
-        }
-    </section>
+<partial name="_StatusMessage" />
 
-    <section>
-        <h3>@Localizer["current_trainings"]</h3>
-        @if (Model?.CurrentTrainings != null && Model.CurrentTrainings.Any())
-        {
-            <ul class="list-group">
-                @foreach (var t in Model.CurrentTrainings)
-                {
-                    var regCount = 0; 
-                    if (Model.RegistrationCounts != null && Model.RegistrationCounts.ContainsKey(t.ID)) 
-                        regCount = Model.RegistrationCounts[t.ID]; 
-
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div>
-                            <div><strong>@t.Name</strong></div>
-                            <div class="small text-muted">@Localizer["course"]: @(t.Course?.Name ?? "-")</div>
-                            <div class="small text-muted">@Localizer["teacher"]: @(t.Teacher?.Name ?? "-")</div>
-                            <div class="small">@t.AlgusKuupaev.ToString("d") - @t.LoppKuupaev.ToString("d")</div>
-                        </div>
-                        <div class="text-end">
-                            <div class="small text-muted">@t.Price.ToString("C")</div>
-                            @if (regCount >= t.MaxOsalejaid)
-                            {
-                                <div class="text-danger fw-bold">@Localizer["full_group"]</div>
-                            }
-                            else
-                            {
-                                <form asp-action="Register" asp-controller="Home" method="post">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="trainingId" value="@t.ID" />
-                                    <button type="submit" class="btn btn-sm btn-primary mt-2">@Localizer["register"]</button>
-                                </form>
-                            }
-                        </div>
-                    </li>
-                }
-            </ul>
-        }
-        else
-        {
-            <p>@Localizer["no_current_trainings"]</p>
-        }
-    </section>
-</div>
+<partial name="_CoursesPartial" />
+<hr class="my-4" />
+<partial name="_TrainingsPartial" />

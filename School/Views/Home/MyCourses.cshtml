@@ -23,12 +23,12 @@ else
                     <div><strong>@(r.Training?.Name)</strong></div>
                     <div class="small text-muted">@Localizer["course"]: @(r.Training?.Course?.Name)</div>
                     <div class="small text-muted">@Localizer["teacher"]: @(r.Training?.Teacher?.Name)</div>
-                    <div class="small">@((r.Training != null) ? r.Training.AlgusKuupaev.ToString("d") + " — " + r.Training.LoppKuupaev.ToString("d") : "")</div>
+                    <div class="small">@((r.Training != null) ? r.Training.StartDate.ToString("d") + " — " + r.Training.EndDate.ToString("d") : "")</div>
                 </div>
                 <div class="text-end">
                     <div class="small text-muted">@((r.Training != null) ? r.Training.Price.ToString("C") : "")</div>
                     <div class="mt-2">
-                        <span class="badge bg-secondary">@r.Staatus</span>
+                        <span class="badge bg-secondary">@r.Status</span>
                     </div>
                 </div>
             </li>

@@ -22,7 +22,7 @@ namespace School.Controllers
 
         public IActionResult Create()
         {
-            ViewData["IdentityUserID"] = GetUsersList();
+            ViewData["IdentityUserId"] = GetUsersList();
             return View();
         }
 
@@ -32,7 +32,7 @@ namespace School.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByIdAsync(teacher.IdentityUserID);
+                var user = await _userManager.FindByIdAsync(teacher.IdentityUserId);
 
                 if (user != null)
                 {
@@ -42,11 +42,13 @@ namespace School.Controllers
 
                 _context.Add(teacher);
                 await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "record_done";
+                TempData["StatusMessage"] = "record_done";
+                TempData["StatusType"] = "success";
+                
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["IdentityUserID"] = GetUsersList(teacher.IdentityUserID);
+            ViewData["IdentityUserId"] = GetUsersList(teacher.IdentityUserId);
 
             return View(teacher);
         }

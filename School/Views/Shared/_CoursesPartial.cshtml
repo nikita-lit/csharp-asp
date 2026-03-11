@@ -1,0 +1,29 @@
+@model School.Models.HomeViewModel
+
+<h3 class="mb-3">@Localizer["courses"]</h3>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    @if (Model?.Courses != null && Model.Courses.Any())
+    {
+        foreach (var course in Model.Courses)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@course.Name</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@course.Level</h6>
+                        @if (!string.IsNullOrEmpty(course.Description))
+                        {
+                            <p class="card-text">@course.Description</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-12">
+            <p>@Localizer["no_courses"]</p>
+        </div>
+    }
+</div>

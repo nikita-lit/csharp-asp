@@ -1,0 +1,12 @@
+@{
+    var message = TempData["StatusMessage"] as string;
+    var statusType = TempData["StatusType"] as string ?? "danger"; 
+}
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert alert-@statusType alert-dismissible" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        @Localizer[message]
+    </div>
+}

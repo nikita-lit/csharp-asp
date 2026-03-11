@@ -31,7 +31,8 @@ namespace School.Controllers
             {
                 _context.Add(course);
                 await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "record_done";
+                TempData["StatusMessage"] = "record_done";
+                TempData["StatusType"] = "success";
                 return RedirectToAction(nameof(Index));
             }
 

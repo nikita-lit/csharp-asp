@@ -5,7 +5,7 @@ namespace School.Models
 {
     public class Teacher
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Name { get; set; } = null!;
@@ -15,7 +15,7 @@ namespace School.Models
         public string? FotoPath { get; set; }
 
         [Required]
-        public string IdentityUserID { get; set; } = null!;
+        public string IdentityUserId { get; set; } = null!;
         public virtual IdentityUser? IdentityUser { get; set; }
     }
 }

@@ -6,12 +6,7 @@
 
 <h1>@ViewData["Title"]</h1>
 
-@{
-    if (TempData["SuccessMessage"] != null)
-    {
-        <div class="alert alert-success" role="alert">@Localizer[TempData["SuccessMessage"].ToString()]</div>
-    }
-}
+<partial name="_StatusMessage" />
 
 <p>
     <a asp-action="Create">@Localizer["create_new"]</a>

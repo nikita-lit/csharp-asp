@@ -31,15 +31,15 @@ namespace School.Controllers
             var currentTrainings = await _context.Trainings
                 .Include(t => t.Course)
                 .Include(t => t.Teacher)
-                .Where(t => t.AlgusKuupaev <= now && t.LoppKuupaev >= now)
+                .Where(t => t.StartDate <= now && t.EndDate >= now)
                 .ToListAsync();
             
-            var trainingIds = currentTrainings.Select(t => t.ID).ToList();
+            var trainingIds = currentTrainings.Select(t => t.Id).ToList();
             var regCounts = await _context.Registrations
-                .Where(r => trainingIds.Contains(r.TrainingID) && r.Staatus == "Approved")
-                .GroupBy(r => r.TrainingID)
-                .Select(g => new { TrainingID = g.Key, Count = g.Count() })
-                .ToDictionaryAsync(x => x.TrainingID, x => x.Count);
+                .Where(r => trainingIds.Contains(r.TrainingId) && r.Status == "Approved")
+                .GroupBy(r => r.TrainingId)
+                .Select(g => new { TrainingId = g.Key, Count = g.Count() })
+                .ToDictionaryAsync(x => x.TrainingId, x => x.Count);
 
             var model = new HomeViewModel
             {
@@ -60,15 +60,15 @@ namespace School.Controllers
             var currentTrainings = await _context.Trainings
                 .Include(t => t.Course)
                 .Include(t => t.Teacher)
-                .Where(t => t.AlgusKuupaev <= now && t.LoppKuupaev >= now)
+                .Where(t => t.StartDate <= now && t.EndDate >= now)
                 .ToListAsync();
             
-            var trainingIds = currentTrainings.Select(t => t.ID).ToList();
+            var trainingIds = currentTrainings.Select(t => t.CourseId).ToList();
             var regCounts = await _context.Registrations
-                .Where(r => trainingIds.Contains(r.TrainingID) && r.Staatus == "Approved")
-                .GroupBy(r => r.TrainingID)
-                .Select(g => new { TrainingID = g.Key, Count = g.Count() })
-                .ToDictionaryAsync(x => x.TrainingID, x => x.Count);
+                .Where(r => trainingIds.Contains(r.TrainingId) && r.Status == "Approved")
+                .GroupBy(r => r.TrainingId)
+                .Select(g => new { TrainingId = g.Key, Count = g.Count() })
+                .ToDictionaryAsync(x => x.TrainingId, x => x.Count);
 
             var model = new HomeViewModel
             {
@@ -105,7 +105,7 @@ namespace School.Controllers
                 return Challenge();
 
             var regs = await _context.Registrations
-                .Where(r => r.StudentUserID == userId)
+                .Where(r => r.StudentUserId == userId)
                 .Include(r => r.Training).ThenInclude(t => t.Course)
                 .Include(r => r.Training).ThenInclude(t => t.Teacher)
                 .ToListAsync();

@@ -215,7 +215,7 @@ namespace School.Migrations
 
             modelBuilder.Entity("School.Models.Course", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -230,47 +230,47 @@ namespace School.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("School.Models.Registration", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Staatus")
+                    b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("StudentUserID")
+                    b.Property<string>("StudentUserId")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("TrainingID")
+                    b.Property<int>("TrainingId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("StudentUserID");
+                    b.HasIndex("StudentUserId");
 
-                    b.HasIndex("TrainingID");
+                    b.HasIndex("TrainingId");
 
                     b.ToTable("Registrations");
                 });
 
             modelBuilder.Entity("School.Models.Teacher", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("FotoPath")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("IdentityUserID")
+                    b.Property<string>("IdentityUserId")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -281,29 +281,26 @@ namespace School.Migrations
                     b.Property<string>("Qualification")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("IdentityUserID");
+                    b.HasIndex("IdentityUserId");
 
                     b.ToTable("Teachers");
                 });
 
             modelBuilder.Entity("School.Models.Training", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("AlgusKuupaev")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("CourseID")
+                    b.Property<int>("CourseId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("LoppKuupaev")
+                    b.Property<DateTime>("EndDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("MaxOsalejaid")
+                    b.Property<int>("MaxParticipants")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -313,10 +310,17 @@ namespace School.Migrations
                     b.Property<float>("Price")
                         .HasColumnType("REAL");
 
-                    b.Property<int>("TeacherID")
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TeacherId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("TeacherId");
 
                     b.ToTable("Trainings");
                 });
@@ -376,13 +380,13 @@ namespace School.Migrations
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "StudentUser")
                         .WithMany()
-                        .HasForeignKey("StudentUserID")
+                        .HasForeignKey("StudentUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("School.Models.Training", "Training")
                         .WithMany()
-                        .HasForeignKey("TrainingID")
+                        .HasForeignKey("TrainingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -395,11 +399,30 @@ namespace School.Migrations
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
-                        .HasForeignKey("IdentityUserID")
+                        .HasForeignKey("IdentityUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("IdentityUser");
+                });
+
+            modelBuilder.Entity("School.Models.Training", b =>
+                {
+                    b.HasOne("School.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("School.Models.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Teacher");
                 });
 #pragma warning restore 612, 618
         }

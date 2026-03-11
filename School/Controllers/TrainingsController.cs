@@ -25,8 +25,8 @@ namespace School.Controllers
 
         public IActionResult Create()
         {
-            ViewData["CourseList"] = new SelectList(_context.Courses.OrderBy(c => c.Name), "ID", "Name");
-            ViewData["TeacherList"] = new SelectList(_context.Teachers.OrderBy(t => t.Name), "ID", "Name");
+            ViewData["CourseList"] = new SelectList(_context.Courses.OrderBy(c => c.Name), "Id", "Name");
+            ViewData["TeacherList"] = new SelectList(_context.Teachers.OrderBy(t => t.Name), "Id", "Name");
             return View();
         }
 
@@ -38,12 +38,13 @@ namespace School.Controllers
             {
                 _context.Add(training);
                 await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "record_done";
+                TempData["StatusMessage"] = "record_done";
+                TempData["StatusType"] = "success";
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["CourseList"] = new SelectList(_context.Courses.OrderBy(c => c.Name), "ID", "Name", training.CourseID);
-            ViewData["TeacherList"] = new SelectList(_context.Teachers.OrderBy(t => t.Name), "ID", "Name", training.TeacherID);
+            ViewData["CourseList"] = new SelectList(_context.Courses.OrderBy(c => c.Name), "Id", "Name", training.CourseId);
+            ViewData["TeacherList"] = new SelectList(_context.Teachers.OrderBy(t => t.Name), "Id", "Name", training.TeacherId);
             return View(training);
         }
     }

@@ -1,0 +1,55 @@
+@model School.Models.HomeViewModel
+
+<h3 class="mb-3">@Localizer["current_trainings"]</h3>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    @if (Model?.CurrentTrainings != null && Model.CurrentTrainings.Any())
+    {
+        foreach (var t in Model.CurrentTrainings)
+        {
+            var regCount = 0; 
+            if (Model.RegistrationCounts != null && Model.RegistrationCounts.ContainsKey(t.Id)) 
+            { 
+                regCount = Model.RegistrationCounts[t.Id];  
+            }
+
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@t.Name</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@Localizer["course"]: @(t.Course?.Name ?? "-")</h6>
+                        <p class="card-text">@Localizer["teacher"]: @(t.Teacher?.Name ?? "-")</p>
+                        <p class="card-text small">@t.StartDate.ToString("d") — @t.EndDate.ToString("d")</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <small class="text-muted">@t.Price.ToString("C")</small>
+                        @if (regCount >= t.MaxParticipants)
+                        {
+                            <span class="text-danger fw-bold">@Localizer["full_group"]</span>
+                        }
+                        else
+                        {
+                            if (User?.Identity?.IsAuthenticated == true)
+                            {
+                                <form asp-action="Register" asp-controller="Home" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="trainingId" value="@t.Id" />
+                                    <button type="submit" class="btn btn-sm btn-primary">@Localizer["register"]</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <a href="/Identity/Account/Login" class="btn btn-sm btn-primary">@Localizer["login_to_register"]</a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-12">
+            <p>@Localizer["no_current_trainings"]</p>
+        </div>
+    }
+</div>

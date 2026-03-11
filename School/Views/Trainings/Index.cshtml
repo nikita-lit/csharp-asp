@@ -6,12 +6,7 @@
 
 <h1>@ViewData["Title"]</h1>
 
-@{
-    if (TempData["SuccessMessage"] != null)
-    {
-        <div class="alert alert-success" role="alert">@Localizer[TempData["SuccessMessage"].ToString()]</div>
-    }
-}
+<partial name="_StatusMessage" />
 
 <p>
     <a asp-action="Create">@Localizer["create_new"]</a>
@@ -34,9 +29,9 @@
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Name)</td>
                 <td>@item.Price.ToString("C")</td>
-                <td>@item.AlgusKuupaev.ToString("d")</td>
-                <td>@item.LoppKuupaev.ToString("d")</td>
-                <td>@Html.DisplayFor(modelItem => item.MaxOsalejaid)</td>
+                <td>@item.StartDate.ToString("d")</td>
+                <td>@item.EndDate.ToString("d")</td>
+                <td>@Html.DisplayFor(modelItem => item.MaxParticipants)</td>
                 <td>@Html.DisplayFor(modelItem => item.Course.Name)</td>
                 <td>@Html.DisplayFor(modelItem => item.Teacher.Name)</td>
             </tr>

@@ -23,28 +23,31 @@ namespace School.Controllers
             var training = await _context.Trainings.FindAsync(trainingId);
             if (training == null)
             {
-                TempData["Message"] = "training_not_found";
+                TempData["StatusMessage"] = "training_not_found";
+                TempData["StatusType"] = "danger";
                 return RedirectToAction("Index");
             }
 
-            var already = await _context.Registrations.AnyAsync(r => r.TrainingID == trainingId && r.StudentUserID == userId);
+            var already = await _context.Registrations.AnyAsync(r => r.TrainingId == trainingId && r.StudentUserId == userId);
             if (already)
             {
-                TempData["Message"] = "already_requested";
+                TempData["StatusMessage"] = "already_requested";
+                TempData["StatusType"] = "danger";
                 return RedirectToAction("Index");
             }
 
             var reg = new Registration
             {
-                TrainingID = trainingId,
-                StudentUserID = userId,
-                Staatus = "Pending"
+                TrainingId = trainingId,
+                StudentUserId = userId,
+                Status = "Pending"
             };
 
             _context.Registrations.Add(reg);
             await _context.SaveChangesAsync();
 
-            TempData["Message"] = "request_sent";
+            TempData["StatusMessage"] = "request_sent";
+            TempData["StatusType"] = "success";
             return RedirectToAction("Index");
         }
 
@@ -53,7 +56,7 @@ namespace School.Controllers
         public async Task<IActionResult> PendingRegistrations()
         {
             var pending = await _context.Registrations
-                .Where(r => r.Staatus == "Pending")
+                .Where(r => r.Status == "Pending")
                 .Include(r => r.StudentUser)
                 .Include(r => r.Training).ThenInclude(t => t.Course)
                 .Include(r => r.Training).ThenInclude(t => t.Teacher)
@@ -67,23 +70,27 @@ namespace School.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ApproveRegistration(int id)
         {
-            var reg = await _context.Registrations.Include(r => r.Training).FirstOrDefaultAsync(r => r.ID == id);
+            var reg = await _context.Registrations.Include(r => r.Training).FirstOrDefaultAsync(r => r.Id == id);
             if (reg == null)
             {
-                TempData["Message"] = "training_not_found";
+                TempData["StatusMessage"] = "training_not_found";
+                TempData["StatusType"] = "danger";
                 return RedirectToAction("PendingRegistrations");
             }
 
-            var approvedCount = await _context.Registrations.CountAsync(r => r.TrainingID == reg.TrainingID && r.Staatus == "Approved");
-            if (approvedCount >= reg.Training.MaxOsalejaid)
+            var approvedCount = await _context.Registrations.CountAsync(r => r.TrainingId == reg.TrainingId && r.Status == "Approved");
+            if (approvedCount >= reg.Training.MaxParticipants)
             {
-                TempData["Message"] = "cannot_approve_full";
+                TempData["StatusMessage"] = "cannot_approve_full";
+                TempData["StatusType"] = "danger";
                 return RedirectToAction("PendingRegistrations");
             }
 
-            reg.Staatus = "Approved";
+            reg.Status = "Approved";
             await _context.SaveChangesAsync();
-            TempData["Message"] = "approve_success";
+            TempData["StatusMessage"] = "approve_success";
+            TempData["StatusType"] = "success";
+
             return RedirectToAction("PendingRegistrations");
         }
 
@@ -95,13 +102,16 @@ namespace School.Controllers
             var reg = await _context.Registrations.FindAsync(id);
             if (reg == null)
             {
-                TempData["Message"] = "training_not_found";
+                TempData["StatusMessage"] = "training_not_found";
+                TempData["StatusType"] = "danger";
                 return RedirectToAction("PendingRegistrations");
             }
 
-            reg.Staatus = "Rejected";
+            reg.Status = "Rejected";
             await _context.SaveChangesAsync();
-            TempData["Message"] = "reject_success";
+            TempData["StatusMessage"] = "reject_success";
+            TempData["StatusType"] = "success";
+
             return RedirectToAction("PendingRegistrations");
         }
     }
