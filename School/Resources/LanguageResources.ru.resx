@@ -217,7 +217,7 @@
     <value>Заявка отклонена</value>
   </data>
   <data name="cannot_approve_full" xml:space="preserve">
-    <value>Невозможно подтвердить — группа полна</value>
+    <value>Невозможно подтвердить - группа полна</value>
   </data>
   <data name="student" xml:space="preserve">
     <value>Студент</value>
@@ -232,7 +232,7 @@
     <value>Откройте мир языков с нашей школой</value>
   </data>
   <data name="hero_lead" xml:space="preserve">
-    <value>Интенсивные и гибкие программы для всех уровней — от начинающих до профессионалов.</value>
+    <value>Интенсивные и гибкие программы для всех уровней - от начинающих до профессионалов.</value>
   </data>
   <data name="btn_courses" xml:space="preserve">
     <value>Курсы</value>
@@ -250,7 +250,7 @@
     <value>Малые группы</value>
   </data>
   <data name="feature_groups_text" xml:space="preserve">
-    <value>Группы до 8 человек — максимум живой практики и внимания к студенту.</value>
+    <value>Группы до 8 человек - максимум живой практики и внимания к студенту.</value>
   </data>
   <data name="feature_schedule_title" xml:space="preserve">
     <value>Гибкий график</value>
@@ -272,7 +272,7 @@
     <value>Краткие описания популярных программ и примерные уровни.</value>
   </data>
   <data name="english_general_title" xml:space="preserve">
-    <value>Английский — общий</value>
+    <value>Английский - общий</value>
   </data>
   <data name="english_general_text" xml:space="preserve">
     <value>Курс для уровней A1–B2. Развитие всех навыков: говорение, аудирование, грамматика.</value>
@@ -343,13 +343,13 @@
   </data>
 
   <data name="about_intro" xml:space="preserve">
-    <value>Наша языковая школа помогает людям всего спектра — от школьников до бизнес-профессионалов — уверенно использовать язык в жизни и работе.</value>
+    <value>Наша языковая школа помогает людям всего спектра - от школьников до бизнес-профессионалов - уверенно использовать язык в жизни и работе.</value>
   </data>
   <data name="mission_title" xml:space="preserve">
     <value>Наша миссия</value>
   </data>
   <data name="mission_text" xml:space="preserve">
-    <value>Давать практические навыки общения, которые можно применять сразу — на работе, в путешествиях и образовании.</value>
+    <value>Давать практические навыки общения, которые можно применять сразу - на работе, в путешествиях и образовании.</value>
   </data>
   <data name="methodology_title" xml:space="preserve">
     <value>Методика</value>
@@ -361,7 +361,7 @@
     <value>Команда</value>
   </data>
   <data name="team_text" xml:space="preserve">
-    <value>Наши преподаватели — сертифицированные специалисты с международным опытом и любовью к обучению.</value>
+    <value>Наши преподаватели - сертифицированные специалисты с международным опытом и любовью к обучению.</value>
   </data>
 
   <data name="contacts_title" xml:space="preserve">
@@ -454,8 +454,8 @@
   <data name="submit" xml:space="preserve">
     <value>Отправить</value>
   </data>
-  <data name="teacher_courses" xml:space="preserve">
-    <value>Курсы преподавателя</value>
+  <data name="teacher_trainings" xml:space="preserve">
+    <value>Тренинги преподавателя</value>
   </data>
   <data name="trainings" xml:space="preserve">
     <value>Тренинги</value>
@@ -465,5 +465,47 @@
   </data>
   <data name="admin" xml:space="preserve">
     <value>Администратор</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="confirm_delete" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить?</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="cannot_delete_has_trainings" xml:space="preserve">
+    <value>Невозможно удалить - есть связанные тренинги: {0}.</value>
+  </data>
+  <data name="has_related_trainings" xml:space="preserve">
+    <value>Невозможно удалить - есть связанные тренинги.</value>
+  </data>
+  <data name="record_done" xml:space="preserve">
+    <value>Запись успешно сохранена.</value>
+  </data>
+  <data name="invalid_data" xml:space="preserve">
+    <value>Неверные данные.</value>
+  </data>
+  <data name="record_deleted" xml:space="preserve">
+    <value>Запись удалена.</value>
+  </data>
+  <data name="teacher_profile_not_found" xml:space="preserve">
+    <value>Профиль преподавателя не найден.</value>
+  </data>
+  <data name="not_allowed" xml:space="preserve">
+    <value>Не разрешено.</value>
+  </data>
+  <data name="hello" xml:space="preserve">
+    <value>Здравствуйте</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Выйти</value>
   </data>
 </root>

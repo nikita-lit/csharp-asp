@@ -1,0 +1,33 @@
+@model School.Models.Training
+
+@{
+    ViewData["Title"] = Localizer["delete"];
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>@Localizer["training"]</h4>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-2">@Localizer["name"]</dt>
+    <dd class="col-sm-10">@Model.Name</dd>
+
+    <dt class="col-sm-2">@Localizer["course"]</dt>
+    <dd class="col-sm-10">@Model.Course?.Name</dd>
+
+    <dt class="col-sm-2">@Localizer["teacher"]</dt>
+    <dd class="col-sm-10">@Model.Teacher?.Name</dd>
+
+    <dt class="col-sm-2">@Localizer["start_date"]</dt>
+    <dd class="col-sm-10">@Model.StartDate.ToString("d")</dd>
+
+    <dt class="col-sm-2">@Localizer["end_date"]</dt>
+    <dd class="col-sm-10">@Model.EndDate.ToString("d")</dd>
+</dl>
+
+<form asp-controller="Dashboard" asp-action="DeleteTrainingConfirmed" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">@Localizer["delete"]</button>
+    <a asp-controller="Dashboard" asp-action="Trainings" class="btn btn-secondary">@Localizer["cancel"]</a>
+</form>

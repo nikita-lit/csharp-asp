@@ -34,6 +34,11 @@
                 <td>@Html.DisplayFor(modelItem => item.MaxParticipants)</td>
                 <td>@Html.DisplayFor(modelItem => item.Course.Name)</td>
                 <td>@Html.DisplayFor(modelItem => item.Teacher.Name)</td>
+                <td>
+                    <a asp-controller="Dashboard" asp-action="EditTraining" asp-route-id="@item.Id">@Localizer["edit"]</a>
+                    |
+                    <a asp-controller="Dashboard" asp-action="DeleteTraining" asp-route-id="@item.Id">@Localizer["delete"]</a>
+                </td>
             </tr>
         }
     </tbody>

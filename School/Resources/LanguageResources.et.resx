@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="back_to_list" xml:space="preserve">
-    <value>Back to the list</value>
+    <value>Tagasi nimekirja juurde</value>
   </data>
   <data name="homepage" xml:space="preserve">
     <value>Avaleht</value>
@@ -130,13 +130,13 @@
     <value>Logi sisse</value>
   </data>
   <data name="name" xml:space="preserve">
-    <value>Name</value>
+    <value>Nimi</value>
   </data>
   <data name="photo" xml:space="preserve">
-    <value>Photo</value>
+    <value>Pilt</value>
   </data>
   <data name="qual" xml:space="preserve">
-    <value>Qualification</value>
+    <value>Kvalifikatsioon</value>
   </data>
   <data name="register" xml:space="preserve">
     <value>Registreeru</value>
@@ -151,7 +151,7 @@
     <value>Õpetajad</value>
   </data>
   <data name="user" xml:space="preserve">
-    <value>User</value>
+    <value>Kasutaja</value>
   </data>
   <data name="welcome" xml:space="preserve">
     <value>Tere tulemast</value>
@@ -217,7 +217,7 @@
     <value>Registreerimine tagasi lükatud</value>
   </data>
   <data name="cannot_approve_full" xml:space="preserve">
-    <value>Ei saa kinnitada — grupp on täis</value>
+    <value>Ei saa kinnitada - grupp on täis</value>
   </data>
   <data name="student" xml:space="preserve">
     <value>Õpilane</value>
@@ -235,7 +235,7 @@
       <value>Meist</value>
     </data>
     <data name="about_intro" xml:space="preserve">
-      <value>Meie keeltekool aitab erinevaid inimesi — õpilastest kuni äriprofessionaalideni — kasutada keelt enesekindlalt igapäevaelus ja töös.</value>
+      <value>Meie keeltekool aitab erinevaid inimesi - õpilastest kuni äriprofessionaalideni - kasutada keelt enesekindlalt igapäevaelus ja töös.</value>
     </data>
     <data name="add" xml:space="preserve">
       <value>Lisa</value>
@@ -286,7 +286,7 @@
       <value>Näidis aadress: Näide 10, Tallinn</value>
     </data>
     <data name="feature_groups_text" xml:space="preserve">
-      <value>Rühmad kuni 8 inimest — maksimaalne praktika ja õpetaja tähelepanu.</value>
+      <value>Rühmad kuni 8 inimest - maksimaalne praktika ja õpetaja tähelepanu.</value>
     </data>
     <data name="feature_groups_title" xml:space="preserve">
       <value>Väikesed rühmad</value>
@@ -304,7 +304,7 @@
       <value>Kogenud õpetajad</value>
     </data>
     <data name="hero_lead" xml:space="preserve">
-      <value>Intensiivsed ja paindlikud programmid kõikidele tasemetele — algajatest kuni professionaalideni.</value>
+      <value>Intensiivsed ja paindlikud programmid kõikidele tasemetele - algajatest kuni professionaalideni.</value>
     </data>
     <data name="hero_title" xml:space="preserve">
       <value>Avage keelte maailm meie kooliga</value>
@@ -328,7 +328,7 @@
       <value>Metoodika</value>
     </data>
     <data name="mission_text" xml:space="preserve">
-      <value>Pakkuda praktilisi suhtlemisoskusi, mida saab kohe rakendada — tööl, reisides ja õpingutes.</value>
+      <value>Pakkuda praktilisi suhtlemisoskusi, mida saab kohe rakendada - tööl, reisides ja õpingutes.</value>
     </data>
     <data name="mission_title" xml:space="preserve">
       <value>Meie missioon</value>
@@ -375,8 +375,8 @@
     <data name="submit" xml:space="preserve">
       <value>Saada</value>
     </data>
-    <data name="teacher_courses" xml:space="preserve">
-      <value>Õpetaja kursused</value>
+    <data name="teacher_trainings" xml:space="preserve">
+      <value>Õpetaja koolitused</value>
     </data>
     <data name="team_text" xml:space="preserve">
       <value>Meie õpetajad on sertifitseeritud spetsialistid rahvusvahelise kogemuse ja õpetamise kirglikkusega.</value>
@@ -396,4 +396,46 @@
     <data name="admin" xml:space="preserve">
       <value>Administraator</value>
     </data>
+    <data name="cancel" xml:space="preserve">
+      <value>Tühista</value>
+    </data>
+    <data name="confirm_delete" xml:space="preserve">
+      <value>Kas olete kindel, et soovite selle kustutada?</value>
+    </data>
+    <data name="delete" xml:space="preserve">
+      <value>Kustuta</value>
+    </data>
+    <data name="edit" xml:space="preserve">
+      <value>Muuda</value>
+    </data>
+    <data name="save" xml:space="preserve">
+      <value>Salvesta</value>
+    </data>
+    <data name="cannot_delete_has_trainings" xml:space="preserve">
+      <value>Ei saa kustutada - seotud koolitusi: {0}.</value>
+    </data>
+    <data name="has_related_trainings" xml:space="preserve">
+      <value>Ei saa kustutada - on seotud koolitused.</value>
+    </data>
+    <data name="record_done" xml:space="preserve">
+      <value>Kannatud salvestatud.</value>
+    </data>
+    <data name="invalid_data" xml:space="preserve">
+      <value>Vigased andmed.</value>
+    </data>
+    <data name="record_deleted" xml:space="preserve">
+      <value>Kirje kustutatud.</value>
+    </data>
+    <data name="teacher_profile_not_found" xml:space="preserve">
+      <value>Õpetaja profiili ei leitud.</value>
+    </data>
+    <data name="not_allowed" xml:space="preserve">
+      <value>Ei ole lubatud.</value>
+    </data>
+  <data name="hello" xml:space="preserve">
+    <value>Tere</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Logi välja</value>
+  </data>
 </root>

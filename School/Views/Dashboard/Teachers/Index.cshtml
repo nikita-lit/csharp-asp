@@ -46,13 +46,9 @@
                     @Html.DisplayFor(modelItem => item.IdentityUser.UserName)
                 </td>
                 <td>
-                    @{
-                        /*
-                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-                        */
-                    }
+                    <a asp-controller="Dashboard" asp-action="EditTeacher" asp-route-id="@item.Id">@Localizer["edit"]</a>
+                    |
+                    <a asp-controller="Dashboard" asp-action="DeleteTeacher" asp-route-id="@item.Id">@Localizer["delete"]</a>
                 </td>
             </tr>
         }

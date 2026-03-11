@@ -454,8 +454,8 @@
   <data name="submit" xml:space="preserve">
     <value>Submit</value>
   </data>
-  <data name="teacher_courses" xml:space="preserve">
-    <value>Teacher's courses</value>
+  <data name="teacher_trainings" xml:space="preserve">
+    <value>Teacher's trainings</value>
   </data>
   <data name="trainings" xml:space="preserve">
     <value>Trainings</value>
@@ -465,5 +465,47 @@
   </data>
   <data name="admin" xml:space="preserve">
     <value>Administrator</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="confirm_delete" xml:space="preserve">
+    <value>Are you sure you want to delete this item?</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="cannot_delete_has_trainings" xml:space="preserve">
+    <value>Cannot delete - there are {0} related trainings.</value>
+  </data>
+  <data name="has_related_trainings" xml:space="preserve">
+    <value>Cannot delete - there are related trainings.</value>
+  </data>
+  <data name="record_done" xml:space="preserve">
+    <value>Record saved successfully.</value>
+  </data>
+  <data name="invalid_data" xml:space="preserve">
+    <value>Invalid data submitted.</value>
+  </data>
+  <data name="record_deleted" xml:space="preserve">
+    <value>Record deleted.</value>
+  </data>
+  <data name="teacher_profile_not_found" xml:space="preserve">
+    <value>Teacher profile not found.</value>
+  </data>
+  <data name="not_allowed" xml:space="preserve">
+    <value>Not allowed.</value>
+  </data>
+  <data name="hello" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Logout</value>
   </data>
 </root>

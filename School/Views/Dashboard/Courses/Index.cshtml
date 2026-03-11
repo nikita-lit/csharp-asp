@@ -23,6 +23,7 @@
             <th>
                 @Localizer["description"]
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -37,6 +38,11 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a asp-controller="Dashboard" asp-action="EditCourse" asp-route-id="@item.Id">@Localizer["edit"]</a>
+                    |
+                    <a asp-controller="Dashboard" asp-action="DeleteCourse" asp-route-id="@item.Id">@Localizer["delete"]</a>
                 </td>
             </tr>
         }

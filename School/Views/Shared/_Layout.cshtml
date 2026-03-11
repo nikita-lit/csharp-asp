@@ -52,8 +52,14 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - @Localizer["school_name"]
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div class="text-muted small">
+                &copy; @DateTime.Now.Year - @Localizer["school_name"]
+            </div>
+            <div class="text-muted small">
+                <span class="me-2">@Localizer["contact"]:</span>
+                <span>info@school.com</span>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
