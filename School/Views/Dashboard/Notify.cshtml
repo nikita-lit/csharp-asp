@@ -6,6 +6,9 @@
 }
 
 <h2>@Localizer["notify_all_heading"]</h2>
+
+<partial name="_StatusMessage" />
+
 <form asp-action="Notify" method="post">
     <div class="form-group">
         <label for="studentSelect">@Localizer["select_user"]</label>

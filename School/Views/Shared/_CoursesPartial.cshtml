@@ -9,7 +9,7 @@
             var cname = course?.Name ?? string.Empty;
             var lower = cname.ToLower();
 
-            if (lower.Contains("english") || lower.Contains("engl") || lower.Contains("англ") || lower.Contains("анг"))
+            if (lower.Contains("ingli") || lower.Contains("engl") || lower.Contains("англ") || lower.Contains("анг"))
             {
                 flag = "gb.svg";
             }
@@ -17,7 +17,7 @@
             {
                 flag = "et.svg";
             }
-            else if (lower.Contains("russian") || lower.Contains("rus") || lower.Contains("русск"))
+            else if (lower.Contains("vene") || lower.Contains("rus") || lower.Contains("русск"))
             {
                 flag = "ru.svg";
             }

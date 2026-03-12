@@ -9,7 +9,7 @@
                 <div class="card h-100 shadow-sm">
                     @if (!string.IsNullOrEmpty(teacher.FotoPath))
                     {
-                        <img src="@Url.Content(teacher.FotoPath)" class="card-img-top" alt="@teacher.Name" style="object-fit:cover; height:200px;" />
+                        <img src="~/img/@teacher.FotoPath" class="card-img-top" alt="@teacher.Name" style="object-fit:cover; height:300px;" />
                     }
                     else
                     {

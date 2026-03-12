@@ -35,7 +35,32 @@
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">@t.Name</h5>
+                            @{
+                                var flag = "";
+                                var cname = t.Course?.Name ?? string.Empty;
+                                var lower = cname.ToLower();
+                            }
+
+                            @if (lower.Contains("ingli") || lower.Contains("engl") || lower.Contains("англ") || lower.Contains("анг"))
+                            {
+                                flag = "gb.svg";
+                            }
+                            else if (lower.Contains("eston") || lower.Contains("eesti") || lower.Contains("est") )
+                            {
+                                flag = "et.svg";
+                            }
+                            else if (lower.Contains("vene") || lower.Contains("rus") || lower.Contains("русск"))
+                            {
+                                flag = "ru.svg";
+                            }
+
+                            <h5 class="card-title">
+                                @if (!string.IsNullOrEmpty(flag)) 
+                                {
+                                    <img src="~/img/flags/@flag" alt="flag" class="me-1 align-text-bottom" style="width:24px;height:18px;object-fit:cover;margin-bottom:3px;" />
+                                }
+                                @t.Name
+                            </h5>
                             <h6 class="card-subtitle mb-2 text-muted">@Localizer["course"]: @(t.Course?.Name ?? "-")</h6>
                             <p class="card-text small">@t.StartDate.ToString("d") - @t.EndDate.ToString("d")</p>
 

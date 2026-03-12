@@ -599,7 +599,7 @@
     <value>Мои курсы</value>
   </data>
   <data name="my_courses_help" xml:space="preserve">
-    <value>Просмотр и управление вашими курсами</value>
+    <value>Просмотр ваших курсов</value>
   </data>
   <data name="no_my_courses" xml:space="preserve">
     <value>У вас нет курсов</value>

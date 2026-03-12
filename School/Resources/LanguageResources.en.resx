@@ -486,7 +486,7 @@
     <value>My courses</value>
   </data>
   <data name="my_courses_help" xml:space="preserve">
-    <value>View and manage your courses</value>
+    <value>View your courses</value>
   </data>
   <data name="no_my_courses" xml:space="preserve">
     <value>You have no courses</value>
