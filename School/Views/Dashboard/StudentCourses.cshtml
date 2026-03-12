@@ -18,10 +18,33 @@ else
     <ul class="list-group">
         @foreach (var r in Model)
         {
+            var flag = "";
+            var cname = r?.Training?.Course?.Name ?? string.Empty;
+            var lower = cname.ToLower();
+
+            if (lower.Contains("english") || lower.Contains("engl") || lower.Contains("англ") || lower.Contains("анг"))
+            {
+                flag = "gb.svg";
+            }
+            else if (lower.Contains("eston") || lower.Contains("eesti") || lower.Contains("est") )
+            {
+                flag = "et.svg";
+            }
+            else if (lower.Contains("russian") || lower.Contains("rus") || lower.Contains("русск"))
+            {
+                flag = "ru.svg";
+            }
+
             <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div>
                     <div><strong>@(r.Training?.Name)</strong></div>
-                    <div class="small text-muted">@Localizer["course"]: @(r.Training?.Course?.Name)</div>
+                    <div class="small text-muted">@Localizer["course"]: 
+                        @if (!string.IsNullOrEmpty(flag)) 
+                        {
+                            <img src="~/img/flags/@flag" alt="flag" class="me-1 align-text-bottom" style="width:20px;height:14px;object-fit:cover;" />
+                        }
+                        @(r.Training?.Course?.Name)
+                    </div>
                     <div class="small text-muted">@Localizer["teacher"]: @(r.Training?.Teacher?.Name)</div>
                     <div class="small">@((r.Training != null) ? r.Training.StartDate.ToString("d") + " — " + r.Training.EndDate.ToString("d") : "")</div>
                 </div>

@@ -5,10 +5,33 @@
     {
         foreach (var course in Model.Courses)
         {
+            var flag = "";
+            var cname = course?.Name ?? string.Empty;
+            var lower = cname.ToLower();
+
+            if (lower.Contains("english") || lower.Contains("engl") || lower.Contains("англ") || lower.Contains("анг"))
+            {
+                flag = "gb.svg";
+            }
+            else if (lower.Contains("eston") || lower.Contains("eesti") || lower.Contains("est") )
+            {
+                flag = "et.svg";
+            }
+            else if (lower.Contains("russian") || lower.Contains("rus") || lower.Contains("русск"))
+            {
+                flag = "ru.svg";
+            }
+
             <div class="col">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">@course.Name</h5>
+                        <h5 class="card-title">
+                            @if (!string.IsNullOrEmpty(flag)) 
+                            {
+                                <img src="~/img/flags/@flag" alt="flag" class="me-2 align-text-bottom" style="width:26px;height:18px;object-fit:cover;margin-bottom:4px" />
+                            }
+                            @course.Name
+                        </h5>
                         <h6 class="card-subtitle mb-2 text-muted">@course.Level</h6>
                         @if (!string.IsNullOrEmpty(course.Description))
                         {

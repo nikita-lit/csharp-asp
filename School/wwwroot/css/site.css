@@ -44,6 +44,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: white;
+  background-attachment: fixed;
 }
 .container-fluid.flex-grow-1 {
   flex: 1 0 auto;
@@ -54,4 +56,114 @@ body {
   flex: 1 1 auto;
   min-height: 0;
   overflow: auto;
+}
+
+/* Fancy button / nav-link styles and subtle animations */
+nav.navbar-vertical .nav-link {
+  position: relative;
+  display: block;
+  padding: 0.6rem 1rem;
+  margin: .25rem 0;
+  border-radius: 0.5rem;
+  color: var(--bs-body-color);
+  background: transparent;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 220ms ease, color 180ms ease;
+}
+
+nav.navbar-vertical .nav-link:hover,
+nav.navbar-vertical .nav-link:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(16,24,40,0.06), 0 2px 6px rgba(16,24,40,0.04);
+  color: #0d6efd; /* bootstrap primary */
+  background: linear-gradient(90deg, rgba(37,140,251,0.06), rgba(37,140,251,0.02));
+  text-decoration: none;
+}
+
+nav.navbar-vertical .nav-link:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* small animated accent bar on hover */
+nav.navbar-vertical .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 8px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #258cfb, #6ec1ff);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1);
+  pointer-events: none;
+}
+
+nav.navbar-vertical .nav-link:hover::after,
+nav.navbar-vertical .nav-link:focus::after {
+  transform: scaleX(1);
+}
+
+/* Enhance bootstrap .btn hover/active for subtle motion */
+.btn {
+  transition: transform 140ms ease, box-shadow 140ms ease, opacity 140ms ease;
+}
+.btn:hover, .btn:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(16,24,40,0.08);
+}
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Accessibility: focus-visible ring */
+.btn:focus-visible, .nav-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.125rem rgba(37,140,251,0.18);
+}
+
+/* Make horizontal top-brand look interactive */
+nav.navbar-horizontal .navbar-brand {
+  transition: transform 160ms ease, color 160ms ease;
+}
+nav.navbar-horizontal .navbar-brand:hover {
+  transform: translateY(-2px);
+  color: #0d6efd;
+}
+
+/* Top/right navbar and dropdown items (language/login) */
+nav.navbar-horizontal .nav-link,
+.navbar-collapse .nav-link {
+  transition: transform 160ms ease, box-shadow 160ms ease, background 200ms ease, color 160ms ease;
+}
+
+nav.navbar-horizontal .nav-link:hover,
+.navbar-collapse .nav-link:hover,
+nav.navbar-horizontal .nav-link:focus,
+.navbar-collapse .nav-link:focus {
+  transform: translateY(-2px);
+  color: #0d6efd;
+  background: rgba(37,140,251,0.04);
+  text-decoration: none;
+}
+
+/* Dropdown items (language selector and similar) */
+.dropdown-menu .dropdown-item {
+  transition: transform 140ms ease, background 160ms ease, color 140ms ease;
+  border-radius: 0.375rem;
+}
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+  transform: translateY(-2px);
+  background: linear-gradient(90deg, rgba(37,140,251,0.06), rgba(37,140,251,0.02));
+  color: #0d6efd;
+}
+
+/* Ensure dropdown links don't get clipped by overflow in narrow containers */
+.dropdown-menu { overflow: visible; }
+
+footer {
+  background-color: white;
 }

@@ -145,7 +145,7 @@
     <value>Keeltekool</value>
   </data>
   <data name="select_user" xml:space="preserve">
-    <value>Select user</value>
+    <value>Valige kasutaja</value>
   </data>
   <data name="teachers" xml:space="preserve">
     <value>Õpetajad</value>
@@ -569,5 +569,71 @@
   </data>
   <data name="pending" xml:space="preserve">
     <value>Ootel</value>
+  </data>
+<data name="hero_title" xml:space="preserve">
+    <value>Ava keelte maailm koos meie kooliga</value>
+  </data>
+  <data name="hero_lead" xml:space="preserve">
+    <value>Intensiivsed ja paindlikud programmid kõigile tasemetele – algajatest professionaalideni.</value>
+  </data>
+  <data name="popular_courses" xml:space="preserve">
+    <value>Populaarsed kursused</value>
+  </data>
+  <data name="questions_help" xml:space="preserve">
+    <value>On teil küsimusi? Aitame teil valida sobiva programmi.</value>
+  </data>
+  <data name="please_select_group" xml:space="preserve">
+    <value>Palun valige rühm.</value>
+  </data>
+  <data name="message_sent" xml:space="preserve">
+    <value>Sõnum on edukalt saadetud.</value>
+  </data>
+  <data name="send_error" xml:space="preserve">
+    <value>Viga sõnumi saatmisel</value>
+  </data>
+  <data name="notify_all_title" xml:space="preserve">
+    <value>Teavita õpilasi</value>
+  </data>
+  <data name="notify_all_heading" xml:space="preserve">
+    <value>Teavita õpilasi</value>
+  </data>
+  <data name="group_training" xml:space="preserve">
+    <value>Rühm (koolitus)</value>
+  </data>
+  <data name="load_students" xml:space="preserve">
+    <value>Laadi õpilased</value>
+  </data>
+  <data name="to_optional" xml:space="preserve">
+    <value>Saaja (valikuline)</value>
+  </data>
+  <data name="all_students_in_group" xml:space="preserve">
+    <value>kõik rühma õpilased</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>Teema</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Sõnum</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Saada</value>
+  </data>
+  <data name="notify_result_title" xml:space="preserve">
+    <value>Saatmise tulemus</value>
+  </data>
+  <data name="notify_result_heading" xml:space="preserve">
+    <value>Saatmise tulemus (simulatsioon)</value>
+  </data>
+  <data name="group" xml:space="preserve">
+    <value>Rühm</value>
+  </data>
+  <data name="recipient" xml:space="preserve">
+    <value>Saaja</value>
+  </data>
+  <data name="send_simulation_info" xml:space="preserve">
+    <value>Simulatsioon: päris e-kirju ei saadeta, kui SMTP pole konfigureeritud.</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>Tagasi</value>
   </data>
 </root>

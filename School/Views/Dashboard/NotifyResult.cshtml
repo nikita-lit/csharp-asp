@@ -1,0 +1,24 @@
+@model School.Models.NotifyResult
+@inject Microsoft.Extensions.Localization.IStringLocalizer<School.LanguageResources> Localizer
+
+@{
+    ViewData["Title"] = Localizer["notify_result_title"];
+}
+
+<h2>@Localizer["notify_result_heading"]</h2>
+
+<div class="mb-3">
+    <strong>@Localizer["subject"]:</strong> @Model.Subject
+</div>
+
+<div class="mb-3">
+    <strong>@Localizer["message"]:</strong>
+    <div class="border p-2">@Model.Body</div>
+</div>
+
+<div class="mb-3">
+    <strong>@Localizer["recipient"]:</strong>
+    <p>@Model.RecipientEmail</p>
+</div>
+
+<a class="btn btn-secondary" asp-action="Notify">@Localizer["back"]</a>

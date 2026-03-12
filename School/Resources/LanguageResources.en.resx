@@ -271,6 +271,61 @@
     <value>Contact us</value>
   </data>
 
+  <data name="please_select_group" xml:space="preserve">
+    <value>Please select a group.</value>
+  </data>
+  <data name="message_sent" xml:space="preserve">
+    <value>Message sent successfully.</value>
+  </data>
+  <data name="send_error" xml:space="preserve">
+    <value>Error sending message</value>
+  </data>
+  <data name="notify_all_title" xml:space="preserve">
+    <value>Notify students</value>
+  </data>
+  <data name="notify_all_heading" xml:space="preserve">
+    <value>Notify students</value>
+  </data>
+  <data name="group_training" xml:space="preserve">
+    <value>Group (training)</value>
+  </data>
+  <data name="load_students" xml:space="preserve">
+    <value>Load students</value>
+  </data>
+  <data name="to_optional" xml:space="preserve">
+    <value>To (optional)</value>
+  </data>
+  <data name="all_students_in_group" xml:space="preserve">
+    <value>all students in the group</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="notify_result_title" xml:space="preserve">
+    <value>Send result</value>
+  </data>
+  <data name="notify_result_heading" xml:space="preserve">
+    <value>Send result (simulation)</value>
+  </data>
+  <data name="group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="recipient" xml:space="preserve">
+    <value>Recipient</value>
+  </data>
+  <data name="send_simulation_info" xml:space="preserve">
+    <value>Simulation: real emails are not sent unless SMTP is configured.</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+
   <data name="courses_lead" xml:space="preserve">
     <value>Short descriptions of popular programs and typical levels.</value>
   </data>

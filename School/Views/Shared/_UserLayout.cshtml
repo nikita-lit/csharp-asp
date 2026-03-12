@@ -60,6 +60,9 @@
                         <li class="nav-item px-4">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="TeacherCourses">@Localizer["teacher_trainings"]</a>
                         </li>
+                        <li class="nav-item px-4">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Notify">@Localizer["notify_all_title"]</a>
+                        </li>
                     }
 
                     @if (User.IsInRole("Admin"))

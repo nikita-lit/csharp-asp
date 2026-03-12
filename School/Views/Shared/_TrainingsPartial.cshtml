@@ -5,6 +5,22 @@
     {
         foreach (var t in Model.CurrentTrainings)
         {
+            var flag = "";
+            var cname = t?.Course?.Name ?? string.Empty;
+            var lower = cname.ToLower();
+
+            if (lower.Contains("english") || lower.Contains("engl") || lower.Contains("англ") || lower.Contains("анг"))
+            {
+                flag = "gb.svg";
+            }
+            else if (lower.Contains("eston") || lower.Contains("eesti") || lower.Contains("est") )
+            {
+                flag = "et.svg";
+            }
+            else if (lower.Contains("russian") || lower.Contains("rus") || lower.Contains("русск"))
+            {
+                flag = "ru.svg";
+            }
             var regCount = 0; 
             if (Model.RegistrationCounts != null && Model.RegistrationCounts.ContainsKey(t.Id)) 
             { 
@@ -15,7 +31,13 @@
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">@t.Name</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">@Localizer["course"]: @(t.Course?.Name ?? "-")</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">@Localizer["course"]: 
+                            @if (!string.IsNullOrEmpty(flag)) 
+                            {
+                                <img src="~/img/flags/@flag" alt="flag" class="me-1 align-text-bottom" style="width:24px;height:16px;object-fit:cover;" />
+                            }
+                            @(t.Course?.Name ?? "-")
+                        </h6>
                         <h6 class="card-subtitle mb-2 text-muted">@Localizer["teacher"]: @(t.Teacher?.Name ?? "-")</h6>
                         <p class="card-text">@Localizer["price"]: @t.Price.ToString("C")</p>
 
