@@ -249,9 +249,6 @@
   <data name="recipient" xml:space="preserve">
     <value>Получатель</value>
   </data>
-  <data name="send_simulation_info" xml:space="preserve">
-    <value>Имитация: реальные письма не отправляются, если SMTP не настроен.</value>
-  </data>
   <data name="back" xml:space="preserve">
     <value>Назад</value>
   </data>
