@@ -25,4 +25,9 @@
     <ProjectReference Include="..\School2.Data\School2.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\LanguageCources\Create.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\LanguageCources\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

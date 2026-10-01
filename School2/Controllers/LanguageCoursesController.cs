@@ -19,9 +19,14 @@ namespace School2.Controllers
         }
         public IActionResult Index()
         {
-            //var result = _context.L
-            return View();
-            //need to get all, not under test rn
+            var result = _context.LanguageCourses
+                .Select(x => new LanguageCourseViewModel
+                {
+                    Nimetus = x.Nimetus,
+                    Keel = x.Keel
+                }).Take(20);
+            
+            return View(result);
         }
 
         [HttpGet]

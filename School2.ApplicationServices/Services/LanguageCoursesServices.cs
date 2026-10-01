@@ -19,7 +19,27 @@ namespace School2.ApplicationServices.Services
 
         public async Task<LanguageCourse> Create(LanguageCourseDTO dto)
         {
-            return null;
+            if (dto == null)
+                return null;
+
+            LanguageCourse domain = new()
+            {
+                Id = Guid.NewGuid(),
+                Nimetus = dto.Nimetus,
+                Keel = dto.Keel,
+                Kirjeldus = dto.Kirjeldus,
+                Tase = dto.Tase,
+                CreatedAt = DateTime.Now,
+                ModifiedAt = DateTime.Now
+            };
+            // TODO:
+            // later, require user id to be attached to "ModifiedBy" parameter, to know who modified last.
+           
+            //TODO: check if db addition succeeded, if yes, return object, if not, null
+            await _context.LanguageCourses.AddAsync(domain);
+            await _context.SaveChangesAsync();
+            
+            return domain;
         }
         public async Task<LanguageCourse> Update(LanguageCourseDTO dto)
         {

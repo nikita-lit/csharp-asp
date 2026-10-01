@@ -1,0 +1,40 @@
+@model IEnumerable<School2.Models.LanguageCourses.LanguageCourseViewModel>
+@{
+    int rowNumber = 1;
+}
+
+@* Later check for role of the user, hide this button if not admin or teacher *@
+<div>
+    <a asp-action="Create" asp-controller="LanguageCourses" type="submit" class="btn btn-dark">
+        Lisa uus keelekursus
+    </a>
+</div>
+
+<div class="h1">
+    Keelekursused
+</div>
+<form method="get">
+    <table class="table table-hover">
+        <thead>
+            <tr><th scope="col">Nr</th></tr>
+            <tr><th scope="col">Nimetus</th></tr>
+            <tr><th scope="col">Õpetaja keel</th></tr>
+            <tr><th scope="col">Tegevused</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td>@rowNumber</td>
+                    <td>@course.Nimetus</td>
+                    <td>@course.Keel</td>
+                    <td>
+                        TODO: add details, update and delete functionality from controller
+                    </td>
+                </tr>
+
+                rowNumber++;
+            }
+        </tbody>
+    </table>
+</form>
