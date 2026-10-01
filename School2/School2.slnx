@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="../School2.ApplicationServices/School2.ApplicationServices.csproj" />
+  <Project Path="../School2.Core/School2.Core.csproj" />
+  <Project Path="../School2.Data/School2.Data.csproj" />
+  <Project Path="../School2.xUnitTesting/School2.xUnitTesting.csproj" Id="a0d54aa4-c177-4449-8d9e-0a0b8b668389" />
+  <Project Path="School2.csproj" />
+</Solution>
