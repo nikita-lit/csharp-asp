@@ -22,16 +22,21 @@ namespace School2.ApplicationServices.Services
             if (dto == null)
                 return null;
 
-            LanguageCourse domain = new()
-            {
-                Id = Guid.NewGuid(),
-                Nimetus = dto.Nimetus,
-                Keel = dto.Keel,
-                Kirjeldus = dto.Kirjeldus,
-                Tase = dto.Tase,
-                CreatedAt = DateTime.Now,
-                ModifiedAt = DateTime.Now
-            };
+            LanguageCourse domain = new();
+            domain.Id = Guid.NewGuid();
+            domain.Nimetus = "";
+            domain.Keel = "";
+            
+            if (domain.Nimetus.Length < 1)
+                return null;
+
+            if (domain.Keel.Length < 1)
+                return null;
+            
+            domain.Kirjeldus = dto.Kirjeldus;
+            domain.Tase = dto.Tase;
+            domain.CreatedAt = DateTime.Now;
+            domain.ModifiedAt = DateTime.Now;
             // TODO:
             // later, require user id to be attached to "ModifiedBy" parameter, to know who modified last.
            
