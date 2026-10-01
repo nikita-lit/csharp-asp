@@ -69,6 +69,22 @@ namespace School2.xUnitTesting
             }
         }
 
+        [Fact]
+        public async Task Should_ReturnCourseDetails_WhenGuidIsNotNull()
+        {
+            LanguageCourseDTO newCourseDTO = MockLanguageCourseDTOData();
+            
+            var createdCourse = await Svc<ILanguageCoursesServices>().Create(newCourseDTO);
+            var result = await Svc<ILanguageCoursesServices>().DetailsAsync(createdCourse.Id);
+            
+            Assert.NotNull(result);
+            
+            Assert.Equal(result.Id, createdCourse.Id);
+            Assert.True(result.Id == createdCourse.Id);
+            
+            Assert.Equal(result, createdCourse);
+        }
+
         private LanguageCourseDTO MockLanguageCourseDTOData()
         {
             return new LanguageCourseDTO
