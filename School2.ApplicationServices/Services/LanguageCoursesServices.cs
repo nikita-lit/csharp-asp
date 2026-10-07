@@ -75,7 +75,13 @@ namespace School2.ApplicationServices.Services
         
         public async Task<LanguageCourse> Delete(Guid id)
         {
-            return null;
+            var result = await _context.LanguageCourses
+                .FirstOrDefaultAsync(x => x.Id == id);
+            
+            _context.LanguageCourses.Remove(result);
+            await _context.SaveChangesAsync();
+            
+            return result;
         }
     }
 }

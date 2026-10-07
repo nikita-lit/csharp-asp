@@ -1,6 +1,15 @@
 @model School2.Models.LanguageCourses.LanguageCourseViewModel;
 <h1>Andmed</h1>
 
+@if (ViewBag.ViewType == "details")
+{
+    <h2>Info</h2>
+}
+else
+{
+    <h2>Kustuta</h2>
+}
+
 <div>
     <h4>Keelekursus</h4>
     <hr/>
@@ -34,6 +43,16 @@
             <span>@Html.DisplayFor(model => model.Tase)</span>
         </div>
     </dl>
-    <a asp-action="Update" asp-controller="LanguageCourses" class="btn btn-warning">Muuda</a>
-    <a asp-action="Index" asp-controller="LanguageCourses" class="btn btn-primary">Tagasi</a>
+    
+    @if (ViewBag.ViewType == "delete")
+    {
+        <a asp-action="DeleteConfirmed" asp-controller="LanguageCourses" asp-route-id="@Model.Id" class="btn btn-danger">Kustuta</a>
+        <a asp-action="Index" asp-controller="LanguageCourses" class="btn btn-primary">Tühista</a>
+    }
+    else
+    {
+        <a asp-action="Update" asp-controller="LanguageCourses" class="btn btn-warning">Muuda</a>
+        <a asp-action="Index" asp-controller="LanguageCourses" class="btn btn-primary">Tagasi</a>
+    }
+    
 </div>

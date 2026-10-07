@@ -95,8 +95,33 @@ namespace School2.Controllers
                 Keel = result.Keel,
                 Tase = result.Tase
             };
+            
+            ViewData["ViewType"] = "details";
 
-            return View(vm);
+            return View("DetailsDelete", vm);
+        }        
+        
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            if (id == Guid.Empty)
+                return NotFound();
+
+            var result = await _languageCoursesServices.DetailsAsync(id);
+            if (result is null)
+                return NotFound();
+
+            var vm = new LanguageCourseViewModel
+            {
+                Id = result.Id,
+                Kirjeldus = result.Kirjeldus,
+                Keel = result.Keel,
+                Tase = result.Tase
+            };
+            
+            ViewData["ViewType"] = "delete";
+
+            return View("DetailsDelete", vm);
         }
 
         [HttpGet]
