@@ -3,6 +3,8 @@ using School2.Core.ServiceInterface;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Web.Mvc;
+using School2.Core.Domain;
 using Xunit;
 
 namespace School2.xUnitTesting
@@ -72,9 +74,7 @@ namespace School2.xUnitTesting
         [Fact]
         public async Task Should_ReturnCourseDetails_WhenGuidIsNotNull()
         {
-            LanguageCourseDTO newCourseDTO = MockLanguageCourseDTOData();
-            
-            var createdCourse = await Svc<ILanguageCoursesServices>().Create(newCourseDTO);
+            var createdCourse = await AddObjectToDb();
             var result = await Svc<ILanguageCoursesServices>().DetailsAsync(createdCourse.Id);
             
             Assert.NotNull(result);
@@ -85,15 +85,70 @@ namespace School2.xUnitTesting
             Assert.Equal(result, createdCourse);
         }
 
+        // test peab kontrollima et andmete muutmisel õigesti andmed ka lisatakse
+        [Fact]
+        public async Task Should_UpdateNimetusWithNewData_WhenDataIsDifferentFromDb()
+        {
+            //ülesseade
+            LanguageCourseDTO dto = MockLanguageCourseDTOData();
+            var createResult = await Svc<ILanguageCoursesServices>().Create(dto);
+            dto.Id = createResult.Id;
+            dto.Keel = "Eesti (Võro)";
+            dto.Nimetus = "Võro kieli";
+            dto.Kirjeldus = "räägi nagu maakas";
+            dto.Tase = "C6";
+            dto.CreatedAt = createResult.CreatedAt;
+            dto.ModifiedAt = DateTime.UtcNow;
+            
+            // tegevus
+            var result = await Svc<ILanguageCoursesServices>().Update(dto);
+            
+            // kontroll
+            Assert.NotNull(result);
+            
+            Assert.Equal(dto.Id, result.Id);
+            Assert.Equal(dto.Keel, result.Keel);
+            Assert.Equal(dto.Kirjeldus, result.Kirjeldus);
+            Assert.Matches(dto.Tase, result.Tase);
+            Assert.Matches(dto.Nimetus, result.Nimetus);
+        }
+
+        [Fact]
+        public async Task Should_DeleteDataFromDb_WhenValidIdIsGiven()
+        {
+            // ülesseade
+            var createdCourse = await AddObjectToDb();
+            
+            //tegevus
+            var deletedCourse = await Svc<ILanguageCoursesServices>().Delete(createdCourse.Id);
+            var result = await Svc<ILanguageCoursesServices>().DetailsAsync(createdCourse.Id);
+            
+            // kontroll
+            Assert.Null(result);
+            Assert.NotNull(deletedCourse);
+            
+            Assert.Equal(createdCourse, deletedCourse);
+            Assert.Equal(createdCourse.Id, deletedCourse.Id);
+            Assert.NotEqual(deletedCourse, result);
+        }
+
+        public async Task<LanguageCourse> AddObjectToDb()
+        {
+            var result = MockLanguageCourseDTOData();
+            return await Svc<ILanguageCoursesServices>().Create(result);
+        }
+
         private LanguageCourseDTO MockLanguageCourseDTOData()
         {
-            return new LanguageCourseDTO
+            var dto = new LanguageCourseDTO
             {
                 Nimetus = "TestKursus",
                 Keel = "Eesti keel",
                 Tase = "Algtase",
                 Kirjeldus = "A0 tasemel eesti keele \"õpe\", tule ja raiska aega"
             };
+
+            return dto;
         }
     }
 }
