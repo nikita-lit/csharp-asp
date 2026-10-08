@@ -12,7 +12,7 @@ public class Lecturer
     public string FullName => $"{FirstName} {LastName}";
     
     public string Qualifications  { get; set; }
-    public int UserId { get; set; }
+    public string? UserId { get; set; }
     //public ICollection<LanguageSubject> LanguageSubjects { get; set; }
     public IEnumerable<FileToDatabaseDTO> Image { get; set; } = [];
     

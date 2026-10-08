@@ -11,7 +11,7 @@ public class LecturerDTO
     // Fullname TBA
     
     public string Qualifications  { get; set; }
-    public int UserId { get; set; }
+    public string? UserId { get; set; }
     //public ICollection<LanguageSubject> LanguageSubjects { get; set; }
     public List<IFormFile>? Files { get; set; }
     public IEnumerable<FileToDatabaseDTO>? Image { get; set; } = [];
