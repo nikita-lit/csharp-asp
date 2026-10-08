@@ -31,6 +31,9 @@ namespace School2.xUnitTesting
             services.AddScoped<ILanguageCoursesServices, LanguageCoursesServices>();
             //services.AddScoped<IFileServices, FileServices>();
             services.AddScoped<IHostEnvironment, MockIHostEnvironment>();
+            
+            services.AddScoped<IFilesServices, FilesServices>();
+            services.AddScoped<ILecturersServices, LecturersServices>();
 
             services.AddDbContext<School2Context>
                 (x =>

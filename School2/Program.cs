@@ -19,6 +19,8 @@ namespace School2
             //services
             builder.Services.AddScoped<IEmailingServices, EmailingServices>();
             builder.Services.AddScoped<ILanguageCoursesServices, LanguageCoursesServices>();
+            builder.Services.AddScoped<IFilesServices, FilesServices>();
+            builder.Services.AddScoped<ILecturersServices, LecturersServices>();
             //apiclients
 
             //dbcontext

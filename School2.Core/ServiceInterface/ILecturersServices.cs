@@ -1,0 +1,12 @@
+using School2.Core.Domain;
+using School2.Core.DTO;
+
+namespace School2.Core.ServiceInterface;
+
+public interface ILecturersServices
+{
+    Task<Lecturer> Create(LecturerDTO dto);
+    Task<Lecturer> Update(LecturerDTO dto);
+    Task<Lecturer> DetailsAsync(Guid id);
+    Task<Lecturer> Delete(Guid id);
+}

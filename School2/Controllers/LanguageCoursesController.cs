@@ -124,6 +124,16 @@ namespace School2.Controllers
             return View("DetailsDelete", vm);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        {
+            var courseToDelete = await _languageCoursesServices.Delete(id);
+            if (courseToDelete is null)
+                return NotFound();
+            
+            return RedirectToAction(nameof(Index));
+        }
+        
         [HttpGet]
         public async Task<IActionResult> Update(Guid id)
         {
