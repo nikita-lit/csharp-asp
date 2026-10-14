@@ -91,6 +91,7 @@ namespace School2.Controllers
             var vm = new LanguageCourseViewModel
             {
                 Id = result.Id,
+                Nimetus = result.Nimetus,
                 Kirjeldus = result.Kirjeldus,
                 Keel = result.Keel,
                 Tase = result.Tase
