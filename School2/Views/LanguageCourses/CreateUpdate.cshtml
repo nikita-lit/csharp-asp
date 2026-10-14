@@ -21,25 +21,25 @@ else
         
         <div class="form-group">
             <label asp-for="Nimetus" class="control-label"></label>
-            <input asp-for="Nimetus" class="form-control"/>
+            <input id="CU_LanguageCourse_Nimetus" asp-for="Nimetus" class="form-control"/>
             <span asp-validation-for="Nimetus" class="text-danger"></span>
         </div>        
         
         <div class="form-group">
             <label asp-for="Keel" class="control-label"></label>
-            <input asp-for="Keel" class="form-control"/>
+            <input id="CU_LanguageCourse_Keel" asp-for="Keel" class="form-control"/>
             <span asp-validation-for="Keel" class="text-danger"></span>
         </div>        
         
         <div class="form-group">
             <label asp-for="Tase" class="control-label"></label>
-            <input asp-for="Tase" class="form-control"/>
+            <input id="CU_LanguageCourse_Tase" asp-for="Tase" class="form-control"/>
             <span asp-validation-for="Tase" class="text-danger"></span>
         </div>        
         
         <div class="form-group">
             <label asp-for="Kirjeldus" class="control-label"></label>
-            <input asp-for="Kirjeldus" class="form-control"/>
+            <input id="CU_LanguageCourse_Kirjeldus" asp-for="Kirjeldus" class="form-control"/>
             <span asp-validation-for="Kirjeldus" class="text-danger"></span>
         </div>
         
@@ -49,6 +49,7 @@ else
         {
             <input asp-action="update" 
                    asp-controller="LanguageCourses" 
+                   id="CU_Update_Btn"
                    type="submit" 
                    value="Muuda"
                    class="btn btn-success"/>
@@ -57,11 +58,12 @@ else
         {
             <input asp-action="create" 
                    asp-controller="LanguageCourses" 
+                   id="CU_Create_Btn"
                    type="submit" 
                    value="Tee uus"
                    class="btn btn-success"/>
         }
         
-        <a asp-action="Index" asp-controller="LanguageCourses" class="btn btn-secondary">Tagasi</a>
+        <a id="CU_Back_Btn" asp-action="Index" asp-controller="LanguageCourses" class="btn btn-secondary">Tagasi</a>
     </form>
 </div>

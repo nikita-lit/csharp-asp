@@ -28,6 +28,9 @@
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Views\LanguageCources\Create.cshtml" />
     <_ContentIncludedByDefault Remove="Views\LanguageCources\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="School2.SeleniumTesting\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="School2.SeleniumTesting\obj\project.packagespec.json" />
+    <_ContentIncludedByDefault Remove="School2.SeleniumTesting\obj\School2.SeleniumTesting.csproj.nuget.dgspec.json" />
   </ItemGroup>
 
 </Project>
