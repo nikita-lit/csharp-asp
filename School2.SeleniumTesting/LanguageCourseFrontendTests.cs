@@ -95,10 +95,6 @@ public class LanguageCourseFrontendTests
         
         if (!isOneOrTwo)
         {
-            if (!updateName)
-                driver.FindElement(By.Id("CU_LanguageCourse_Nimetus"))
-                    .SendKeys("Automaattestimise kursus");
-            
             IWebElement keelEntry =  driver.FindElement(By.Id("CU_LanguageCourse_Keel"));
             keelEntry.SendKeys("C# + Selenium & xUnit");
         
@@ -110,10 +106,6 @@ public class LanguageCourseFrontendTests
         }
         else
         {
-            if (!updateName)
-                driver.FindElement(By.Id("CU_LanguageCourse_Nimetus"))
-                    .SendKeys("Manuaaltestimise kursus");
-            
             IWebElement keelEntry =  driver.FindElement(By.Id("CU_LanguageCourse_Keel"));
             keelEntry.SendKeys("Mantis, Excel");
         
@@ -279,7 +271,7 @@ public class LanguageCourseFrontendTests
         }
 
         DataEntryLanguageCourseClear(driver, true);
-        DataEntryLanguageCourse(driver, true, true);
+        DataEntryLanguageCourse(driver, true, false);
         
         Thread.Sleep(1000);
         
