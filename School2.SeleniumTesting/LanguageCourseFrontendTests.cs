@@ -49,8 +49,12 @@ public class PriorityOrderer : ITestCaseOrderer
 [TestCaseOrderer("School2.SeleniumTesting.PriorityOrderer", "School2.SeleniumTesting")]
 public class LanguageCourseFrontendTests
 {
-    public string ThisRunGuid { get; set; }
+    public static string ThisRunGuid { get; set; }
     
+    /// <summary>
+    /// Ülesseade meetod mis tekitab draiveri ja navigeerib aadressile
+    /// </summary>
+    /// <param name="driver"></param>
     private static IWebDriver CreateDriver()
     {
         IWebDriver driver = new FirefoxDriver(); // brauserit juhtiv ja seal tegutsev draiver
@@ -61,13 +65,24 @@ public class LanguageCourseFrontendTests
         return driver;
     }
 
+    /// <summary>
+    /// Ülesseade meetod mis vajutab keeltekursuste lingile
+    /// </summary>
+    /// <param name="driver"></param>
     private static void NavigateToIndex( IWebDriver driver )
     {
         IWebElement navigateToLanguageCourse = driver.FindElement(By.LinkText("Keelekursused")); // otsime tesitava osa lingi
         navigateToLanguageCourse.Click(); // simuleeritud tegevus elemendiga, antud juhul klikk
     }
     
-    private static string DataEntryLanguageCourse(IWebDriver driver, bool isOneOrTwo = false, bool updateName = true)
+    /// <summary>
+    /// Meetod mis testimise eesmärgil sisestab lehel andmeid, on võimalik konfigureerida
+    /// </summary>
+    /// <param name="driver">WebDriverr mida hetkel test rakendab</param>
+    /// <param name="isOneOrTwo">Muutuja mis valib kahe erineva andmekomplekti vahel</param>
+    /// <param name="updateName">Muutuja mis ütleb kas nime on vaja muuta (nimes hoitakse testimiseks vaja unikaalset Guidi)</param>
+    /// <returns>Tagastab lisatud Guid stringi kujul mis pandi nimevälja (kui on konfigureeritud nii)</returns>
+    private static string DataEntryLanguageCourse(IWebDriver driver, bool isOneOrTwo = false, bool updateName = false)
     {
         string generatedId = string.Empty;
         
@@ -80,6 +95,10 @@ public class LanguageCourseFrontendTests
         
         if (!isOneOrTwo)
         {
+            if (!updateName)
+                driver.FindElement(By.Id("CU_LanguageCourse_Nimetus"))
+                    .SendKeys("Automaattestimise kursus");
+            
             IWebElement keelEntry =  driver.FindElement(By.Id("CU_LanguageCourse_Keel"));
             keelEntry.SendKeys("C# + Selenium & xUnit");
         
@@ -91,6 +110,10 @@ public class LanguageCourseFrontendTests
         }
         else
         {
+            if (!updateName)
+                driver.FindElement(By.Id("CU_LanguageCourse_Nimetus"))
+                    .SendKeys("Manuaaltestimise kursus");
+            
             IWebElement keelEntry =  driver.FindElement(By.Id("CU_LanguageCourse_Keel"));
             keelEntry.SendKeys("Mantis, Excel");
         
@@ -104,6 +127,11 @@ public class LanguageCourseFrontendTests
         return generatedId;
     }
 
+    /// <summary>
+    /// Puhastab andmeväljad meetodile kaasaantud draiveri sessionis
+    /// </summary>
+    /// <param name="driver">Hetkel käsitletav draiver</param>
+    /// <param name="saveName"></param>
     private static void DataEntryLanguageCourseClear(IWebDriver driver, bool saveName = false)
     {
         if (!saveName)
@@ -114,7 +142,7 @@ public class LanguageCourseFrontendTests
         driver.FindElement(By.Id("CU_LanguageCourse_Kirjeldus")).Clear();
     }
     
-    [Fact, Order(1)]
+    [Fact, Order(100)]
     public void Should_NavigateToIndex_AddLanguageCourseWithCorrectData_ReturnToIndex()
     {
         /* ülesseade */
@@ -156,7 +184,7 @@ public class LanguageCourseFrontendTests
         IWebElement indexCreateBtn = driver.FindElement(By.Id("IndexCreateNewLanguageCourse_Btn"));
         indexCreateBtn.Click();
         
-        string uniqueId = DataEntryLanguageCourse(driver);
+        string uniqueId = DataEntryLanguageCourse(driver, updateName: true);
         ThisRunGuid = uniqueId;
 
         IWebElement createBtn = driver.FindElement(By.Id("CU_Create_Btn"));
@@ -165,19 +193,36 @@ public class LanguageCourseFrontendTests
         /* kontroll */
         
         //kogune andmed
-        string languageCourseNimetusData = driver.FindElement(By.Id("IndexTableCourseNimetus")).Text;
-        string languageCourseKeelData = driver.FindElement(By.Id("IndexTableCourseKeel")).Text;
+        var table =  driver.FindElement(By.Id("IndexCreateNewLanguageCourse_Table"));
+
+        List<IWebElement> rowsOfTable = table.FindElements(By.TagName("tr")).ToList();
+        rowsOfTable.RemoveAt(0); // delete th
+
+        string languageCourseNimetusData = string.Empty;
+        string languageCourseKeelData = string.Empty;
+        
+        foreach (var row in rowsOfTable)
+        {
+            var nimetusElement = row.FindElement(By.Id("IndexTableCourseNimetus")).Text;
+            if (nimetusElement == ThisRunGuid)
+            {
+                languageCourseNimetusData = ThisRunGuid;
+                languageCourseKeelData = row.FindElement(By.Id("IndexTableCourseKeel")).Text;
+            }
+        }
         
         Thread.Sleep(500);
         driver.Quit();
         
         //assertime
+        Assert.NotEmpty(languageCourseNimetusData);
+        Assert.NotEmpty(languageCourseKeelData);
         Assert.Equal(uniqueId, languageCourseNimetusData);
         Assert.Equal("C# + Selenium & xUnit", languageCourseKeelData);
         Assert.True((uniqueId == languageCourseNimetusData) && ("C# + Selenium & xUnit" == languageCourseKeelData));
     }
 
-    [Fact, Order(2)]
+    [Fact, Order(200)]
     public void Should_NavigateToDetailsOfALanguageCourse_WithPreviouslyCorrectData()
     {
         /* ülesseade */
@@ -288,7 +333,7 @@ public class LanguageCourseFrontendTests
         Assert.True(int.Parse(detailsTase) > -1);
     }
     
-    [Fact, Order(3)]
+    [Fact, Order(300)]
     public void Should_UpdateDetailsOfLanguageCourses_WithNewData()
     {
         /* ülesseade */
@@ -379,7 +424,7 @@ public class LanguageCourseFrontendTests
         }
 
         DataEntryLanguageCourseClear(driver, true);
-        DataEntryLanguageCourse(driver, true, false);
+        DataEntryLanguageCourse(driver, true, true);
         
         Thread.Sleep(1000);
         
@@ -408,7 +453,11 @@ public class LanguageCourseFrontendTests
     }
     
     //DELETE, DELETE, DELETE
-    [Fact, Order(4)]
+    
+    /// <summary>
+    /// Test which removes an object
+    /// </summary>
+    [Fact, Order(400)]
     public void Should_DeleteLanguageCourse_FromDeleteView()
     {
         /* ülesseade */
@@ -470,6 +519,9 @@ public class LanguageCourseFrontendTests
         Assert.True(!isObjectFound);
     }    
     
+    /// <summary>
+    /// Test which removes a specific previously added object
+    /// </summary>
     [Fact, Order(8)]
     public void Should_DeleteUniqueLanguageCourse_FromDeleteView()
     {
