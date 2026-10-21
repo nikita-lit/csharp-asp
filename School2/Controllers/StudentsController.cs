@@ -39,7 +39,7 @@ public class StudentsController( School2Context context, IStudentsServices stude
             return RedirectToAction( "Error", "Home" );
 
         if ( !ModelState.IsValid )
-            return RedirectToAction( "Error", "Home" );
+            return View( "CreateUpdate", vm );
 
         var dto = new StudentDTO
         {
@@ -51,9 +51,9 @@ public class StudentsController( School2Context context, IStudentsServices stude
         };
 
         var result = await studentsServices.Create( dto );
-
         if ( result == null )
-            return RedirectToAction( "Error", "Home" );
+            return View( "CreateUpdate", vm );
+
         return RedirectToAction( nameof(Index) );
     }
 

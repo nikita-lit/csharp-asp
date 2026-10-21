@@ -38,7 +38,7 @@ public class LecturersServices( School2Context context ) : ILecturersServices
         if ( dto == null )
             return null;
 
-        var any = await context.Students.AnyAsync( x => x.Id == dto.Id );
+        var any = await context.Lecturers.AnyAsync( x => x.Id == dto.Id );
         if ( !any )
             return null;
 

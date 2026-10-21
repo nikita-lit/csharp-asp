@@ -13,6 +13,10 @@ public class StudentsServices( School2Context context ) : IStudentsServices
         if ( dto == null )
             return null;
 
+        if ( string.IsNullOrWhiteSpace( dto.FirstName )
+             || string.IsNullOrWhiteSpace( dto.LastName ) )
+            return null;
+
         Student domain = new()
         {
             Id = Guid.NewGuid(),
@@ -33,6 +37,10 @@ public class StudentsServices( School2Context context ) : IStudentsServices
     public async Task<Student> Update( StudentDTO dto )
     {
         if ( dto == null )
+            return null;
+
+        if ( string.IsNullOrWhiteSpace( dto.FirstName )
+             || string.IsNullOrWhiteSpace( dto.LastName ) )
             return null;
 
         // check that we have student with same id

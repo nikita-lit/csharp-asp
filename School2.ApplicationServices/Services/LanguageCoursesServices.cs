@@ -13,17 +13,21 @@ public class LanguageCoursesServices( School2Context context ) : ILanguageCourse
         if ( dto == null )
             return null;
 
-        if ( dto.Nimetus.Length < 1 || dto.Keel.Length < 1 )
+        if ( string.IsNullOrWhiteSpace( dto.Nimetus )
+             || string.IsNullOrWhiteSpace( dto.Keel ) )
             return null;
 
-        LanguageCourse domain = new();
-        domain.Id = Guid.NewGuid();
-        domain.Nimetus = dto.Nimetus;
-        domain.Keel = dto.Keel;
-        domain.Kirjeldus = dto.Kirjeldus;
-        domain.Tase = dto.Tase;
-        domain.CreatedAt = DateTime.Now;
-        domain.ModifiedAt = DateTime.Now;
+        LanguageCourse domain = new()
+        {
+            Id = Guid.NewGuid(),
+            Nimetus = dto.Nimetus,
+            Keel = dto.Keel,
+            Kirjeldus = dto.Kirjeldus,
+            Tase = dto.Tase,
+            CreatedAt = DateTime.Now,
+            ModifiedAt = DateTime.Now
+        };
+
         // TODO:
         // later, require user id to be attached to "ModifiedBy" parameter, to know who modified last.
 
@@ -39,7 +43,11 @@ public class LanguageCoursesServices( School2Context context ) : ILanguageCourse
         if ( dto == null )
             return null;
 
-        var any = await context.Students.AnyAsync( x => x.Id == dto.Id );
+        if ( string.IsNullOrWhiteSpace( dto.Nimetus )
+             || string.IsNullOrWhiteSpace( dto.Keel ) )
+            return null;
+
+        var any = await context.LanguageCourses.AnyAsync( x => x.Id == dto.Id );
         if ( !any )
             return null;
 
