@@ -134,6 +134,9 @@ public class LanguageCourseFrontendTests
         driver.FindElement(By.Id("CU_LanguageCourse_Kirjeldus")).Clear();
     }
     
+    /// <summary>
+    /// Test, mis lisab uue kursuse ja kontrollib selle andmeid kursuste nimekirjas.
+    /// </summary>
     [Fact, Order(1)]
     public void Should_NavigateToIndex_AddLanguageCourseWithUniqueData_ReturnToIndex()
     {
@@ -183,6 +186,9 @@ public class LanguageCourseFrontendTests
         Assert.True((uniqueId == languageCourseNimetusData) && ("C# + Selenium & xUnit" == languageCourseKeelData));
     }
     
+    /// <summary>
+    /// Test, mis avab varem lisatud kursuse detailvaate ja kontrollib selle andmeid.
+    /// </summary>
     [Fact, Order(2)]
     public void Should_NavigateToDetailsOfALanguageCourse_WithPreviouslyUniqueData()
     {
@@ -239,6 +245,9 @@ public class LanguageCourseFrontendTests
         Assert.True(int.Parse(detailsTase) > -1);
     }
     
+    /// <summary>
+    /// Test, mis muudab kursuse andmeid vormil ja kontrollib salvestatud väärtusi.
+    /// </summary>
     [Fact, Order(3)]
     public void Should_UpdateDetailsOfUniqueLanguageCourses_WithNewData()
     {
@@ -302,7 +311,7 @@ public class LanguageCourseFrontendTests
     //DELETE, DELETE, DELETE
     
     /// <summary>
-    /// Test which removes a specific previously added object
+    /// Test, mis eemaldab konkreetse varem lisatud objekti
     /// </summary>
     [Fact, Order(4)]
     public void Should_DeleteUniqueLanguageCourse_FromDeleteView()

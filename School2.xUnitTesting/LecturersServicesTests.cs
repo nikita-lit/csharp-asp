@@ -7,6 +7,9 @@ namespace School2.xUnitTesting;
 
 public class LecturersServicesTests : TestBase
 {
+    /// <summary>
+    /// Test, mis lisab uue objekti ja kontrollib, kas sellel on sama väärtus.
+    /// </summary>
     [Fact]
     public async Task Should_AddNewLecturer_WhenResultIsReturned()
     {
@@ -22,12 +25,19 @@ public class LecturersServicesTests : TestBase
         //kontroll
         Assert.NotNull(result);
         
+        Assert.NotEmpty(result.FirstName);
+        Assert.NotEmpty(result.LastName);
+        Assert.NotEmpty(result.Qualifications);
+        
         Assert.Matches(dto.FirstName, result.FirstName);
         Assert.Matches(dto.LastName, result.LastName);
         Assert.Matches(dto.Qualifications, result.Qualifications);
     }
     
     // details test
+    /// <summary>
+    /// Test, mis kontrollib Detailsist saadud väärtusi teadaoleva Guid-iga
+    /// </summary>
     [Fact]
     public async Task Should_ReturnLecturerDetails_WhenGuidIsNotNull()
     {
@@ -44,9 +54,16 @@ public class LecturersServicesTests : TestBase
         Assert.True(result.Id == createdLecturer.Id);
             
         Assert.Equal(result, createdLecturer);
+        
+        Assert.Matches(createdLecturer.FirstName, result.FirstName);
+        Assert.Matches(createdLecturer.LastName, result.LastName);
+        Assert.Matches(createdLecturer.Qualifications, result.Qualifications);
     }
     
     // update test
+    /// <summary>
+    /// Test, mis muudab õppejõu andmeid ja kontrollib uusi väärtusi.
+    /// </summary>
     [Fact]
     public async Task Should_UpdateLecturerWithNewData_WhenDataIsDifferentFromDb()
     {
@@ -73,6 +90,9 @@ public class LecturersServicesTests : TestBase
     }
     
     // delete test
+    /// <summary>
+    /// Test, mis kustutab õppejõu ja kontrollib, et teda enam andmebaasis ei ole.
+    /// </summary>
     [Fact]
     public async Task Should_DeleteDataFromDb_WhenValidIdIsGiven()
     {

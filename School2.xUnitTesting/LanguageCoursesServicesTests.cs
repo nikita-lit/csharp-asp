@@ -41,6 +41,9 @@ namespace School2.xUnitTesting
         //      */
         // }
 
+        /// <summary>
+        /// Test, mis kontrollib, et tühja nimetuse ja keelega kursust ei lisata.
+        /// </summary>
         [Fact]
         public async Task ShouldNot_AddNewCourse_WhenFieldsEmpty()
         {
@@ -71,6 +74,9 @@ namespace School2.xUnitTesting
             }
         }
 
+        /// <summary>
+        /// Test, mis kontrollib kursuse andmeid teadaoleva Guid-iga.
+        /// </summary>
         [Fact]
         public async Task Should_ReturnCourseDetails_WhenGuidIsNotNull()
         {
@@ -83,9 +89,17 @@ namespace School2.xUnitTesting
             Assert.True(result.Id == createdCourse.Id);
             
             Assert.Equal(result, createdCourse);
+            
+            Assert.Matches(createdCourse.Nimetus, result.Nimetus);
+            Assert.Matches(createdCourse.Keel, result.Keel);
+            Assert.Matches(createdCourse.Tase, result.Tase);
+            Assert.Matches(createdCourse.Kirjeldus, result.Kirjeldus);
         }
 
         // test peab kontrollima et andmete muutmisel õigesti andmed ka lisatakse
+        /// <summary>
+        /// Test, mis muudab kursuse andmeid ja kontrollib uusi väärtusi.
+        /// </summary>
         [Fact]
         public async Task Should_UpdateNimetusWithNewData_WhenDataIsDifferentFromDb()
         {
@@ -113,6 +127,9 @@ namespace School2.xUnitTesting
             Assert.Matches(dto.Nimetus, result.Nimetus);
         }
 
+        /// <summary>
+        /// Test, mis kustutab kursuse ja kontrollib, et seda enam andmebaasis ei ole.
+        /// </summary>
         [Fact]
         public async Task Should_DeleteDataFromDb_WhenValidIdIsGiven()
         {
