@@ -14,7 +14,7 @@ public class Lecturer
     public string Qualifications  { get; set; }
     public string? UserId { get; set; }
     //public ICollection<LanguageSubject> LanguageSubjects { get; set; }
-    public IEnumerable<FileToDatabaseDTO> Image { get; set; } = [];
+    public IEnumerable<FileToDatabase> Image { get; set; } = [];
     
     public DateTime CreatedAt { get; set; }
     public DateTime ModifiedAt { get; set; }

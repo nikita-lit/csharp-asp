@@ -14,6 +14,7 @@ namespace School2.Data
         public DbSet<LanguageCourse> LanguageCourses { get; set; }
         public DbSet<Lecturer> Lecturers { get; set; }
         public DbSet<FileToDatabase> Files { get; set; }
+        public DbSet<Student> Students { get; set; }
         
         public School2Context(DbContextOptions<School2Context> options) : base (options) 
         {
