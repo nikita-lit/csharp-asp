@@ -6,6 +6,5 @@ public class DetailsDelete : PageModel
 {
     public void OnGet()
     {
-        
     }
 }

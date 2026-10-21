@@ -7,13 +7,13 @@ namespace School2.Controllers;
 public class LecturersController : Controller
 {
     private readonly School2Context _context;
-    private readonly ILecturersServices _lecturersServices;
     private readonly IFilesServices _filesServices;
+    private readonly ILecturersServices _lecturersServices;
 
     public LecturersController(
-        School2Context context, 
+        School2Context context,
         ILecturersServices lecturersServices,
-        IFilesServices filesServices)
+        IFilesServices filesServices )
     {
         _context = context;
         _lecturersServices = lecturersServices;

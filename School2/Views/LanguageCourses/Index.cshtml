@@ -1,11 +1,12 @@
 @model IEnumerable<School2.Models.LanguageCourses.LanguageCourseViewModel>
 @{
-    int rowNumber = 1;
+    var rowNumber = 1;
 }
 
 @* Later check for role of the user, hide this button if not admin or teacher *@
 <div>
-    <a id="IndexCreateNewLanguageCourse_Btn" asp-action="Create" asp-controller="LanguageCourses" type="submit" class="btn btn-dark">
+    <a id="IndexCreateNewLanguageCourse_Btn" asp-action="Create" asp-controller="LanguageCourses" type="submit"
+       class="btn btn-dark">
         Lisa uus keelekursus
     </a>
 </div>
@@ -14,31 +15,34 @@
     Keelekursused
 </div>
 <form method="get">
-    <table id="IndexCreateNewLanguageCourse_Table" class="table table-hover"> 
-        <thead> 
+    <table id="IndexCreateNewLanguageCourse_Table" class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Nr</th>
+            <th scope="col">Nimetus</th>
+            <th scope="col">Õpetaja keel</th>
+            <th scope="col">Tegevused</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ( var course in Model )
+        {
             <tr>
-                <th scope="col">Nr</th>
-                <th scope="col">Nimetus</th>
-                <th scope="col">Õpetaja keel</th>
-                <th scope="col">Tegevused</th>
-            </tr> 
-        </thead> 
-        <tbody> 
-            @foreach (var course in Model) 
-            { 
-                <tr> 
-                    <td>@rowNumber</td> 
-                    <td id="IndexTableCourseNimetus">@course.Nimetus</td> 
-                    <td id="IndexTableCourseKeel">@course.Keel</td> 
-                    <td id="IndexTableCourseActions"> 
-                        <a id="IndexTableCourseDetails_Btn" asp-action="Details" asp-controller="LanguageCourses" asp-route-id="@course.Id" class="btn btn-secondary">Andmed</a> 
-                        <a id="IndexTableCourseUpdate_Btn" asp-action="Update" asp-controller="LanguageCourses" asp-route-id="@course.Id" class="btn btn-warning">Muuda</a> 
-                        <a id="IndexTableCourseDelete_Btn" asp-action="Delete" asp-controller="LanguageCourses" asp-route-id="@course.Id" class="btn btn-danger">Kustuta</a> 
-                    </td> 
-                </tr> 
+                <td>@rowNumber</td>
+                <td id="IndexTableCourseNimetus">@course.Nimetus</td>
+                <td id="IndexTableCourseKeel">@course.Keel</td>
+                <td id="IndexTableCourseActions">
+                    <a id="IndexTableCourseDetails_Btn" asp-action="Details" asp-controller="LanguageCourses"
+                       asp-route-id="@course.Id" class="btn btn-secondary">Andmed</a>
+                    <a id="IndexTableCourseUpdate_Btn" asp-action="Update" asp-controller="LanguageCourses"
+                       asp-route-id="@course.Id" class="btn btn-warning">Muuda</a>
+                    <a id="IndexTableCourseDelete_Btn" asp-action="Delete" asp-controller="LanguageCourses"
+                       asp-route-id="@course.Id" class="btn btn-danger">Kustuta</a>
+                </td>
+            </tr>
 
-                rowNumber++;
-            } 
-        </tbody> 
+            rowNumber++;
+        }
+        </tbody>
     </table>
 </form>

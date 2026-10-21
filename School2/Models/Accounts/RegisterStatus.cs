@@ -1,7 +1,10 @@
-﻿namespace School2.Models.Accounts
+﻿namespace School2.Models.Accounts;
+
+public enum RegisterStatus
 {
-    public enum RegisterStatus
-    {
-        Pending,UnConfirmed,Approved,Rejected,Banned
-    }
+    Pending,
+    UnConfirmed,
+    Approved,
+    Rejected,
+    Banned
 }

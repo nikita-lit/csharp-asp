@@ -1,7 +1,7 @@
 @model School2.Models.LanguageCourses.LanguageCourseViewModel;
 <h1>Andmed</h1>
 
-@if (ViewBag.ViewType == "details")
+@if ( ViewBag.ViewType == "details" )
 {
     <h2>Info</h2>
 }
@@ -16,47 +16,49 @@ else
     <dl class="row">
         <div class="form-group row">
             <label asp-for="Id" class="col-sm-2 col-form-label"></label>
-            <span id="DD_LanguageCourseGuid">@Html.DisplayFor(model => model.Id)</span>
+            <span id="DD_LanguageCourseGuid">@Html.DisplayFor( model => model.Id )</span>
         </div>
-    </dl>    
+    </dl>
     <dl class="row">
         <div class="form-group row">
             <label asp-for="Nimetus" class="col-sm-2 col-form-label"></label>
-            <span id="DD_LanguageCourseNimetus">@Html.DisplayFor(model => model.Nimetus)</span>
+            <span id="DD_LanguageCourseNimetus">@Html.DisplayFor( model => model.Nimetus )</span>
         </div>
-    </dl>    
+    </dl>
     <dl class="row">
         <div class="form-group row">
             <label asp-for="Keel" class="col-sm-2 col-form-label"></label>
-            <span id="DD_LanguageCourseKeel">@Html.DisplayFor(model => model.Keel)</span>
+            <span id="DD_LanguageCourseKeel">@Html.DisplayFor( model => model.Keel )</span>
         </div>
     </dl>
     <dl class="row">
         <div class="form-group row">
             <label asp-for="Kirjeldus" class="col-sm-2 col-form-label"></label>
-            <span id="DD_LanguageCourseKirjeldus">@Html.DisplayFor(model => model.Kirjeldus)</span>
+            <span id="DD_LanguageCourseKirjeldus">@Html.DisplayFor( model => model.Kirjeldus )</span>
         </div>
-    </dl>    
+    </dl>
     <dl class="row">
         <div class="form-group row">
             <label asp-for="Tase" class="col-sm-2 col-form-label"></label>
-            <span id="DD_LanguageCourseTase">@Html.DisplayFor(model => model.Tase)</span>
+            <span id="DD_LanguageCourseTase">@Html.DisplayFor( model => model.Tase )</span>
         </div>
     </dl>
-    
-    @if (ViewBag.ViewType == "delete")
+
+    @if ( ViewBag.ViewType == "delete" )
     {
         <form asp-action="DeleteConfirmed">
             <input type="hidden" asp-for="Id"/>
             <input id="DD_Delete_Btn" type="submit" value="Kustuta" class="btn btn-danger"/>
-            
+
             <a id="DD_CancelDelete_Btn" asp-action="Index" asp-controller="LanguageCourses" class="btn btn-primary">Tühista</a>
         </form>
     }
     else
     {
-        <a id="DD_DetailsUpdate_Btn" asp-action="Update" asp-controller="LanguageCourses" asp-route-id="@Model.Id" class="btn btn-warning">Muuda</a>
-        <a id="DD_DetailsBack_Btn" asp-action="Index" asp-controller="LanguageCourses" class="btn btn-primary">Tagasi</a>
+        <a id="DD_DetailsUpdate_Btn" asp-action="Update" asp-controller="LanguageCourses" asp-route-id="@Model.Id"
+           class="btn btn-warning">Muuda</a>
+        <a id="DD_DetailsBack_Btn" asp-action="Index" asp-controller="LanguageCourses"
+           class="btn btn-primary">Tagasi</a>
     }
-    
+
 </div>

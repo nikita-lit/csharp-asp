@@ -1,6 +1,5 @@
-﻿namespace School2.Models.Accounts
+﻿namespace School2.Models.Accounts;
+
+public class ExternalLoginViewModel
 {
-    public class ExternalLoginViewModel
-    {
-    }
 }

@@ -1,71 +1,62 @@
-﻿using School2.ApplicationServices.Services;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using School2.ApplicationServices.Services;
 using School2.Core.ServiceInterface;
 using School2.Data;
 using School2.xUnitTesting.Macros;
 using School2.xUnitTesting.Mock;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Security.Authentication.ExtendedProtection;
-using System.Text;
-using System.Web.Mvc;
 
-namespace School2.xUnitTesting
+namespace School2.xUnitTesting;
+
+public abstract class TestBase
 {
-    public abstract class TestBase
+    protected TestBase()
     {
-        protected IServiceProvider serviceProvider {  get; set; }
+        var services = new ServiceCollection();
+        SetupServices( services );
+        serviceProvider = services.BuildServiceProvider();
+    }
 
-        protected TestBase()
-        {
-            var services = new ServiceCollection();
-            SetupServices(services);
-            serviceProvider = services.BuildServiceProvider();
-        }
+    protected IServiceProvider serviceProvider { get; set; }
 
-        public virtual void SetupServices(IServiceCollection services)
-        {
-            services.AddScoped<ILanguageCoursesServices, LanguageCoursesServices>();
-            //services.AddScoped<IFileServices, FileServices>();
-            services.AddScoped<IHostEnvironment, MockIHostEnvironment>();
-            
-            services.AddScoped<IFilesServices, FilesServices>();
-            services.AddScoped<ILecturersServices, LecturersServices>();
+    public virtual void SetupServices( IServiceCollection services )
+    {
+        services.AddScoped<ILanguageCoursesServices, LanguageCoursesServices>();
+        //services.AddScoped<IFileServices, FileServices>();
+        services.AddScoped<IHostEnvironment, MockIHostEnvironment>();
 
-            services.AddDbContext<School2Context>
-                (x =>
-                {               
-                    x.UseInMemoryDatabase("TEST");
-                    x.ConfigureWarnings(w => w.Ignore(InMemoryEventId.TransactionIgnoredWarning));
-                }
-                );
-            RegisterMacros(services);
-        }
+        services.AddScoped<IFilesServices, FilesServices>();
+        services.AddScoped<ILecturersServices, LecturersServices>();
 
-        private void RegisterMacros(IServiceCollection services)
-        {
-            var macroBaseType = typeof(IMacros);
-
-            var macros = macroBaseType.Assembly.GetTypes()
-                .Where(t => macroBaseType.IsAssignableFrom(t)
-                && !t.IsInterface && !t.IsAbstract);
-            foreach (var macro in macros)
+        services.AddDbContext<School2Context>
+        ( x =>
             {
-                services.AddSingleton(macro);
+                x.UseInMemoryDatabase( "TEST" );
+                x.ConfigureWarnings( w => w.Ignore( InMemoryEventId.TransactionIgnoredWarning ) );
             }
-        }
+        );
+        RegisterMacros( services );
+    }
 
-        public void Dispose()
-        {
+    private void RegisterMacros( IServiceCollection services )
+    {
+        var macroBaseType = typeof(IMacros);
 
-        }
+        var macros = macroBaseType.Assembly.GetTypes()
+            .Where( t => macroBaseType.IsAssignableFrom( t )
+                         && !t.IsInterface && !t.IsAbstract );
+        foreach ( var macro in macros )
+            services.AddSingleton( macro );
+    }
 
-        protected T Svc<T>() 
-        {
-            return serviceProvider.GetService<T>();
-        }
+    public void Dispose()
+    {
+    }
+
+    protected T Svc<T>()
+    {
+        return serviceProvider.GetService<T>();
     }
 }

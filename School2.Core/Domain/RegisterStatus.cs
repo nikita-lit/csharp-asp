@@ -1,7 +1,10 @@
-﻿namespace School2.Core.Domain
+﻿namespace School2.Core.Domain;
+
+public enum RegisterStatus
 {
-    public enum RegisterStatus
-    {
-        Pending,UnConfirmed,Approved,Rejected,Banned
-    }
+    Pending,
+    UnConfirmed,
+    Approved,
+    Rejected,
+    Banned
 }

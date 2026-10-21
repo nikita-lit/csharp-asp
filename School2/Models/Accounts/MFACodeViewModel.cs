@@ -1,19 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace School2.Models.Accounts
+namespace School2.Models.Accounts;
+
+public class MFACodeViewModel
 {
-    public class MFACodeViewModel
-    {
-        public string SelectedProvider { get; set; }
-        public ICollection<SelectListItem> Providers { get; set; }
-        [Required]
-        [Display(Name = "Kood")]
-        public string Code { get; set; }
+    public string SelectedProvider { get; set; }
+    public ICollection<SelectListItem> Providers { get; set; }
 
-        public string ReturnUrl { get; set; }
-        public bool RememberMe { get; set; }
-        [Display(Name = "Jäta brauser meelde")]
-        public bool RememberBrowser { get; set; }
-    }
+    [Required] [Display( Name = "Kood" )] public string Code { get; set; }
+
+    public string ReturnUrl { get; set; }
+    public bool RememberMe { get; set; }
+
+    [Display( Name = "Jäta brauser meelde" )]
+    public bool RememberBrowser { get; set; }
 }

@@ -1,82 +1,77 @@
-﻿using School2.Core.DTO;
-using School2.Core.ServiceInterface;
-using MailKit.Net.Smtp;
+﻿using MailKit.Net.Smtp;
+using MailKit.Security;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using School2.Core.DTO;
+using School2.Core.ServiceInterface;
 
-namespace School2.ApplicationServices.Services
+namespace School2.ApplicationServices.Services;
+
+public class EmailingServices : IEmailingServices
 {
-    public class EmailingServices : IEmailingServices
+    private readonly IConfiguration _config;
+
+    public EmailingServices
+    (
+        IConfiguration config
+    )
     {
-        private readonly IConfiguration _config;
-        public EmailingServices
-            (
-                IConfiguration config
-            )
+        _config = config;
+    }
+
+    public void SendEmail( EmailDTO dto )
+    {
+        var email = new MimeMessage();
+        email.From.Add( MailboxAddress.Parse( _config.GetSection( "EmailUserName" ).Value ) );
+        email.To.Add( MailboxAddress.Parse( dto.To ) );
+        email.Subject = dto.Subject;
+
+        var builder = new BodyBuilder
         {
-            _config = config;
-        }
+            HtmlBody = dto.Body
+        };
 
-        public void SendEmail(EmailDTO dto)
-        {
-            var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse(_config.GetSection("EmailUserName").Value));
-            email.To.Add(MailboxAddress.Parse(dto.To));
-            email.Subject = dto.Subject;
-
-            var builder = new BodyBuilder
-            {
-                HtmlBody = dto.Body
-            };
-
-            //failide lisamine
-            foreach (var file in dto.Attachment)
-            {
-                if (file.Length > 0 && file.Length < 10485760) //10MB
+        //failide lisamine
+        foreach ( var file in dto.Attachment )
+            if ( file.Length > 0 && file.Length < 10485760 ) //10MB
+                using ( var ms = new MemoryStream() )
                 {
-                    using (var ms = new MemoryStream())
-                    {
-                        file.CopyTo(ms);
-                        ms.Position = 0;
-                        //var fileBytes = ms.ToArray();
-                        //builder.Attachments.Add(file.FileName, fileBytes, ContentType.Parse(file.ContentType));
-                        builder.Attachments.Add(file.FileName, ms.ToArray());
-                    }
+                    file.CopyTo( ms );
+                    ms.Position = 0;
+                    //var fileBytes = ms.ToArray();
+                    //builder.Attachments.Add(file.FileName, fileBytes, ContentType.Parse(file.ContentType));
+                    builder.Attachments.Add( file.FileName, ms.ToArray() );
                 }
-            }
-            email.Body = builder.ToMessageBody();
 
-            using var smtp = new SmtpClient();
+        email.Body = builder.ToMessageBody();
 
-            smtp.Connect(_config.GetSection("EmailHost").Value, 587, MailKit.Security.SecureSocketOptions.StartTls);
-            smtp.Authenticate(_config.GetSection("EmailUserName").Value, _config.GetSection("EmailPassword").Value);
-            smtp.Send(email);
-            smtp.Disconnect(true);
-        }
+        using var smtp = new SmtpClient();
 
-        public void SendEmailToken(EmailTokenDTO dto, string token)
+        smtp.Connect( _config.GetSection( "EmailHost" ).Value, 587, SecureSocketOptions.StartTls );
+        smtp.Authenticate( _config.GetSection( "EmailUserName" ).Value, _config.GetSection( "EmailPassword" ).Value );
+        smtp.Send( email );
+        smtp.Disconnect( true );
+    }
+
+    public void SendEmailToken( EmailTokenDTO dto, string token )
+    {
+        dto.Token = token;
+        var email = new MimeMessage();
+
+        email.From.Add( MailboxAddress.Parse( _config.GetSection( "EmailUserName" ).Value ) );
+        email.To.Add( MailboxAddress.Parse( dto.To ) );
+        email.Subject = dto.Subject;
+        var builder = new BodyBuilder
         {
-            dto.Token = token;
-            var email = new MimeMessage();
+            HtmlBody = dto.Body
+        };
 
-            email.From.Add(MailboxAddress.Parse(_config.GetSection("EmailUserName").Value));
-            email.To.Add(MailboxAddress.Parse(dto.To));
-            email.Subject = dto.Subject;
-            var builder = new BodyBuilder
-            {
-                HtmlBody = dto.Body,
-            };
+        email.Body = builder.ToMessageBody();
+        using var smtp = new SmtpClient();
 
-            email.Body = builder.ToMessageBody();
-            using var smtp = new SmtpClient();
-
-            smtp.Connect(_config.GetSection("EmailHost").Value, 587, MailKit.Security.SecureSocketOptions.StartTls);
-            smtp.Authenticate(_config.GetSection("EmailUserName").Value, _config.GetSection("EmailPassword").Value);
-            smtp.Send(email);
-            smtp.Disconnect(true);
-        }
+        smtp.Connect( _config.GetSection( "EmailHost" ).Value, 587, SecureSocketOptions.StartTls );
+        smtp.Authenticate( _config.GetSection( "EmailUserName" ).Value, _config.GetSection( "EmailPassword" ).Value );
+        smtp.Send( email );
+        smtp.Disconnect( true );
     }
 }

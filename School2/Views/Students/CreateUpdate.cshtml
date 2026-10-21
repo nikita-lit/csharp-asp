@@ -1,6 +1,6 @@
 @model School2.Models.Students.StudentViewModel
 
-@if (Model.Id.HasValue)
+@if ( Model.Id.HasValue )
 {
     <h1>Muuda õpilast</h1>
 }
@@ -12,7 +12,7 @@ else
 <div>
     <form method="post" enctype="multipart/form-data">
         <div asp-validation summary="ModelOnly" class="text-danger"></div>
-        
+
         <input id="CU_Student_Guid" asp-for="Id" type="hidden"/>
         <input asp-for="CreatedAt" type="hidden"/>
         <input asp-for="ModifiedAt" type="hidden"/>
@@ -21,45 +21,45 @@ else
             <label asp-for="FirstName" class="control-label"></label>
             <input id="CU_Student_FirstName" asp-for="FirstName" class="form-control"/>
             <span asp-validation-for="FirstName" class="text-danger"></span>
-        </div>        
-        
+        </div>
+
         <div class="form-group">
             <label asp-for="LastName" class="control-label"></label>
             <input id="CU_Student_LastName" asp-for="LastName" class="form-control"/>
             <span asp-validation-for="LastName" class="text-danger"></span>
-        </div>        
-        
+        </div>
+
         <div class="form-group">
             <label asp-for="PhoneNumber" class="control-label"></label>
             <input id="CU_Student_PhoneNumber" asp-for="PhoneNumber" class="form-control"/>
             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-        </div>        
-        
+        </div>
+
         <div class="form-group">
             <label asp-for="Email" class="control-label"></label>
             <input id="CU_Student_Email" asp-for="Email" class="form-control"/>
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
-        
-        @if (Model.Id.HasValue)
+
+        @if ( Model.Id.HasValue )
         {
-            <input asp-action="update" 
-                   asp-controller="Students" 
+            <input asp-action="update"
+                   asp-controller="Students"
                    id="CU_Update_Btn"
-                   type="submit" 
+                   type="submit"
                    value="Muuda"
                    class="btn btn-success"/>
         }
         else
         {
-            <input asp-action="create" 
-                   asp-controller="Students" 
+            <input asp-action="create"
+                   asp-controller="Students"
                    id="CU_Create_Btn"
-                   type="submit" 
+                   type="submit"
                    value="Tee uus"
                    class="btn btn-success"/>
         }
-        
+
         <a id="CU_Back_Btn" asp-action="Index" asp-controller="Students" class="btn btn-secondary">Tagasi</a>
     </form>
 </div>

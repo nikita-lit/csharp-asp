@@ -1,6 +1,6 @@
 @model IEnumerable<School2.Models.Students.StudentViewModel>
 @{
-    int rowNumber = 1;
+    var rowNumber = 1;
 }
 
 <div>
@@ -13,34 +13,37 @@
     Õpilased
 </div>
 <form method="get">
-    <table id="IndexCreateNewStudent_Table" class="table table-hover"> 
-        <thead> 
+    <table id="IndexCreateNewStudent_Table" class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">Nr</th>
             <th scope="col">Eesnimi</th>
             <th scope="col">Perekonnanimi</th>
             <th scope="col">Telefoninumber</th>
             <th scope="col">E-post</th>
-        </tr> 
-        </thead> 
-        <tbody> 
-        @foreach (var student in Model) 
-        { 
-            <tr> 
-                <td>@rowNumber</td> 
-                <td id="IndexTableStudent_FirstName">@student.FirstName</td> 
-                <td id="IndexTableStudent_LastName">@student.LastName</td> 
-                <td id="IndexTableStudent_PhoneNumber">@student.PhoneNumber</td> 
-                <td id="IndexTableStudent_Email">@student.Email</td> 
-                <td id="IndexTableStudent_Actions"> 
-                    <a id="IndexTableStudentDetails_Btn" asp-action="Details" asp-controller="Students" asp-route-id="@student.Id" class="btn btn-secondary">Andmed</a> 
-                    <a id="IndexTableStudentUpdate_Btn" asp-action="Update" asp-controller="Students" asp-route-id="@student.Id" class="btn btn-warning">Muuda</a> 
-                    <a id="IndexTableStudentDelete_Btn" asp-action="Delete" asp-controller="Students" asp-route-id="@student.Id" class="btn btn-danger">Kustuta</a> 
-                </td> 
-            </tr> 
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ( var student in Model )
+        {
+            <tr>
+                <td>@rowNumber</td>
+                <td id="IndexTableStudent_FirstName">@student.FirstName</td>
+                <td id="IndexTableStudent_LastName">@student.LastName</td>
+                <td id="IndexTableStudent_PhoneNumber">@student.PhoneNumber</td>
+                <td id="IndexTableStudent_Email">@student.Email</td>
+                <td id="IndexTableStudent_Actions">
+                    <a id="IndexTableStudentDetails_Btn" asp-action="Details" asp-controller="Students"
+                       asp-route-id="@student.Id" class="btn btn-secondary">Andmed</a>
+                    <a id="IndexTableStudentUpdate_Btn" asp-action="Update" asp-controller="Students"
+                       asp-route-id="@student.Id" class="btn btn-warning">Muuda</a>
+                    <a id="IndexTableStudentDelete_Btn" asp-action="Delete" asp-controller="Students"
+                       asp-route-id="@student.Id" class="btn btn-danger">Kustuta</a>
+                </td>
+            </tr>
 
             rowNumber++;
-        } 
-        </tbody> 
+        }
+        </tbody>
     </table>
 </form>
