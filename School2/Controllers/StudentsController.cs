@@ -11,37 +11,37 @@ public class StudentsController( School2Context context, IStudentsServices stude
     public IActionResult Index()
     {
         var result = context.Students
-            .Select(x => new StudentViewModel
+            .Select( x => new StudentViewModel
             {
                 Id = x.Id,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
                 PhoneNumber = x.PhoneNumber,
                 Email = x.Email
-            }).Take(20);
-            
-        return View(result);
+            } ).Take( 20 );
+
+        return View( result );
     }
-    
-    
+
+
     [HttpGet]
     public IActionResult Create()
     {
         StudentViewModel vm = new();
-        return View("CreateUpdate", vm);
+        return View( "CreateUpdate", vm );
     }
-    
+
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(StudentViewModel vm) 
+    public async Task<IActionResult> Create( StudentViewModel vm )
     {
-        if (vm == null)
-            return RedirectToAction("Error", "Home");
+        if ( vm == null )
+            return RedirectToAction( "Error", "Home" );
 
-        if (!ModelState.IsValid)
-            return RedirectToAction("Error", "Home");
+        if ( !ModelState.IsValid )
+            return RedirectToAction( "Error", "Home" );
 
-        var dto = new StudentDTO() 
+        var dto = new StudentDTO
         {
             Id = vm.Id,
             FirstName = vm.FirstName,
@@ -50,24 +50,23 @@ public class StudentsController( School2Context context, IStudentsServices stude
             Email = vm.Email
         };
 
-        var result = await studentsServices.Create(dto);
+        var result = await studentsServices.Create( dto );
 
-        if (result == null)
-            return RedirectToAction("Error", "Home");
-        else
-            return RedirectToAction(nameof(Index));
+        if ( result == null )
+            return RedirectToAction( "Error", "Home" );
+        return RedirectToAction( nameof(Index) );
     }
-    
+
     [HttpGet]
-    public async Task<IActionResult> Update(Guid id)
+    public async Task<IActionResult> Update( Guid id )
     {
-        if (id == Guid.Empty)
+        if ( id == Guid.Empty )
             return NotFound();
-            
-        var studentToUpdate = await studentsServices.DetailsAsync(id);
-        if (studentToUpdate is null)
+
+        var studentToUpdate = await studentsServices.DetailsAsync( id );
+        if ( studentToUpdate is null )
             return NotFound();
-            
+
         var vm = new StudentViewModel();
         vm.Id = studentToUpdate.Id;
         vm.FirstName = studentToUpdate.FirstName;
@@ -76,17 +75,17 @@ public class StudentsController( School2Context context, IStudentsServices stude
         vm.Email = studentToUpdate.Email;
         vm.CreatedAt = studentToUpdate.CreatedAt;
         vm.ModifiedAt = studentToUpdate.ModifiedAt;
-            
-        return View("CreateUpdate", vm);
+
+        return View( "CreateUpdate", vm );
     }
 
     [HttpPost]
-    public async Task<IActionResult> Update(StudentViewModel vm)
+    public async Task<IActionResult> Update( StudentViewModel vm )
     {
-        if (!ModelState.IsValid)
-            return View("CreateUpdate", vm);
+        if ( !ModelState.IsValid )
+            return View( "CreateUpdate", vm );
 
-        var dto = new StudentDTO()
+        var dto = new StudentDTO
         {
             Id = vm.Id,
             FirstName = vm.FirstName,
@@ -96,12 +95,70 @@ public class StudentsController( School2Context context, IStudentsServices stude
             CreatedAt = (DateTime)vm.CreatedAt,
             ModifiedAt = (DateTime)vm.ModifiedAt
         };
-            
-        var result = await studentsServices.Update(dto);
+
+        var result = await studentsServices.Update( dto );
         var resultId = result.Id;
-        if (result is null)
-            return RedirectToAction(nameof(Index));
-            
-        return RedirectToAction(nameof(Update), new { id = resultId });
+        if ( result is null )
+            return RedirectToAction( nameof(Index) );
+
+        return RedirectToAction( nameof(Update), new { id = resultId } );
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Details( Guid id )
+    {
+        if ( id == Guid.Empty )
+            return NotFound();
+
+        var result = await studentsServices.DetailsAsync( id );
+        if ( result is null )
+            return NotFound();
+
+        var vm = new StudentViewModel
+        {
+            Id = result.Id,
+            FirstName = result.FirstName,
+            LastName = result.LastName,
+            PhoneNumber = result.PhoneNumber,
+            Email = result.Email
+        };
+
+        ViewData["ViewType"] = "details";
+
+        return View( "DetailsDelete", vm );
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete( Guid id )
+    {
+        if ( id == Guid.Empty )
+            return NotFound();
+
+        var result = await studentsServices.DetailsAsync( id );
+        if ( result is null )
+            return NotFound();
+
+        var vm = new StudentViewModel
+        {
+            Id = result.Id,
+            FirstName = result.FirstName,
+            LastName = result.LastName,
+            PhoneNumber = result.PhoneNumber,
+            Email = result.Email
+        };
+
+        ViewData["ViewType"] = "delete";
+
+        return View( "DetailsDelete", vm );
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteConfirmed( Guid id )
+    {
+        var studentToDelete = await studentsServices.Delete( id );
+        if ( studentToDelete is null )
+            return NotFound();
+
+        return RedirectToAction( nameof(Index) );
     }
 }
