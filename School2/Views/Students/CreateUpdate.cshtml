@@ -6,12 +6,12 @@
 }
 else
 {
-    <h1>Loo uus õpilast</h1>
+    <h1>Loo uus õpilane</h1>
 }
 
 <div>
     <form method="post" enctype="multipart/form-data">
-        <div asp-validation summary="ModelOnly" class="text-danger"></div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <input id="CU_Student_Guid" asp-for="Id" type="hidden"/>
         <input asp-for="CreatedAt" type="hidden"/>
