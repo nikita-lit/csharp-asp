@@ -47,6 +47,7 @@ public class StudentsServices : IStudentsServices
             Id = (Guid)dto.Id,
             FirstName = dto.FirstName,
             LastName = dto.LastName,
+            PhoneNumber = dto.PhoneNumber,
             Email = dto.Email,
             ModifiedAt = DateTime.UtcNow,
             CreatedAt = dto.CreatedAt
