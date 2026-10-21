@@ -160,10 +160,9 @@ public class LanguageCoursesController( School2Context context, ILanguageCourses
         };
 
         var result = await languageCoursesServices.Update( dto );
-        var resultId = result.Id;
         if ( result is null )
             return RedirectToAction( nameof(Index) );
 
-        return RedirectToAction( nameof(Update), new { id = resultId } );
+        return RedirectToAction( nameof(Update), new { id = result.Id } );
     }
 }

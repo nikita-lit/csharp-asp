@@ -97,11 +97,10 @@ public class StudentsController( School2Context context, IStudentsServices stude
         };
 
         var result = await studentsServices.Update( dto );
-        var resultId = result.Id;
         if ( result is null )
             return RedirectToAction( nameof(Index) );
 
-        return RedirectToAction( nameof(Update), new { id = resultId } );
+        return RedirectToAction( nameof(Update), new { id = result.Id } );
     }
 
     [HttpGet]

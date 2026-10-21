@@ -6,29 +6,18 @@ using School2.Data;
 
 namespace School2.ApplicationServices.Services;
 
-public class LanguageCoursesServices : ILanguageCoursesServices
+public class LanguageCoursesServices( School2Context context ) : ILanguageCoursesServices
 {
-    private readonly School2Context _context;
-
-    public LanguageCoursesServices( School2Context context )
-    {
-        _context = context;
-    }
-
     public async Task<LanguageCourse> Create( LanguageCourseDTO dto )
     {
         if ( dto == null )
             return null;
 
+        if ( dto.Nimetus.Length < 1 || dto.Keel.Length < 1 )
+            return null;
+
         LanguageCourse domain = new();
         domain.Id = Guid.NewGuid();
-
-        if ( dto.Nimetus.Length < 1 )
-            return null;
-
-        if ( dto.Keel.Length < 1 )
-            return null;
-
         domain.Nimetus = dto.Nimetus;
         domain.Keel = dto.Keel;
         domain.Kirjeldus = dto.Kirjeldus;
@@ -39,14 +28,21 @@ public class LanguageCoursesServices : ILanguageCoursesServices
         // later, require user id to be attached to "ModifiedBy" parameter, to know who modified last.
 
         //TODO: check if db addition succeeded, if yes, return object, if not, null
-        await _context.LanguageCourses.AddAsync( domain );
-        await _context.SaveChangesAsync();
+        await context.LanguageCourses.AddAsync( domain );
+        await context.SaveChangesAsync();
 
         return domain;
     }
 
     public async Task<LanguageCourse> Update( LanguageCourseDTO dto )
     {
+        if ( dto == null )
+            return null;
+
+        var any = await context.Students.AnyAsync( x => x.Id == dto.Id );
+        if ( !any )
+            return null;
+
         var domain = new LanguageCourse();
         domain.Id = (Guid)dto.Id;
         domain.Kirjeldus = dto.Kirjeldus;
@@ -56,16 +52,16 @@ public class LanguageCoursesServices : ILanguageCoursesServices
         domain.CreatedAt = (DateTime)dto.CreatedAt;
         domain.Tase = dto.Tase;
 
-        _context.ChangeTracker.Clear(); // - puhustab hetkel jälgitud konteksti
-        _context.LanguageCourses.Update( domain );
-        await _context.SaveChangesAsync();
+        context.ChangeTracker.Clear(); // - puhustab hetkel jälgitud konteksti
+        context.LanguageCourses.Update( domain );
+        await context.SaveChangesAsync();
 
         return domain;
     }
 
     public async Task<LanguageCourse> DetailsAsync( Guid id )
     {
-        var result = await _context.LanguageCourses
+        var result = await context.LanguageCourses
             .FirstOrDefaultAsync( x => x.Id == id );
 
         return result;
@@ -73,11 +69,14 @@ public class LanguageCoursesServices : ILanguageCoursesServices
 
     public async Task<LanguageCourse> Delete( Guid id )
     {
-        var result = await _context.LanguageCourses
+        var result = await context.LanguageCourses
             .FirstOrDefaultAsync( x => x.Id == id );
 
-        _context.LanguageCourses.Remove( result );
-        await _context.SaveChangesAsync();
+        if ( result == null )
+            return null;
+
+        context.LanguageCourses.Remove( result );
+        await context.SaveChangesAsync();
 
         return result;
     }

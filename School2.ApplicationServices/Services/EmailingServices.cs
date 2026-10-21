@@ -7,22 +7,12 @@ using School2.Core.ServiceInterface;
 
 namespace School2.ApplicationServices.Services;
 
-public class EmailingServices : IEmailingServices
+public class EmailingServices( IConfiguration config ) : IEmailingServices
 {
-    private readonly IConfiguration _config;
-
-    public EmailingServices
-    (
-        IConfiguration config
-    )
-    {
-        _config = config;
-    }
-
     public void SendEmail( EmailDTO dto )
     {
         var email = new MimeMessage();
-        email.From.Add( MailboxAddress.Parse( _config.GetSection( "EmailUserName" ).Value ) );
+        email.From.Add( MailboxAddress.Parse( config.GetSection( "EmailUserName" ).Value ) );
         email.To.Add( MailboxAddress.Parse( dto.To ) );
         email.Subject = dto.Subject;
 
@@ -47,8 +37,8 @@ public class EmailingServices : IEmailingServices
 
         using var smtp = new SmtpClient();
 
-        smtp.Connect( _config.GetSection( "EmailHost" ).Value, 587, SecureSocketOptions.StartTls );
-        smtp.Authenticate( _config.GetSection( "EmailUserName" ).Value, _config.GetSection( "EmailPassword" ).Value );
+        smtp.Connect( config.GetSection( "EmailHost" ).Value, 587, SecureSocketOptions.StartTls );
+        smtp.Authenticate( config.GetSection( "EmailUserName" ).Value, config.GetSection( "EmailPassword" ).Value );
         smtp.Send( email );
         smtp.Disconnect( true );
     }
@@ -58,7 +48,7 @@ public class EmailingServices : IEmailingServices
         dto.Token = token;
         var email = new MimeMessage();
 
-        email.From.Add( MailboxAddress.Parse( _config.GetSection( "EmailUserName" ).Value ) );
+        email.From.Add( MailboxAddress.Parse( config.GetSection( "EmailUserName" ).Value ) );
         email.To.Add( MailboxAddress.Parse( dto.To ) );
         email.Subject = dto.Subject;
         var builder = new BodyBuilder
@@ -69,8 +59,8 @@ public class EmailingServices : IEmailingServices
         email.Body = builder.ToMessageBody();
         using var smtp = new SmtpClient();
 
-        smtp.Connect( _config.GetSection( "EmailHost" ).Value, 587, SecureSocketOptions.StartTls );
-        smtp.Authenticate( _config.GetSection( "EmailUserName" ).Value, _config.GetSection( "EmailPassword" ).Value );
+        smtp.Connect( config.GetSection( "EmailHost" ).Value, 587, SecureSocketOptions.StartTls );
+        smtp.Authenticate( config.GetSection( "EmailUserName" ).Value, config.GetSection( "EmailPassword" ).Value );
         smtp.Send( email );
         smtp.Disconnect( true );
     }

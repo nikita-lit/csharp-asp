@@ -6,17 +6,8 @@ using School2.Data;
 
 namespace School2.ApplicationServices.Services;
 
-public class FilesServices : IFilesServices
+public class FilesServices( School2Context context, IHostEnvironment hostEnvironment ) : IFilesServices
 {
-    private readonly School2Context _context;
-    private readonly IHostEnvironment _hostEnvironment;
-
-    public FilesServices( School2Context context, IHostEnvironment hostEnvironment )
-    {
-        _context = context;
-        _hostEnvironment = hostEnvironment;
-    }
-
     public void UploadFiles( LecturerDTO dto, Lecturer domain )
     {
         if ( dto.Files != null && dto.Files.Count > 0 )
@@ -32,7 +23,7 @@ public class FilesServices : IFilesServices
                     file.CopyTo( target );
                     files.ImageData = target.ToArray();
 
-                    _context.Files.Add( files );
+                    context.Files.Add( files );
                 }
     }
 
