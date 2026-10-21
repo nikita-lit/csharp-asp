@@ -26,6 +26,7 @@ public class StudentsServices : IStudentsServices
             FirstName = dto.FirstName,
             LastName = dto.LastName,
             PhoneNumber = dto.PhoneNumber,
+            Email = dto.Email,
             CreatedAt = DateTime.UtcNow,
             ModifiedAt = DateTime.UtcNow
         };
@@ -43,9 +44,10 @@ public class StudentsServices : IStudentsServices
         
         var domain = new Student
         {
-            Id = dto.Id,
+            Id = (Guid)dto.Id,
             FirstName = dto.FirstName,
             LastName = dto.LastName,
+            Email = dto.Email,
             ModifiedAt = DateTime.UtcNow,
             CreatedAt = dto.CreatedAt
         };
