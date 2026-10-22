@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using School2.Core.Domain;
 using School2.Core.DTO;
@@ -10,11 +11,7 @@ public class StudentsServices( School2Context context ) : IStudentsServices
 {
     public async Task<Student> Create( StudentDTO dto )
     {
-        if ( dto == null )
-            return null;
-
-        if ( string.IsNullOrWhiteSpace( dto.FirstName )
-             || string.IsNullOrWhiteSpace( dto.LastName ) )
+        if ( !IsValidStudent( dto ) )
             return null;
 
         Student domain = new()
@@ -36,11 +33,7 @@ public class StudentsServices( School2Context context ) : IStudentsServices
 
     public async Task<Student> Update( StudentDTO dto )
     {
-        if ( dto == null )
-            return null;
-
-        if ( string.IsNullOrWhiteSpace( dto.FirstName )
-             || string.IsNullOrWhiteSpace( dto.LastName ) )
+        if ( !IsValidStudent( dto ) )
             return null;
 
         // check that we have student with same id
@@ -86,5 +79,29 @@ public class StudentsServices( School2Context context ) : IStudentsServices
         await context.SaveChangesAsync();
 
         return result;
+    }
+
+    private static bool IsValidStudent( StudentDTO? dto )
+    {
+        if ( dto == null )
+            return false;
+
+        if ( string.IsNullOrWhiteSpace( dto.FirstName ) ||
+             string.IsNullOrWhiteSpace( dto.LastName ) ||
+             string.IsNullOrWhiteSpace( dto.Email ) ||
+             string.IsNullOrWhiteSpace( dto.PhoneNumber ) )
+            return false;
+
+        if ( dto.FirstName.Length > 100 ||
+             dto.LastName.Length > 100 )
+            return false;
+
+        if ( !new EmailAddressAttribute().IsValid( dto.Email ) )
+            return false;
+
+        if ( !new PhoneAttribute().IsValid( dto.PhoneNumber ) )
+            return false;
+
+        return true;
     }
 }

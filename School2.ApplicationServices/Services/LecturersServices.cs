@@ -10,22 +10,18 @@ public class LecturersServices( School2Context context ) : ILecturersServices
 {
     public async Task<Lecturer> Create( LecturerDTO dto )
     {
-        if ( dto == null )
+        if ( !IsValidLecturer( dto ) )
             return null;
 
-        Lecturer domain = new();
-        domain.Id = Guid.NewGuid();
-
-        if ( dto.FirstName.Length < 1 ||
-             dto.LastName.Length < 1 ||
-             dto.Qualifications.Length < 1 )
-            return null;
-
-        domain.FirstName = dto.FirstName;
-        domain.LastName = dto.LastName;
-        domain.Qualifications = dto.Qualifications;
-        domain.CreatedAt = DateTime.UtcNow;
-        domain.ModifiedAt = DateTime.UtcNow;
+        Lecturer domain = new()
+        {
+            Id = Guid.NewGuid(),
+            FirstName = dto.FirstName,
+            LastName = dto.LastName,
+            Qualifications = dto.Qualifications,
+            CreatedAt = DateTime.UtcNow,
+            ModifiedAt = DateTime.UtcNow
+        };
 
         await context.Lecturers.AddAsync( domain );
         await context.SaveChangesAsync();
@@ -35,20 +31,22 @@ public class LecturersServices( School2Context context ) : ILecturersServices
 
     public async Task<Lecturer> Update( LecturerDTO dto )
     {
-        if ( dto == null )
+        if ( !IsValidLecturer( dto ) )
             return null;
 
         var any = await context.Lecturers.AnyAsync( x => x.Id == dto.Id );
         if ( !any )
             return null;
 
-        var domain = new Lecturer();
-        domain.Id = dto.Id;
-        domain.FirstName = dto.FirstName;
-        domain.LastName = dto.LastName;
-        domain.Qualifications = dto.Qualifications;
-        domain.ModifiedAt = DateTime.UtcNow;
-        domain.CreatedAt = (DateTime)dto.CreatedAt;
+        var domain = new Lecturer
+        {
+            Id = dto.Id,
+            FirstName = dto.FirstName,
+            LastName = dto.LastName,
+            Qualifications = dto.Qualifications,
+            ModifiedAt = DateTime.UtcNow,
+            CreatedAt = (DateTime)dto.CreatedAt
+        };
 
         context.ChangeTracker.Clear(); // - puhustab hetkel jälgitud konteksti
         context.Lecturers.Update( domain );
@@ -77,5 +75,18 @@ public class LecturersServices( School2Context context ) : ILecturersServices
         await context.SaveChangesAsync();
 
         return result;
+    }
+
+    private static bool IsValidLecturer( LecturerDTO? dto )
+    {
+        if ( dto == null )
+            return false;
+
+        if ( dto.FirstName.Length < 1 ||
+             dto.LastName.Length < 1 ||
+             dto.Qualifications.Length < 1 )
+            return false;
+
+        return true;
     }
 }

@@ -10,11 +10,7 @@ public class LanguageCoursesServices( School2Context context ) : ILanguageCourse
 {
     public async Task<LanguageCourse> Create( LanguageCourseDTO dto )
     {
-        if ( dto == null )
-            return null;
-
-        if ( string.IsNullOrWhiteSpace( dto.Nimetus )
-             || string.IsNullOrWhiteSpace( dto.Keel ) )
+        if ( !IsValidLanguageCourse( dto ) )
             return null;
 
         LanguageCourse domain = new()
@@ -40,11 +36,7 @@ public class LanguageCoursesServices( School2Context context ) : ILanguageCourse
 
     public async Task<LanguageCourse> Update( LanguageCourseDTO dto )
     {
-        if ( dto == null )
-            return null;
-
-        if ( string.IsNullOrWhiteSpace( dto.Nimetus )
-             || string.IsNullOrWhiteSpace( dto.Keel ) )
+        if ( !IsValidLanguageCourse( dto ) )
             return null;
 
         var any = await context.LanguageCourses.AnyAsync( x => x.Id == dto.Id );
@@ -87,5 +79,17 @@ public class LanguageCoursesServices( School2Context context ) : ILanguageCourse
         await context.SaveChangesAsync();
 
         return result;
+    }
+
+    private static bool IsValidLanguageCourse( LanguageCourseDTO? dto )
+    {
+        if ( dto == null )
+            return false;
+
+        if ( string.IsNullOrWhiteSpace( dto.Nimetus )
+             || string.IsNullOrWhiteSpace( dto.Keel ) )
+            return false;
+
+        return true;
     }
 }
