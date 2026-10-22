@@ -71,7 +71,7 @@ public class LanguageCourseFrontendTests
     private static void NavigateToIndex( IWebDriver driver )
     {
         var navigateToLanguageCourse =
-            driver.FindElement( By.LinkText( "Keelekursused" ) ); // otsime tesitava osa lingi
+            driver.FindElement( By.Id( "LanguageCourses_Btn" ) ); // otsime tesitava osa lingi
         navigateToLanguageCourse.Click(); // simuleeritud tegevus elemendiga, antud juhul klikk
     }
 

@@ -23,12 +23,12 @@ public abstract class TestBase
 
     public virtual void SetupServices( IServiceCollection services )
     {
-        services.AddScoped<ILanguageCoursesServices, LanguageCoursesServices>();
-        //services.AddScoped<IFileServices, FileServices>();
         services.AddScoped<IHostEnvironment, MockIHostEnvironment>();
 
+        services.AddScoped<ILanguageCoursesServices, LanguageCoursesServices>();
         services.AddScoped<IFilesServices, FilesServices>();
         services.AddScoped<ILecturersServices, LecturersServices>();
+        services.AddScoped<IStudentsServices, StudentsServices>();
 
         services.AddDbContext<School2Context>
         ( x =>
