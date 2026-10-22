@@ -63,3 +63,7 @@ else
         <a id="CU_Back_Btn" asp-action="Index" asp-controller="Students" class="btn btn-secondary">Tagasi</a>
     </form>
 </div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync( "_ValidationScriptsPartial" ); }
+}
