@@ -1,0 +1,101 @@
+﻿@model School2.Models.Lecturers.LecturerViewModel
+
+@if (Model.Id.HasValue)
+{
+    <h1>Muuda õppejõudu</h1>
+}
+else
+{
+    <h1>Loo uus õppejõud</h1>
+}
+
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly"
+             class="text-danger"></div>
+
+        <input id="CU_Lecturer_Guid"
+               asp-for="Id"
+               type="hidden" />
+
+        <input asp-for="CreatedAt" type="hidden" />
+        <input asp-for="ModifiedAt" type="hidden" />
+
+        <div class="form-group">
+            <label asp-for="FirstName"
+                   class="control-label"></label>
+
+            <input id="CU_Lecturer_FirstName"
+                   asp-for="FirstName"
+                   class="form-control" />
+
+            <span asp-validation-for="FirstName"
+                  class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="LastName"
+                   class="control-label"></label>
+
+            <input id="CU_Lecturer_LastName"
+                   asp-for="LastName"
+                   class="form-control" />
+
+            <span asp-validation-for="LastName"
+                  class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Qualifications"
+                   class="control-label"></label>
+
+            <input id="CU_Lecturer_Qualifications"
+                   asp-for="Qualifications"
+                   class="form-control" />
+
+            <span asp-validation-for="Qualifications"
+                  class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Files"></label>
+
+            <input asp-for="Files"
+                   type="file"
+                   multiple
+                   class="form-control" />
+        </div>
+
+        @if (Model.Id.HasValue)
+        {
+            <input asp-action="Update"
+                   asp-controller="Lecturers"
+                   id="CU_Update_Btn"
+                   type="submit"
+                   value="Muuda"
+                   class="btn btn-success" />
+        }
+        else
+        {
+            <input asp-action="Create"
+                   asp-controller="Lecturers"
+                   id="CU_Create_Btn"
+                   type="submit"
+                   value="Tee uus"
+                   class="btn btn-success" />
+        }
+
+        <a id="CU_Back_Btn"
+               asp-action="Index"
+               asp-controller="Lecturers"
+               class="btn btn-secondary">
+            Tagasi
+        </a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
