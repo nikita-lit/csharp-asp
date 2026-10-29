@@ -1,0 +1,81 @@
+﻿@model IEnumerable<School2.Models.Lecturers.LecturerViewModel>
+
+@{
+    var rowNumber = 1;
+}
+
+<div>
+    <a id="IndexCreateNewLecturer_Btn"
+           asp-action="Create"
+           asp-controller="Lecturers"
+           class="btn btn-dark">
+        Lisa uus õppejõud
+    </a>
+</div>
+
+<div class="h1">
+    Õppejõud
+</div>
+
+<form method="get">
+    <table id="IndexCreateNewLecturer_Table"
+           class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nr</th>
+                <th scope="col">Eesnimi</th>
+                <th scope="col">Perekonnanimi</th>
+                <th scope="col">Kvalifikatsioon</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var lecturer in Model)
+            {
+                <tr>
+                    <td>@rowNumber</td>
+
+                    <td id="IndexTableLecturer_FirstName">
+                        @lecturer.FirstName
+                    </td>
+
+                    <td id="IndexTableLecturer_LastName">
+                        @lecturer.LastName
+                    </td>
+
+                    <td id="IndexTableLecturer_Qualifications">
+                        @lecturer.Qualifications
+                    </td>
+
+                    <td id="IndexTableLecturer_Actions">
+                        <a id="IndexTableLecturerDetails_Btn"
+                               asp-action="Details"
+                               asp-controller="Lecturers"
+                               asp-route-id="@lecturer.Id"
+                               class="btn btn-secondary">
+                            Andmed
+                        </a>
+
+                        <a id="IndexTableLecturerUpdate_Btn"
+                               asp-action="Update"
+                               asp-controller="Lecturers"
+                               asp-route-id="@lecturer.Id"
+                               class="btn btn-warning">
+                            Muuda
+                        </a>
+
+                        <a id="IndexTableLecturerDelete_Btn"
+                               asp-action="Delete"
+                               asp-controller="Lecturers"
+                               asp-route-id="@lecturer.Id"
+                               class="btn btn-danger">
+                            Kustuta
+                        </a>
+                    </td>
+                </tr>
+
+                rowNumber++;
+            }
+        </tbody>
+    </table>
+</form>
