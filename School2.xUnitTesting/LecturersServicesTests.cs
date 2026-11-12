@@ -379,6 +379,27 @@ public class LecturersServicesTests : TestBase
         Assert.Null( result );
     }
 
+    /// <summary>
+    ///     Test, mis kontrollib, et tühja Guid-iga õppejõudu ei leita, muudeta ega kustutata.
+    /// </summary>
+    [Fact]
+    public async Task Should_ReturnNull_WhenGuidIsEmpty()
+    {
+        //ülesseade
+        var dto = MockLecturerDTOData();
+        dto.Id = Guid.Empty;
+
+        //tegevus
+        var details = await Svc<ILecturersServices>().DetailsAsync( Guid.Empty );
+        var updatedLecturer = await Svc<ILecturersServices>().Update( dto );
+        var deletedLecturer = await Svc<ILecturersServices>().Delete( Guid.Empty );
+
+        //kontroll
+        Assert.Null( details );
+        Assert.Null( updatedLecturer );
+        Assert.Null( deletedLecturer );
+    }
+
     public async Task<Lecturer> AddLecturerToDb()
     {
         var dto = MockLecturerDTOData();
