@@ -311,6 +311,33 @@ public class LecturersServicesTests : TestBase
         Assert.Equal( originalDTO.Qualifications, details.Qualifications );
     }
 
+    /// <summary>
+    ///     Test, mis kontrollib, et muutmisel eemaldatakse väljade algusest ja lõpust tühikud.
+    /// </summary>
+    [Fact]
+    public async Task Should_TrimLecturerFields_WhenUpdatingLecturer()
+    {
+        //ülesseade
+        var createdLecturer = await AddLecturerToDb();
+        var dto = MockLecturerDTOData();
+        dto.Id = createdLecturer.Id;
+        dto.FirstName = "  Uus nimi  ";
+        dto.LastName = "  Uus perekonnanimi  ";
+        dto.Qualifications = "  Eesti keele õpetaja  ";
+
+        //tegevus
+        var result = await Svc<ILecturersServices>().Update( dto );
+        Svc<School2Context>().ChangeTracker.Clear();
+        var details = await Svc<ILecturersServices>().DetailsAsync( dto.Id );
+
+        //kontroll
+        Assert.NotNull( result );
+        Assert.NotNull( details );
+        Assert.Equal( "Uus nimi", details.FirstName );
+        Assert.Equal( "Uus perekonnanimi", details.LastName );
+        Assert.Equal( "Eesti keele õpetaja", details.Qualifications );
+    }
+
     public async Task<Lecturer> AddLecturerToDb()
     {
         var dto = MockLecturerDTOData();
