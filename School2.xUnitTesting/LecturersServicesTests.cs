@@ -210,6 +210,53 @@ public class LecturersServicesTests : TestBase
         Assert.Equal( createdLecturer.Id, details.Id );
     }
 
+    /// <summary>
+    ///     Test, mis kontrollib, et vigase välja korral jäävad varasemad andmed alles.
+    /// </summary>
+    [Theory]
+    [InlineData( null, "Testnimi", "Uus kvalifikatsioon" )]
+    [InlineData( "", "Testnimi", "Uus kvalifikatsioon" )]
+    [InlineData( "   ", "Testnimi", "Uus kvalifikatsioon" )]
+    [InlineData( "Testnimi", null, "Uus kvalifikatsioon" )]
+    [InlineData( "Testnimi", "", "Uus kvalifikatsioon" )]
+    [InlineData( "Testnimi", "   ", "Uus kvalifikatsioon" )]
+    [InlineData( "Testnimi", "Testnimi", null )]
+    [InlineData( "Testnimi", "Testnimi", "" )]
+    [InlineData( "Testnimi", "Testnimi", "   " )]
+    public async Task ShouldNot_UpdateLecturer_WhenDataIsIncorrect(
+        string? firstName, string? lastName, string? qualifications )
+    {
+        //ülesseade
+        var dto = MockLecturerDTOData();
+        var createResult = await Svc<ILecturersServices>().Create( dto );
+        Assert.NotNull( createResult );
+        var createdAt = createResult.CreatedAt;
+        var modifiedAt = createResult.ModifiedAt;
+
+        var updateDTO = new LecturerDTO
+        {
+            Id = createResult.Id,
+            FirstName = firstName!,
+            LastName = lastName!,
+            Qualifications = qualifications!
+        };
+
+        //tegevus
+        var result = await Svc<ILecturersServices>().Update( updateDTO );
+        Svc<School2Context>().ChangeTracker.Clear();
+        var details = await Svc<ILecturersServices>().DetailsAsync( createResult.Id );
+
+        //kontroll
+        Assert.Null( result );
+        Assert.NotNull( details );
+        Assert.Equal( createResult.Id, details.Id );
+        Assert.Equal( dto.FirstName, details.FirstName );
+        Assert.Equal( dto.LastName, details.LastName );
+        Assert.Equal( dto.Qualifications, details.Qualifications );
+        Assert.Equal( createdAt, details.CreatedAt );
+        Assert.Equal( modifiedAt, details.ModifiedAt );
+    }
+
     public async Task<Lecturer> AddLecturerToDb()
     {
         var dto = MockLecturerDTOData();
