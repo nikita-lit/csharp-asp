@@ -124,6 +124,37 @@ public class LecturersServicesTests : TestBase
         Assert.NotEqual( deletedLecturer, result );
     }
 
+    /// <summary>
+    ///     Test, mis kontrollib iga kohustuslikku välja nulli, tühja teksti ja tühikutega.
+    /// </summary>
+    [Theory]
+    [InlineData( null, "Test", "Test" )]
+    [InlineData( "", "Test", "Test" )]
+    [InlineData( "   ", "Test", "Test" )]
+    [InlineData( "Test", null, "Test" )]
+    [InlineData( "Test", "", "Test" )]
+    [InlineData( "Test", "   ", "Test" )]
+    [InlineData( "Test", "Test", null )]
+    [InlineData( "Test", "Test", "" )]
+    [InlineData( "Test", "Test", "   " )]
+    public async Task ShouldNot_AddNewLecturer_WhenRequiredFieldIsEmpty(
+        string? firstName, string? lastName, string? qualifications )
+    {
+        //ülesseade
+        var dto = MockLecturerDTOData();
+        dto.FirstName = firstName!;
+        dto.LastName = lastName!;
+        dto.Qualifications = qualifications!;
+        var countBefore = Svc<School2Context>().Lecturers.Count();
+
+        //tegevus
+        var result = await Svc<ILecturersServices>().Create( dto );
+
+        //kontroll
+        Assert.Null( result );
+        Assert.Equal( countBefore, Svc<School2Context>().Lecturers.Count() );
+    }
+
     public async Task<Lecturer> AddLecturerToDb()
     {
         var dto = MockLecturerDTOData();
