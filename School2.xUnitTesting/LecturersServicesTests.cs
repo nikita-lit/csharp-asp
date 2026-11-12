@@ -338,6 +338,26 @@ public class LecturersServicesTests : TestBase
         Assert.Equal( "Eesti keele õpetaja", details.Qualifications );
     }
 
+    /// <summary>
+    ///     Test, mis kontrollib, et olematu Guid-iga kustutamine jätab olemasoleva õppejõu alles.
+    /// </summary>
+    [Fact]
+    public async Task ShouldNot_DeleteLecturer_WhenGuidIsIncorrect()
+    {
+        //ülesseade
+        var createdLecturer = await AddLecturerToDb();
+        var guid = Guid.NewGuid();
+
+        //tegevus
+        var result = await Svc<ILecturersServices>().Delete( guid );
+        var details = await Svc<ILecturersServices>().DetailsAsync( createdLecturer.Id );
+
+        //kontroll
+        Assert.Null( result );
+        Assert.NotNull( details );
+        Assert.Equal( createdLecturer.Id, details.Id );
+    }
+
     public async Task<Lecturer> AddLecturerToDb()
     {
         var dto = MockLecturerDTOData();
