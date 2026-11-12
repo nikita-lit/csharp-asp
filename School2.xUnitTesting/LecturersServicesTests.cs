@@ -168,6 +168,28 @@ public class LecturersServicesTests : TestBase
         Assert.Null( result );
     }
 
+    /// <summary>
+    ///     Test, mis kontrollib, et lisamisel eemaldatakse väljade algusest ja lõpust tühikud.
+    /// </summary>
+    [Fact]
+    public async Task Should_TrimLecturerFields_WhenAddingNewLecturer()
+    {
+        //ülesseade
+        var dto = MockLecturerDTOData();
+        dto.FirstName = "  Test nimi  ";
+        dto.LastName = "  Test perekonnanimi  ";
+        dto.Qualifications = "  Eesti keele õpetaja  ";
+
+        //tegevus
+        var result = await Svc<ILecturersServices>().Create( dto );
+
+        //kontroll
+        Assert.NotNull( result );
+        Assert.Equal( "Test nimi", result.FirstName );
+        Assert.Equal( "Test perekonnanimi", result.LastName );
+        Assert.Equal( "Eesti keele õpetaja", result.Qualifications );
+    }
+
     public async Task<Lecturer> AddLecturerToDb()
     {
         var dto = MockLecturerDTOData();
