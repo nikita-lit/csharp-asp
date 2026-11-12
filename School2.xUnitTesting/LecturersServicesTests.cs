@@ -155,6 +155,19 @@ public class LecturersServicesTests : TestBase
         Assert.Equal( countBefore, Svc<School2Context>().Lecturers.Count() );
     }
 
+    /// <summary>
+    ///     Test, mis kontrollib, et null DTO-ga õppejõudu ei lisata.
+    /// </summary>
+    [Fact]
+    public async Task ShouldNot_AddNewLecturer_WhenDtoIsNull()
+    {
+        //tegevus
+        var result = await Svc<ILecturersServices>().Create( null );
+
+        //kontroll
+        Assert.Null( result );
+    }
+
     public async Task<Lecturer> AddLecturerToDb()
     {
         var dto = MockLecturerDTOData();
