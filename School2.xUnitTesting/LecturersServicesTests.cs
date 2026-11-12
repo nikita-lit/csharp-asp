@@ -257,6 +257,29 @@ public class LecturersServicesTests : TestBase
         Assert.Equal( modifiedAt, details.ModifiedAt );
     }
 
+    /// <summary>
+    ///     Test, mis kontrollib, et null DTO-ga õppejõu andmeid ei muudeta.
+    /// </summary>
+    [Fact]
+    public async Task ShouldNot_UpdateLecturer_WhenDtoIsNull()
+    {
+        //ülesseade
+        var dto = MockLecturerDTOData();
+        var createdLecturer = await Svc<ILecturersServices>().Create( dto );
+        Assert.NotNull( createdLecturer );
+
+        //tegevus
+        var result = await Svc<ILecturersServices>().Update( null );
+        var details = await Svc<ILecturersServices>().DetailsAsync( createdLecturer.Id );
+
+        //kontroll
+        Assert.Null( result );
+        Assert.NotNull( details );
+        Assert.Equal( dto.FirstName, details.FirstName );
+        Assert.Equal( dto.LastName, details.LastName );
+        Assert.Equal( dto.Qualifications, details.Qualifications );
+    }
+
     public async Task<Lecturer> AddLecturerToDb()
     {
         var dto = MockLecturerDTOData();
