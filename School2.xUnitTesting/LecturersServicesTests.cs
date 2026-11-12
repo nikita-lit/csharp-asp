@@ -190,6 +190,26 @@ public class LecturersServicesTests : TestBase
         Assert.Equal( "Eesti keele õpetaja", result.Qualifications );
     }
 
+    /// <summary>
+    ///     Test, mis kontrollib, et olematu Guid-iga õppejõu andmeid ei tagastata.
+    /// </summary>
+    [Fact]
+    public async Task ShouldNot_ReturnDetails_WhenGuidIsIncorrect()
+    {
+        //ülesseade
+        var createdLecturer = await AddLecturerToDb();
+        var guid = Guid.NewGuid();
+
+        //tegevus
+        var result = await Svc<ILecturersServices>().DetailsAsync( guid );
+        var details = await Svc<ILecturersServices>().DetailsAsync( createdLecturer.Id );
+
+        //kontroll
+        Assert.Null( result );
+        Assert.NotNull( details );
+        Assert.Equal( createdLecturer.Id, details.Id );
+    }
+
     public async Task<Lecturer> AddLecturerToDb()
     {
         var dto = MockLecturerDTOData();
