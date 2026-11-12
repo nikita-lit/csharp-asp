@@ -1,6 +1,7 @@
 using School2.Core.Domain;
 using School2.Core.DTO;
 using School2.Core.ServiceInterface;
+using School2.Data;
 using Xunit;
 
 namespace School2.xUnitTesting;
@@ -14,24 +15,24 @@ public class LecturersServicesTests : TestBase
     public async Task Should_AddNewLecturer_WhenResultIsReturned()
     {
         //ülesseade
-        var dto = new LecturerDTO();
-        dto.FirstName = "Test";
-        dto.LastName = "Test";
-        dto.Qualifications = "Test";
+        var dto = MockLecturerDTOData();
+        dto.UserId = "test-user";
 
         //tegevus
         var result = await Svc<ILecturersServices>().Create( dto );
 
         //kontroll
         Assert.NotNull( result );
+        Assert.NotEqual( Guid.Empty, result.Id );
 
         Assert.NotEmpty( result.FirstName );
         Assert.NotEmpty( result.LastName );
         Assert.NotEmpty( result.Qualifications );
 
-        Assert.Matches( dto.FirstName, result.FirstName );
-        Assert.Matches( dto.LastName, result.LastName );
-        Assert.Matches( dto.Qualifications, result.Qualifications );
+        Assert.Equal( dto.FirstName, result.FirstName );
+        Assert.Equal( dto.LastName, result.LastName );
+        Assert.Equal( dto.Qualifications, result.Qualifications );
+        Assert.Equal( dto.UserId, result.UserId );
     }
 
     // details test
@@ -50,14 +51,10 @@ public class LecturersServicesTests : TestBase
         //kontroll
         Assert.NotNull( result );
 
-        Assert.Equal( result.Id, createdLecturer.Id );
-        Assert.True( result.Id == createdLecturer.Id );
-
-        Assert.Equal( result, createdLecturer );
-
-        Assert.Matches( createdLecturer.FirstName, result.FirstName );
-        Assert.Matches( createdLecturer.LastName, result.LastName );
-        Assert.Matches( createdLecturer.Qualifications, result.Qualifications );
+        Assert.Equal( createdLecturer.Id, result.Id );
+        Assert.Equal( createdLecturer.FirstName, result.FirstName );
+        Assert.Equal( createdLecturer.LastName, result.LastName );
+        Assert.Equal( createdLecturer.Qualifications, result.Qualifications );
     }
 
     // update test
@@ -69,24 +66,39 @@ public class LecturersServicesTests : TestBase
     {
         //ülesseade
         var dto = MockLecturerDTOData();
+        dto.UserId = "test-user";
         var createResult = await Svc<ILecturersServices>().Create( dto );
+        Assert.NotNull( createResult );
+
+        var createdAt = createResult.CreatedAt;
+        var modifiedAt = createResult.ModifiedAt;
         dto.Id = createResult.Id;
         dto.FirstName = "Testnimi";
         dto.LastName = "Testnimi";
         dto.Qualifications = "Räägib nagu maakas";
-        dto.CreatedAt = createResult.CreatedAt;
-        dto.ModifiedAt = DateTime.UtcNow;
+        dto.CreatedAt = DateTime.MinValue;
+        dto.ModifiedAt = DateTime.MinValue;
 
         // tegevus
         var result = await Svc<ILecturersServices>().Update( dto );
+        Svc<School2Context>().ChangeTracker.Clear();
+        var details = await Svc<ILecturersServices>().DetailsAsync( dto.Id );
 
         // kontroll
         Assert.NotNull( result );
+        Assert.NotNull( details );
 
         Assert.Equal( dto.Id, result.Id );
         Assert.Equal( dto.Qualifications, result.Qualifications );
-        Assert.Matches( dto.FirstName, result.FirstName );
-        Assert.Matches( dto.LastName, result.LastName );
+        Assert.Equal( dto.FirstName, result.FirstName );
+        Assert.Equal( dto.LastName, result.LastName );
+        Assert.Equal( dto.FirstName, details.FirstName );
+        Assert.Equal( dto.LastName, details.LastName );
+        Assert.Equal( dto.Qualifications, details.Qualifications );
+        Assert.Equal( createdAt, details.CreatedAt );
+        Assert.Equal( dto.UserId, details.UserId );
+        Assert.True( details.ModifiedAt >= modifiedAt );
+        Assert.NotEqual( dto.ModifiedAt, details.ModifiedAt );
     }
 
     // delete test
@@ -114,8 +126,10 @@ public class LecturersServicesTests : TestBase
 
     public async Task<Lecturer> AddLecturerToDb()
     {
-        var result = MockLecturerDTOData();
-        return await Svc<ILecturersServices>().Create( result );
+        var dto = MockLecturerDTOData();
+        var result = await Svc<ILecturersServices>().Create( dto );
+        Assert.NotNull( result );
+        return result;
     }
 
     private LecturerDTO MockLecturerDTOData()
