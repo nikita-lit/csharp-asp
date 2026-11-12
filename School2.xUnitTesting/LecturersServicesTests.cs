@@ -280,6 +280,37 @@ public class LecturersServicesTests : TestBase
         Assert.Equal( dto.Qualifications, details.Qualifications );
     }
 
+    /// <summary>
+    ///     Test, mis kontrollib, et olematu Guid-iga õppejõudu ei muudeta ega lisata.
+    /// </summary>
+    [Fact]
+    public async Task ShouldNot_UpdateLecturer_WhenGuidIsIncorrect()
+    {
+        //ülesseade
+        var originalDTO = MockLecturerDTOData();
+        var createdLecturer = await Svc<ILecturersServices>().Create( originalDTO );
+        Assert.NotNull( createdLecturer );
+
+        var dto = MockLecturerDTOData();
+        dto.Id = Guid.NewGuid();
+        dto.FirstName = "Testnimi";
+        dto.LastName = "Uus perekonnanimi";
+        dto.Qualifications = "Uus kvalifikatsioon";
+
+        //tegevus
+        var result = await Svc<ILecturersServices>().Update( dto );
+        var missingLecturer = await Svc<ILecturersServices>().DetailsAsync( dto.Id );
+        var details = await Svc<ILecturersServices>().DetailsAsync( createdLecturer.Id );
+
+        //kontroll
+        Assert.Null( result );
+        Assert.Null( missingLecturer );
+        Assert.NotNull( details );
+        Assert.Equal( originalDTO.FirstName, details.FirstName );
+        Assert.Equal( originalDTO.LastName, details.LastName );
+        Assert.Equal( originalDTO.Qualifications, details.Qualifications );
+    }
+
     public async Task<Lecturer> AddLecturerToDb()
     {
         var dto = MockLecturerDTOData();
