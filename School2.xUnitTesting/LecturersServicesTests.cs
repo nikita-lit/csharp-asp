@@ -358,6 +358,27 @@ public class LecturersServicesTests : TestBase
         Assert.Equal( createdLecturer.Id, details.Id );
     }
 
+    /// <summary>
+    ///     Test, mis kontrollib, et õppejõu teistkordne kustutamine tagastab nulli.
+    /// </summary>
+    [Fact]
+    public async Task Should_ReturnNull_WhenDeletingLecturerTwice()
+    {
+        //ülesseade
+        var createdLecturer = await AddLecturerToDb();
+
+        //tegevus
+        var deletedLecturer = await Svc<ILecturersServices>().Delete( createdLecturer.Id );
+        var deletedAgain = await Svc<ILecturersServices>().Delete( createdLecturer.Id );
+        var result = await Svc<ILecturersServices>().DetailsAsync( createdLecturer.Id );
+
+        //kontroll
+        Assert.NotNull( deletedLecturer );
+        Assert.Equal( createdLecturer.Id, deletedLecturer.Id );
+        Assert.Null( deletedAgain );
+        Assert.Null( result );
+    }
+
     public async Task<Lecturer> AddLecturerToDb()
     {
         var dto = MockLecturerDTOData();
