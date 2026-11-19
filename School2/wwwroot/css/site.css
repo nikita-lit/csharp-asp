@@ -21,6 +21,23 @@ body {
   margin-bottom: 60px;
 }
 
+.lecturer-form {
+  max-width: 720px;
+}
+
+.lecturer-photo {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+}
+
+.lecturer-thumbnail {
+  width: 64px;
+  height: 64px;
+}
+
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
   color: var(--bs-secondary-color);
   text-align: end;

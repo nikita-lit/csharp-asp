@@ -11,14 +11,14 @@ else
     <h2>Kustuta</h2>
 }
 
-<div>
+<div class="lecturer-form">
     <h4>Õppejõud</h4>
     <hr />
 
     @if (Model.ImageId.HasValue)
     {
         <img src="@Url.Action("Image", "Lecturers", new { id = Model.ImageId })"
-             alt="Õppejõu foto" width="200" />
+             alt="Õppejõu foto" width="200" class="img-fluid rounded mb-3" />
     }
 
     <dl class="row">
@@ -67,7 +67,7 @@ else
 
     @if (ViewBag.ViewType == "delete")
     {
-        <form asp-action="DeleteConfirmed" method="post">
+        <form asp-action="DeleteConfirmed" method="post" class="d-flex flex-wrap gap-2">
             <input type="hidden" asp-for="Id" />
 
             <input id="DD_Delete_Btn"
@@ -85,19 +85,21 @@ else
     }
     else
     {
-        <a id="DD_DetailsUpdate_Btn"
-               asp-action="Update"
-               asp-controller="Lecturers"
-               asp-route-id="@Model.Id"
-               class="btn btn-warning">
-            Muuda
-        </a>
+        <div class="d-flex flex-wrap gap-2">
+            <a id="DD_DetailsUpdate_Btn"
+                   asp-action="Update"
+                   asp-controller="Lecturers"
+                   asp-route-id="@Model.Id"
+                   class="btn btn-warning">
+                Muuda
+            </a>
 
-        <a id="DD_DetailsBack_Btn"
-               asp-action="Index"
-               asp-controller="Lecturers"
-               class="btn btn-primary">
-            Tagasi
-        </a>
+            <a id="DD_DetailsBack_Btn"
+                   asp-action="Index"
+                   asp-controller="Lecturers"
+                   class="btn btn-primary">
+                Tagasi
+            </a>
+        </div>
     }
 </div>

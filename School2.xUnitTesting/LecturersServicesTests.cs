@@ -210,6 +210,9 @@ public class LecturersServicesTests : TestBase
         Assert.Equal( createdLecturer.Id, details.Id );
     }
 
+    /// <summary>
+    ///     Test, mis kontrollib, et vigase välja korral jäävad varasemad andmed alles.
+    /// </summary>
     [Fact]
     public async Task ShouldNot_UpdateLecturer_WhenFirstNameIsNull()
     {
