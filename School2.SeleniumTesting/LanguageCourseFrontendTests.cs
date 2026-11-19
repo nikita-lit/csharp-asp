@@ -1,38 +1,12 @@
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
 using Xunit;
 
 namespace School2.SeleniumTesting;
 
 [TestCaseOrderer( "School2.SeleniumTesting.PriorityOrderer", "School2.SeleniumTesting" )]
-public class LanguageCourseFrontendTests
+public class LanguageCourseFrontendTests : FrontendTestBase
 {
     public static string ThisRunGuid { get; set; }
-
-    /// <summary>
-    ///     Ülesseade meetod mis tekitab draiveri ja navigeerib aadressile
-    /// </summary>
-    /// <param name="driver"></param>
-    private static IWebDriver CreateDriver()
-    {
-        IWebDriver driver = new FirefoxDriver(); // brauserit juhtiv ja seal tegutsev draiver
-        driver.Url = "http://localhost:5117/"; // navigeeritav aadress
-
-        Thread.Sleep( 1000 );
-
-        return driver;
-    }
-
-    /// <summary>
-    ///     Ülesseade meetod mis vajutab keeltekursuste lingile
-    /// </summary>
-    /// <param name="driver"></param>
-    private static void NavigateToIndex( IWebDriver driver )
-    {
-        var navigateToLanguageCourse =
-            driver.FindElement( By.Id( "LanguageCourses_Btn" ) ); // otsime tesitava osa lingi
-        navigateToLanguageCourse.Click(); // simuleeritud tegevus elemendiga, antud juhul klikk
-    }
 
     /// <summary>
     ///     Meetod mis testimise eesmärgil sisestab lehel andmeid, on võimalik konfigureerida
