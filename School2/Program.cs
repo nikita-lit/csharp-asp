@@ -13,6 +13,15 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder( args );
 
+        if ( OperatingSystem.IsWindows() )
+        {
+            builder.Configuration.AddJsonFile(
+                "appsettings.Windows.json",
+                false,
+                true
+            );
+        }
+
         // Add services to the container.
         builder.Services.AddControllersWithViews();
 
