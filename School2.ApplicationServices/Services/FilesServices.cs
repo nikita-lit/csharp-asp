@@ -8,23 +8,24 @@ namespace School2.ApplicationServices.Services;
 
 public class FilesServices( School2Context context, IHostEnvironment hostEnvironment ) : IFilesServices
 {
-    public void UploadFiles( LecturerDTO dto, Lecturer domain )
+    public void UploadFile( LecturerDTO dto, Lecturer domain )
     {
-        if ( dto.Files != null && dto.Files.Count > 0 )
-            foreach ( var file in dto.Files )
-                using ( var target = new MemoryStream() )
-                {
-                    FileToDatabase files = new()
-                    {
-                        ImageId = Guid.NewGuid(),
-                        ImageTitle = file.FileName,
-                        LecturerId = domain.Id
-                    };
-                    file.CopyTo( target );
-                    files.ImageData = target.ToArray();
+        if (dto.File == null)
+            return;
 
-                    context.Files.Add( files );
-                }
+        using var target = new MemoryStream();
+        dto.File.CopyTo(target);
+
+        var oldImages = context.Files.Where(x => x.LecturerId == domain.Id).ToList();
+        context.Files.RemoveRange(oldImages);
+
+        context.Files.Add(new FileToDatabase
+        {
+            ImageId = Guid.NewGuid(),
+            ImageTitle = dto.File.FileName,
+            LecturerId = domain.Id,
+            ImageData = target.ToArray()
+        });
     }
 
     public Task<FileToDatabase> RemoveFileFromDatabase( FileToDatabaseDTO dto )

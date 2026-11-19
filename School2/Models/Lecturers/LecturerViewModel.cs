@@ -15,7 +15,9 @@ public class LecturerViewModel
     [Required]
     public string Qualifications { get; set; } = string.Empty;
 
-    public List<IFormFile>? Files { get; set; }
+    public IFormFile? File { get; set; }
+
+    public Guid? ImageId { get; set; }
 
     public DateTime? CreatedAt { get; set; }
 

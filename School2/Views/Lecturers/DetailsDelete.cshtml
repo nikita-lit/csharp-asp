@@ -15,6 +15,12 @@ else
     <h4>Õppejõud</h4>
     <hr />
 
+    @if (Model.ImageId.HasValue)
+    {
+        <img src="@Url.Action("Image", "Lecturers", new { id = Model.ImageId })"
+             alt="Õppejõu foto" width="200" />
+    }
+
     <dl class="row">
         <div class="form-group row">
             <label asp-for="Id"

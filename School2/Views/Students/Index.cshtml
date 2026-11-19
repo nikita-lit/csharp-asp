@@ -1,13 +1,17 @@
 @model IEnumerable<School2.Models.Students.StudentViewModel>
 @{
-    var rowNumber = 1;
+    int rowNumber = 1;
 }
+
+<br/>
 
 <div>
     <a id="IndexCreateNewStudent_Btn" asp-action="Create" asp-controller="Students" type="submit" class="btn btn-dark">
         Lisa uus õpilane
     </a>
 </div>
+
+<br/>
 
 <div class="h1">
     Õpilased

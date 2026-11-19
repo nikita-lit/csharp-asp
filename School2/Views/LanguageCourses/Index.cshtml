@@ -1,7 +1,9 @@
 @model IEnumerable<School2.Models.LanguageCourses.LanguageCourseViewModel>
 @{
-    var rowNumber = 1;
+    int rowNumber = 1;
 }
+
+<br/>
 
 @* Later check for role of the user, hide this button if not admin or teacher *@
 <div>
@@ -10,6 +12,8 @@
         Lisa uus keelekursus
     </a>
 </div>
+
+<br/>
 
 <div class="h1">
     Keelekursused

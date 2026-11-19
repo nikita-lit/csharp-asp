@@ -58,12 +58,19 @@ else
         </div>
 
         <div class="form-group">
-            <label asp-for="Files"></label>
+            <label asp-for="File"></label>
 
-            <input asp-for="Files"
+            @if (Model.ImageId.HasValue)
+            {
+                <img src="@Url.Action("Image", "Lecturers", new { id = Model.ImageId })"
+                     alt="Õppejõu foto" width="200" />
+            }
+
+            <input asp-for="File"
                    type="file"
-                   multiple
+                   accept=".jpg,.jpeg,.png"
                    class="form-control" />
+            <span asp-validation-for="File" class="text-danger"></span>
         </div>
 
         @if (Model.Id.HasValue)

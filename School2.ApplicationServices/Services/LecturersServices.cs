@@ -8,11 +8,11 @@ namespace School2.ApplicationServices.Services;
 
 public class LecturersServices(
     School2Context context,
-    IFilesServices filesServices) : ILecturersServices
+    IFilesServices filesServices ) : ILecturersServices
 {
-    public async Task<Lecturer?> Create(LecturerDTO? dto)
+    public async Task<Lecturer?> Create( LecturerDTO? dto )
     {
-        if (!IsValidLecturer(dto))
+        if ( !IsValidLecturer( dto ) )
             return null;
 
         Lecturer domain = new()
@@ -26,25 +26,25 @@ public class LecturersServices(
             ModifiedAt = DateTime.UtcNow
         };
 
-        await context.Lecturers.AddAsync(domain);
+        await context.Lecturers.AddAsync( domain );
 
-        filesServices.UploadFiles(dto, domain);
+        filesServices.UploadFile( dto, domain );
 
         await context.SaveChangesAsync();
 
         return domain;
     }
 
-    public async Task<Lecturer?> Update(LecturerDTO? dto)
+    public async Task<Lecturer?> Update( LecturerDTO? dto )
     {
-        if (!IsValidLecturer(dto))
+        if ( !IsValidLecturer( dto ) )
             return null;
 
         var domain = await context.Lecturers
-            .Include(x => x.Image)
-            .FirstOrDefaultAsync(x => x.Id == dto.Id);
+            .Include( x => x.Image )
+            .FirstOrDefaultAsync( x => x.Id == dto.Id );
 
-        if (domain is null)
+        if ( domain is null )
             return null;
 
         domain.FirstName = dto.FirstName.Trim();
@@ -52,47 +52,47 @@ public class LecturersServices(
         domain.Qualifications = dto.Qualifications.Trim();
         domain.ModifiedAt = DateTime.UtcNow;
 
-        filesServices.UploadFiles(dto, domain);
+        filesServices.UploadFile( dto, domain );
 
         await context.SaveChangesAsync();
 
         return domain;
     }
 
-    public async Task<Lecturer?> DetailsAsync(Guid id)
+    public async Task<Lecturer?> DetailsAsync( Guid id )
     {
         var result = await context.Lecturers
-            .Include(x => x.Image)
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Include( x => x.Image )
+            .FirstOrDefaultAsync( x => x.Id == id );
 
         return result;
     }
 
-    public async Task<Lecturer?> Delete(Guid id)
+    public async Task<Lecturer?> Delete( Guid id )
     {
         var result = await context.Lecturers
-            .Include(x => x.Image)
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Include( x => x.Image )
+            .FirstOrDefaultAsync( x => x.Id == id );
 
-        if (result is null)
+        if ( result is null )
             return null;
 
-        // Сначала удаляем связанные файлы.
-        context.Files.RemoveRange(result.Image);
+        context.Files.RemoveRange( result.Image );
 
-        context.Lecturers.Remove(result);
+        context.Lecturers.Remove( result );
 
         await context.SaveChangesAsync();
 
         return result;
     }
 
-    private static bool IsValidLecturer(
-        [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] LecturerDTO? dto)
+    private static bool IsValidLecturer( LecturerDTO? dto )
     {
         return dto is not null
-            && !string.IsNullOrWhiteSpace(dto.FirstName)
-            && !string.IsNullOrWhiteSpace(dto.LastName)
-            && !string.IsNullOrWhiteSpace(dto.Qualifications);
+               && !string.IsNullOrWhiteSpace( dto.FirstName )
+               && !string.IsNullOrWhiteSpace( dto.LastName )
+               && !string.IsNullOrWhiteSpace( dto.Qualifications )
+               && (dto.File == null ||
+                   Path.GetExtension( dto.File.FileName ).ToLowerInvariant() is ".jpg" or ".jpeg" or ".png");
     }
 }

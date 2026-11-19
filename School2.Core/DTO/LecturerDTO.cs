@@ -15,7 +15,7 @@ public class LecturerDTO
     public string? UserId { get; set; }
 
     //public ICollection<LanguageSubject> LanguageSubjects { get; set; }
-    public List<IFormFile>? Files { get; set; }
+    public IFormFile? File { get; set; }
     public IEnumerable<FileToDatabaseDTO>? Image { get; set; } = [];
 
     public DateTime? CreatedAt { get; set; }
