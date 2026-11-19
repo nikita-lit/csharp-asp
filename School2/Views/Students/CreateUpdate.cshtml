@@ -20,7 +20,7 @@ else
         <div class="form-group">
             <label asp-for="FirstName" class="form-label">Eesnimi</label>
             <input id="CU_Student_FirstName" asp-for="FirstName" class="form-control"/>
-            <span asp-validation-for="FirstName" class="text-danger"></span>
+            <span id="CU_Student_FirstName_Error" asp-validation-for="FirstName" class="text-danger"></span>
         </div>
 
         <div class="form-group">
@@ -38,7 +38,7 @@ else
         <div class="form-group">
             <label asp-for="Email" class="form-label">E-post</label>
             <input id="CU_Student_Email" asp-for="Email" class="form-control"/>
-            <span asp-validation-for="Email" class="text-danger"></span>
+            <span id="CU_Student_Email_Error" asp-validation-for="Email" class="text-danger"></span>
         </div>
 
         <div class="d-flex flex-wrap gap-2 border-top pt-3">

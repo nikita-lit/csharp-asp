@@ -77,7 +77,7 @@ public class LanguageCourseFrontendTests : FrontendTestBase
     {
         /* ülesseade */
         var driver = CreateDriver();
-        NavigateToIndex( driver );
+        NavigateToIndex( driver, "LanguageCourses_Btn" );
 
         /* tegevus */
         var indexCreateBtn = driver.FindElement( By.Id( "IndexCreateNewLanguageCourse_Btn" ) );
@@ -129,7 +129,7 @@ public class LanguageCourseFrontendTests : FrontendTestBase
     {
         /* ülesseade */
         var driver = CreateDriver();
-        NavigateToIndex( driver );
+        NavigateToIndex( driver, "LanguageCourses_Btn" );
 
         var table = driver.FindElement( By.Id( "IndexCreateNewLanguageCourse_Table" ) );
 
@@ -190,7 +190,7 @@ public class LanguageCourseFrontendTests : FrontendTestBase
     {
         /* ülesseade */
         var driver = CreateDriver();
-        NavigateToIndex( driver );
+        NavigateToIndex( driver, "LanguageCourses_Btn" );
 
         var table = driver.FindElement( By.Id( "IndexCreateNewLanguageCourse_Table" ) );
 
@@ -257,7 +257,7 @@ public class LanguageCourseFrontendTests : FrontendTestBase
     {
         /* ülesseade */
         var driver = CreateDriver();
-        NavigateToIndex( driver );
+        NavigateToIndex( driver, "LanguageCourses_Btn" );
 
         var table = driver.FindElement( By.Id( "IndexCreateNewLanguageCourse_Table" ) );
 
