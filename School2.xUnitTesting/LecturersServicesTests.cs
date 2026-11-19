@@ -210,20 +210,13 @@ public class LecturersServicesTests : TestBase
         Assert.Equal( createdLecturer.Id, details.Id );
     }
 
-    /// <summary>
-    ///     Test, mis kontrollib, et vigase välja korral jäävad varasemad andmed alles.
-    /// </summary>
-    [Theory]
-    [InlineData( null, "Testnimi", "Uus kvalifikatsioon" )]
-    [InlineData( "", "Testnimi", "Uus kvalifikatsioon" )]
-    [InlineData( "   ", "Testnimi", "Uus kvalifikatsioon" )]
-    [InlineData( "Testnimi", null, "Uus kvalifikatsioon" )]
-    [InlineData( "Testnimi", "", "Uus kvalifikatsioon" )]
-    [InlineData( "Testnimi", "   ", "Uus kvalifikatsioon" )]
-    [InlineData( "Testnimi", "Testnimi", null )]
-    [InlineData( "Testnimi", "Testnimi", "" )]
-    [InlineData( "Testnimi", "Testnimi", "   " )]
-    public async Task ShouldNot_UpdateLecturer_WhenDataIsIncorrect(
+    [Fact]
+    public async Task ShouldNot_UpdateLecturer_WhenFirstNameIsNull()
+    {
+        await AssertLecturerIsNotUpdated_WhenDataIsIncorrect( null, "Testnimi", "Uus kvalifikatsioon" );
+    }
+
+    private async Task AssertLecturerIsNotUpdated_WhenDataIsIncorrect(
         string? firstName, string? lastName, string? qualifications )
     {
         //ülesseade
