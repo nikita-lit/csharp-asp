@@ -1,49 +1,8 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using Xunit;
-using Xunit.Abstractions;
-using Xunit.Sdk;
 
 namespace School2.SeleniumTesting;
-
-// Järjesti klass, mis omab omadusi mille järgi teste saab järjestada,
-// väärtusi saab omistada ainult läbi konstruktori argumentide.
-public class OrderAttribute( int value ) : Attribute
-{
-    public int Value { get; } = value; // väärtus
-}
-
-// xUnit järjesti mis implementeerib ITestCaseOrderer liidasest "OrderTestCases" meetodi,
-// ning see meetod on see, mida me kasutame testide käivitamisel nende testide õigesti järjestamiseks.
-// Järjestatakse vastavalt OrderAttribute omadusele
-public class PriorityOrderer : ITestCaseOrderer
-{
-    // meetod võtab sisse kõik test cased
-    public IEnumerable<TTestCase> OrderTestCases<TTestCase>( IEnumerable<TTestCase> testCases )
-        where TTestCase : ITestCase
-    {
-        // toimub sorteerimistegevus kus järjestatakse arendaja kirjutatud järjesti järgi.
-        var result = testCases.OrderBy( test =>
-        {
-            // otsitakse järjesti omadusena
-            var method =
-                test.TestMethod.Method
-                    .GetCustomAttributes( typeof(OrderAttribute) )
-                    .FirstOrDefault();
-
-            // kui ei leita
-            if ( method == null )
-                // antakse tagasi maksimaalne täisarv, ehk test teostatakse kohe,
-                // ega ei panda teiste potensiaalselt ÕIGES järjekorras olevate testide vahele
-                return int.MaxValue;
-
-            // siis tagastatakse selle järjesti omaduse väärtus
-            return method.GetNamedArgument<int>( nameof(OrderAttribute.Value) );
-        } ).ToList();
-
-        return result;
-    }
-}
 
 [TestCaseOrderer( "School2.SeleniumTesting.PriorityOrderer", "School2.SeleniumTesting" )]
 public class LanguageCourseFrontendTests
@@ -84,7 +43,7 @@ public class LanguageCourseFrontendTests
     /// <returns>Tagastab lisatud Guid stringi kujul mis pandi nimevälja (kui on konfigureeritud nii)</returns>
     private static string DataEntryLanguageCourse( IWebDriver driver, bool isOneOrTwo = false, bool updateName = false )
     {
-        var generatedId = string.Empty;
+        string generatedId = string.Empty;
 
         if ( updateName )
         {
@@ -139,8 +98,7 @@ public class LanguageCourseFrontendTests
     /// <summary>
     ///     Test, mis lisab uue kursuse ja kontrollib selle andmeid kursuste nimekirjas.
     /// </summary>
-    [Fact]
-    [Order( 1 )]
+    [Fact, Order( 1 )]
     public void Should_NavigateToIndex_AddLanguageCourseWithUniqueData_ReturnToIndex()
     {
         /* ülesseade */
@@ -151,7 +109,7 @@ public class LanguageCourseFrontendTests
         var indexCreateBtn = driver.FindElement( By.Id( "IndexCreateNewLanguageCourse_Btn" ) );
         indexCreateBtn.Click();
 
-        var uniqueId = DataEntryLanguageCourse( driver, updateName: true );
+        string uniqueId = DataEntryLanguageCourse( driver, updateName: true );
         ThisRunGuid = uniqueId;
 
         var createBtn = driver.FindElement( By.Id( "CU_Create_Btn" ) );
@@ -165,12 +123,12 @@ public class LanguageCourseFrontendTests
         var rowsOfTable = table.FindElements( By.TagName( "tr" ) ).ToList();
         rowsOfTable.RemoveAt( 0 ); // delete th
 
-        var languageCourseNimetusData = string.Empty;
-        var languageCourseKeelData = string.Empty;
+        string languageCourseNimetusData = string.Empty;
+        string languageCourseKeelData = string.Empty;
 
         foreach ( var row in rowsOfTable )
         {
-            var nimetusElement = row.FindElement( By.Id( "IndexTableCourseNimetus" ) ).Text;
+            string nimetusElement = row.FindElement( By.Id( "IndexTableCourseNimetus" ) ).Text;
             if ( nimetusElement == ThisRunGuid )
             {
                 languageCourseNimetusData = ThisRunGuid;
@@ -192,8 +150,7 @@ public class LanguageCourseFrontendTests
     /// <summary>
     ///     Test, mis avab varem lisatud kursuse detailvaate ja kontrollib selle andmeid.
     /// </summary>
-    [Fact]
-    [Order( 2 )]
+    [Fact, Order( 2 )]
     public void Should_NavigateToDetailsOfALanguageCourse_WithPreviouslyUniqueData()
     {
         /* ülesseade */
@@ -205,12 +162,12 @@ public class LanguageCourseFrontendTests
         var rowsOfTable = table.FindElements( By.TagName( "tr" ) ).ToList();
         rowsOfTable.RemoveAt( 0 ); // delete th
 
-        var isObjectFound = false;
+        bool isObjectFound = false;
 
         /* tegevus */
         foreach ( var row in rowsOfTable )
         {
-            var nimetusElement = row.FindElement( By.Id( "IndexTableCourseNimetus" ) ).Text;
+            string nimetusElement = row.FindElement( By.Id( "IndexTableCourseNimetus" ) ).Text;
             if ( nimetusElement == ThisRunGuid )
             {
                 isObjectFound = true;
@@ -226,11 +183,11 @@ public class LanguageCourseFrontendTests
 
         Thread.Sleep( 1000 );
 
-        var detailsId = driver.FindElement( By.Id( "DD_LanguageCourseGuid" ) ).Text;
-        var detailsNimetus = driver.FindElement( By.Id( "DD_LanguageCourseNimetus" ) ).Text;
-        var detailsKeel = driver.FindElement( By.Id( "DD_LanguageCourseKeel" ) ).Text;
-        var detailsKirjeldus = driver.FindElement( By.Id( "DD_LanguageCourseKirjeldus" ) ).Text;
-        var detailsTase = driver.FindElement( By.Id( "DD_LanguageCourseTase" ) ).Text;
+        string detailsId = driver.FindElement( By.Id( "DD_LanguageCourseGuid" ) ).Text;
+        string detailsNimetus = driver.FindElement( By.Id( "DD_LanguageCourseNimetus" ) ).Text;
+        string detailsKeel = driver.FindElement( By.Id( "DD_LanguageCourseKeel" ) ).Text;
+        string detailsKirjeldus = driver.FindElement( By.Id( "DD_LanguageCourseKirjeldus" ) ).Text;
+        string detailsTase = driver.FindElement( By.Id( "DD_LanguageCourseTase" ) ).Text;
 
         driver.FindElement( By.Id( "DD_DetailsBack_Btn" ) ).Click();
         Thread.Sleep( 1000 );
@@ -254,8 +211,7 @@ public class LanguageCourseFrontendTests
     /// <summary>
     ///     Test, mis muudab kursuse andmeid vormil ja kontrollib salvestatud väärtusi.
     /// </summary>
-    [Fact]
-    [Order( 3 )]
+    [Fact, Order( 3 )]
     public void Should_UpdateDetailsOfUniqueLanguageCourses_WithNewData()
     {
         /* ülesseade */
@@ -267,12 +223,12 @@ public class LanguageCourseFrontendTests
         var rowsOfTable = table.FindElements( By.TagName( "tr" ) ).ToList();
         rowsOfTable.RemoveAt( 0 ); // delete th
 
-        var isObjectFound = false;
+        bool isObjectFound = false;
 
         /* tegevus */
         foreach ( var row in rowsOfTable )
         {
-            var nimetusElement = row.FindElement( By.Id( "IndexTableCourseNimetus" ) ).Text;
+            string nimetusElement = row.FindElement( By.Id( "IndexTableCourseNimetus" ) ).Text;
             if ( nimetusElement == ThisRunGuid )
             {
                 isObjectFound = true;
@@ -293,11 +249,11 @@ public class LanguageCourseFrontendTests
 
         driver.FindElement( By.Id( "CU_Update_Btn" ) ).Click();
 
-        var detailsId = driver.FindElement( By.Id( "CU_LanguageCourse_Guid" ) ).GetAttribute( "value" );
-        var detailsNimetus = driver.FindElement( By.Id( "CU_LanguageCourse_Nimetus" ) ).GetAttribute( "value" );
-        var detailsKeel = driver.FindElement( By.Id( "CU_LanguageCourse_Keel" ) ).GetAttribute( "value" );
-        var detailsKirjeldus = driver.FindElement( By.Id( "CU_LanguageCourse_Kirjeldus" ) ).GetAttribute( "value" );
-        var detailsTase = driver.FindElement( By.Id( "CU_LanguageCourse_Tase" ) ).GetAttribute( "value" );
+        string? detailsId = driver.FindElement( By.Id( "CU_LanguageCourse_Guid" ) ).GetAttribute( "value" );
+        string? detailsNimetus = driver.FindElement( By.Id( "CU_LanguageCourse_Nimetus" ) ).GetAttribute( "value" );
+        string? detailsKeel = driver.FindElement( By.Id( "CU_LanguageCourse_Keel" ) ).GetAttribute( "value" );
+        string? detailsKirjeldus = driver.FindElement( By.Id( "CU_LanguageCourse_Kirjeldus" ) ).GetAttribute( "value" );
+        string? detailsTase = driver.FindElement( By.Id( "CU_LanguageCourse_Tase" ) ).GetAttribute( "value" );
 
         Thread.Sleep( 1000 );
         driver.FindElement( By.Id( "CU_Back_Btn" ) ).Click();
@@ -322,8 +278,7 @@ public class LanguageCourseFrontendTests
     /// <summary>
     ///     Test, mis eemaldab konkreetse varem lisatud objekti
     /// </summary>
-    [Fact]
-    [Order( 4 )]
+    [Fact, Order( 4 )]
     public void Should_DeleteUniqueLanguageCourse_FromDeleteView()
     {
         /* ülesseade */
@@ -335,12 +290,12 @@ public class LanguageCourseFrontendTests
         var rowsOfTable = table.FindElements( By.TagName( "tr" ) ).ToList();
         rowsOfTable.RemoveAt( 0 );
 
-        var isObjectFound = false;
+        bool isObjectFound = false;
 
         /* tegevus */
         foreach ( var row in rowsOfTable )
         {
-            var nimetusElement = row.FindElement( By.Id( "IndexTableCourseNimetus" ) ).Text;
+            string nimetusElement = row.FindElement( By.Id( "IndexTableCourseNimetus" ) ).Text;
             if ( nimetusElement == ThisRunGuid )
             {
                 isObjectFound = true;
@@ -368,7 +323,7 @@ public class LanguageCourseFrontendTests
 
         foreach ( var row in rowsOfTable )
         {
-            var nimetusElement = row.FindElement( By.Id( "IndexTableCourseNimetus" ) ).Text;
+            string nimetusElement = row.FindElement( By.Id( "IndexTableCourseNimetus" ) ).Text;
             if ( nimetusElement == ThisRunGuid )
             {
                 isObjectFound = true;
