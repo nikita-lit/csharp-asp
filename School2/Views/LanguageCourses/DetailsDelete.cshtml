@@ -10,7 +10,7 @@ else
     <h2>Kustuta</h2>
 }
 
-<div>
+<div class="content-form">
     <h4>Keelekursus</h4>
     <hr/>
     <dl class="row">
@@ -46,7 +46,7 @@ else
 
     @if ( ViewBag.ViewType == "delete" )
     {
-        <form asp-action="DeleteConfirmed">
+        <form asp-action="DeleteConfirmed" method="post" class="d-flex flex-wrap gap-2">
             <input type="hidden" asp-for="Id"/>
             <input id="DD_Delete_Btn" type="submit" value="Kustuta" class="btn btn-danger"/>
 
@@ -55,10 +55,12 @@ else
     }
     else
     {
-        <a id="DD_DetailsUpdate_Btn" asp-action="Update" asp-controller="LanguageCourses" asp-route-id="@Model.Id"
-           class="btn btn-warning">Muuda</a>
-        <a id="DD_DetailsBack_Btn" asp-action="Index" asp-controller="LanguageCourses"
-           class="btn btn-primary">Tagasi</a>
+        <div class="d-flex flex-wrap gap-2">
+            <a id="DD_DetailsUpdate_Btn" asp-action="Update" asp-controller="LanguageCourses" asp-route-id="@Model.Id"
+               class="btn btn-warning">Muuda</a>
+            <a id="DD_DetailsBack_Btn" asp-action="Index" asp-controller="LanguageCourses"
+               class="btn btn-primary">Tagasi</a>
+        </div>
     }
 
 </div>

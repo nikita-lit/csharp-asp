@@ -21,7 +21,8 @@ body {
   margin-bottom: 60px;
 }
 
-.lecturer-form {
+.lecturer-form,
+.content-form {
   max-width: 720px;
 }
 

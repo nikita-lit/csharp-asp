@@ -7,11 +7,11 @@
 }
 else
 {
-    <h1>Loo uus kursust</h1>
+    <h1>Loo uus kursus</h1>
 }
 
-<div>
-    <form method="post" enctype="multipart/form-data">
+<div class="content-form">
+    <form method="post" enctype="multipart/form-data" class="d-flex flex-column gap-3">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <input id="CU_LanguageCourse_Guid" asp-for="Id" type="hidden"/>
@@ -20,51 +20,53 @@ else
         <input asp-for="ModifiedBy" type="hidden"/>
 
         <div class="form-group">
-            <label asp-for="Nimetus" class="control-label"></label>
+            <label asp-for="Nimetus" class="form-label">Nimetus</label>
             <input id="CU_LanguageCourse_Nimetus" asp-for="Nimetus" class="form-control"/>
             <span asp-validation-for="Nimetus" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Keel" class="control-label"></label>
+            <label asp-for="Keel" class="form-label">Keel</label>
             <input id="CU_LanguageCourse_Keel" asp-for="Keel" class="form-control"/>
             <span asp-validation-for="Keel" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Tase" class="control-label"></label>
+            <label asp-for="Tase" class="form-label">Tase</label>
             <input id="CU_LanguageCourse_Tase" asp-for="Tase" class="form-control"/>
             <span asp-validation-for="Tase" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Kirjeldus" class="control-label"></label>
+            <label asp-for="Kirjeldus" class="form-label">Kirjeldus</label>
             <input id="CU_LanguageCourse_Kirjeldus" asp-for="Kirjeldus" class="form-control"/>
             <span asp-validation-for="Kirjeldus" class="text-danger"></span>
         </div>
 
         @* create only, later add update, checkforid *@
 
-        @if ( Model.Id.HasValue )
-        {
-            <input asp-action="update"
-                   asp-controller="LanguageCourses"
-                   id="CU_Update_Btn"
-                   type="submit"
-                   value="Muuda"
-                   class="btn btn-success"/>
-        }
-        else
-        {
-            <input asp-action="create"
-                   asp-controller="LanguageCourses"
-                   id="CU_Create_Btn"
-                   type="submit"
-                   value="Tee uus"
-                   class="btn btn-success"/>
-        }
+        <div class="d-flex flex-wrap gap-2 border-top pt-3">
+            @if ( Model.Id.HasValue )
+            {
+                <input asp-action="update"
+                       asp-controller="LanguageCourses"
+                       id="CU_Update_Btn"
+                       type="submit"
+                       value="Muuda"
+                       class="btn btn-success"/>
+            }
+            else
+            {
+                <input asp-action="create"
+                       asp-controller="LanguageCourses"
+                       id="CU_Create_Btn"
+                       type="submit"
+                       value="Tee uus"
+                       class="btn btn-success"/>
+            }
 
-        <a id="CU_Back_Btn" asp-action="Index" asp-controller="LanguageCourses" class="btn btn-secondary">Tagasi</a>
+            <a id="CU_Back_Btn" asp-action="Index" asp-controller="LanguageCourses" class="btn btn-secondary">Tagasi</a>
+        </div>
     </form>
 </div>
 
