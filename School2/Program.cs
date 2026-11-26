@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi;
 using School2.ApplicationServices.Services;
 using School2.Core.Domain;
 using School2.Core.ServiceInterface;
@@ -54,8 +55,10 @@ public class Program
 
         // swagger
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-
+        builder.Services.AddSwaggerGen( options =>
+        {
+            options.SwaggerDoc( "v1", new OpenApiInfo { Title = "School2 API", Version = "v1" } );
+        } );
 
         var app = builder.Build();
 
