@@ -85,6 +85,7 @@ public class Program
         app.UseAuthorization();
 
         app.MapStaticAssets();
+        app.MapControllers();
         app.MapControllerRoute(
                 "default",
                 "{controller=Home}/{action=Index}/{id?}" )
