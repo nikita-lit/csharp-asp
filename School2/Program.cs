@@ -72,7 +72,7 @@ public class Program
             app.UseSwaggerUI( opts =>
             {
                 opts.SwaggerEndpoint( "/swagger/v1/swagger.json", "School2 API" );
-                opts.RoutePrefix = "swagger";
+                opts.RoutePrefix = "docs";
             } );
         }
 
