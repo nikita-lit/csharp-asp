@@ -202,8 +202,10 @@ public class StudentsServicesTests : TestBase
     {
         /* ülesseade */
         var dto = MockStudentDTOData();
-        dto.FirstName = new string( 't', 101 );
-        dto.LastName = new string( 'y', 101 );
+
+        // kordame sümbolit, et moodustada pikk rida
+        dto.FirstName = new string( 't', 101 ); // result: tttttttttt....
+        dto.LastName = new string( 'y', 101 ); // result: yyyyyyyyyyy....
 
         /* tegevus */
         var createResult = await Svc<IStudentsServices>().Create( dto );

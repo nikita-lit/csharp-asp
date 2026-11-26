@@ -455,6 +455,7 @@ public class StudentFrontendTests : FrontendTestBase
         int countAfter = driver.FindElement( By.Id( "IndexCreateNewStudent_Table" ) )
             .FindElement( By.TagName( "tbody" ) ).FindElements( By.TagName( "tr" ) ).Count;
 
+        // kontrollime, et tabeli rida on eemaldatud
         Assert.Equal( countBefore - 1, countAfter );
 
         driver.Quit();
