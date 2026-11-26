@@ -13,10 +13,10 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder( args );
 
-        if ( OperatingSystem.IsWindows() )
+        if ( OperatingSystem.IsLinux() )
         {
             builder.Configuration.AddJsonFile(
-                "appsettings.Windows.json",
+                "appsettings.Linux.json",
                 false,
                 true
             );
